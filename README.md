@@ -66,3 +66,40 @@ The site users can be identified as falling within one of the following three ca
 	- **(Admin/site owner user)**	
 		* I want to be able to validate users to improve trust in the site.
 		* I want to be able to view, edit and delete all users and entries on the site.
+
+### Project Scope
+
+---
+
+Looking at the User and Owner/Business Goals, there are plenty of features and content which could be included in the site to attempt to satisfy all their needs. However, a number of factors limit what would be possible or desirable to include in the first development stage.
+
+The main constraints are time and the current technological expertise of the developer. The decisions made at this stage are designed to avoid making the scope too large, such that the project becomes overloaded and fails to meet deadlines or making it too small, such that there is an unimpressive end result.
+
+The first development stage aims to create a Minimal Viable Product, providing users with the core requirements that they actually need. Additional features can be added if there is time or at future developmental stages, once feedback has been received from the initial site features.  
+
+The features to include in this first development stage will be determined by creating a strategy trade-off table, drawing on the user goals and needs.
+
+There may also be conflicting needs between the user categories, in which case a decision will be made on which to prioritise. This will be addressed in the Structure and Skeleton phases of development.
+
+ #### Strategy Trade-offs
+
+ Opportunity | Importance | Viability
+----------- | ---------- | ---------
+Clear and intuitive navigational links | 5 | 5
+Responsive for all device sizes | 5 | 5
+Secure document-based database | 5 | 5
+Registration and login/logout pages with user authentication | 5 | 5
+Form for users to create dog profile | 5 | 5
+User profile page | 5 | 5 
+Individual dog profile pages | 5 | 5
+Search facility for users to filter profiles | 5 | 5
+CRUD (Create, Read, Update, Delete) functionality across the site | 5 | 5
+Admin only facility to verify and moderate users and content | 5 | 4
+Footer with site information and links to external sites | 4 | 5
+Reviews function for dog profiles | 4 | 4
+Breed group page to provide information and filter by group | 4 | 4
+Facility for users to contact other users (via admin) | 4 | 4
+Facility for users to contact other users (directly) | 4 | 2
+'Favourites' function | 3 | 3
+
+The higher importance/feasibility elements will be incorporated in this first stage of development.		
