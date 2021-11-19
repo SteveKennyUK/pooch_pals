@@ -102,4 +102,88 @@ Facility for users to contact other users (via admin) | 4 | 4
 Facility for users to contact other users (directly) | 4 | 2
 'Favourites' function | 3 | 3
 
-The higher importance/feasibility elements will be incorporated in this first stage of development.		
+#### Content Scope
+
+Using the table above, we can see which are the most valuable features to the user, how much of our resources they would take up and thus which features should be incorporated in the first stage.
+
+It is felt that features should be provided in the following order of importance - 
+
+ - An informative landing page with intuitive navigation.
+ - Simple registration, login and logout facilities.
+ - General dog profile page with search facility (users will need to register to see more detailed profiles, which both encourages users to register and also provides registered users with a degree of reassurance over who can view the profiles).
+ - User profile page.
+ - Form to add dog profile information.
+ - Detailed dog profile pages.
+ - Features to allow user to view, edit and delete their dog profile(s).
+ - Admin only features.
+ - Review features.
+ - Contact page.
+ - Breed information and filter page. 
+  
+
+### Project Structure
+---
+The structural design of the site aims to make the user interaction with the site as easy and as comfortable as possible. This is achieved by creating meaningful relationships between the various site elements so that users can intuitively understand their meaning and purpose.
+
+**Interactive Design**
+The principles of Interactive Design (IxD) promote consistency, predictability, visibility, learnability and feedback as central to the above aim. The structure of this site aims to follow these principles.  
+
+ -  #### Page Structure
+
+	- The nature of this site necessarily involves spreading content over several pages. The user expects different functions to have their own pages e.g. registration, login, profile pages. The user will therefore be provided with good, clear and intuitive links to the different pages, either via the navigation bar or through buttons and links.
+	
+	- In order to keep the site consistent and predictable, elements will follow the same structure across all pages. All pages will have the same background image, navigation bar and footer. Information will be displayed using cards which will be displayed in a consistent manner.
+
+	- The landing page will immediately address some of the user goals, with clear directions to desired content through navigation links, calls to action and meaningful images. These are consistent with previous user experiences on other sites.
+	
+	- A separate contact section is also expected. The 'Contact' page provides a contact form where users can request further information, particularly if they wish to register interest in contacting another user/dog owner. Input fields will react to user actions, which will provide reassuring feedback to the user. As the site develops and expands, a facility for users to contact each other directly e.g. direct chat, will be added.
+	
+	- Separate error pages in the event of a broken link or server error will be added. This feedback adds reassurance to the user and provides them with clear instructions on how to return to the site.
+  
+ -  #### Visibility
+
+	- The location and purpose of elements should be clear to users. Where appropriate, there will be partial overlay of elements on the screens to hint to the user that there is more content below. Additionally, if necessary, a scroll down arrow will be employed to indicate to the user that useful content can be accessed further down. 
+
+	- There will also be a floating scroll up arrow where the page length requires a degree of scrolling down so users can return to the top of the screen with a single click from anywhere on the page. The smooth scroll styling will enable the user to understand the page layout and where the various elements are located. 
+
+	-  Dropdown menus will have an arrow to indicate that there are further options available. This is a common practice to make elements more visible so should be predictable to the user. If not, the consistent use of this practice will help the user to learn what such arrows mean and be comfortable when encountering them.
+  
+ -  #### Navigation
+
+	- The site navigation will again be consistent and predictable by following the convention of the site logo on the top left with a horizontal navigation bar to the right of the logo. 
+	
+	- A fixed navigation bar and sticky footer will be employed. This will provide a better visual experience for the user and, in conjunction with the floating scroll up arrow, will reduce the amount of scrolling required by the user.
+	
+	- The navigation bar will be responsive and will use a hamburger menu for smaller devices. This is consistent and predictable with most sites on mobile devices. The menu will then push the page content down when activated to maximise visibility of the options.  
+
+ -  #### Buttons and Links
+
+	- Buttons and links will be used to create a smoother navigation process for the user. The purpose of these must be made clear to the user. Buttons and links will react when the mouse hovers over them. This conventionally suggests that clicking on the button or link will make something happen. The use of unambiguous text or iconography will make it clear to the user what will happen when the button or link is clicked.
+	
+	- Styling the buttons and links in a consistent manner and employing the same reaction when e.g. the mouse hovers will help the user to learn and predict what they need to do to achieve their goals.
+	
+	- When a button is clicked, the user will be provided with some feedback to reassure them that their action has been acknowledged. This will be either a change in the button appearance or a flash message appearing. The flash message will either confirm that the required action has been successful or inform the user that an error has occurred, with instructions on what the user should do next. This builds trust with the user.	
+	
+	- External links will always open in another page (by adding the `target="_blank"`attribute inside the link's anchor element). This makes for a better user experience as the user will not need to use the back button to return to the site. It is also good practice to add `rel="noopener"` as this adds a security layer by preventing the new page from accessing the original window object.
+  
+
+ -  #### Iconography
+
+	- Icons will be used to help users to quickly identify content matter. A visual representation can say more than words and often stands out more. A quick scan of the page will pick out icons and well chosen ones will stand out and immediately assure the user as to the associated content.
+
+	- The site logo acts in a similar fashion and the user quickly learns to associate the image with the site and its purpose. A favicon, using a dog paw print image, will be also be added. This is now generally expected by users and helps them to identify the site if they have several pages open.
+
+**Information Architecture (IA)**
+
+ - The navigation paths follow a tree structure with the head branches representing the main features. These feature pages, where appropriate, will contain buttons and links leading the user to any sub features relevant to the main branches, avoiding overloading the navigation bar. Sub features include links to edit, delete and create new content; these will require no more than three clicks to reach. 
+
+ - Once the site evolves, additional branches can be added but the fundamental structure will remain.
+ 
+ - The IA varies slightly, dependent on the current user category - please see below.
+
+![User 1 - not registered/logged in](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/User%20-%20not%20logged%20in.jpeg)
+
+![User 2 - registered & logged in](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/User%20-%20registered%20&%20logged%20in.jpeg)
+
+![User 3 - Admin](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/Admin.jpeg) 	
+	
