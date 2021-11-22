@@ -187,3 +187,73 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 
 ![User 3 - Admin](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/Admin.jpeg) 	
 	
+### Project Design (Skeleton and Surface)
+---
+The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
+The subject matter of the site, focusing on dogs, lends itself to a fun, playful and lively theme. The design decisions for the site are intended to reflect this theme.  
+
+-  #### General Layout
+
+	- The design will broadly follow the 'rule of thirds' to provide a visually comforting experience to the user. Where appropriate, sections will be divided into thirds or one-third to two-thirds ratios.
+
+	- Sizing of elements will be balanced and proportional to again improve the visual comfort of the site. Where appropriate, measurements will use rem units to help with responsiveness.
+
+	- Layouts will be responsive to different screen sizes, particularly as many users will be expected to view the site on mobile devices. Consequently, the layout will change according to media size e.g. three horizontal columns on a desktop may become three vertical columns on a mobile phone.
+	
+	- The decision has been made to use [Materialize](https://materializecss.com/) as a framework to create a responsive site. It is felt that in addition to responsiveness, this framework offers myriad options to create features to assist in displaying user content clearly. The use of Materialize also influences some of the other design decisions. 
+	
+	-  Content will be displayed principally using Materialize card components. These provide a visually appealing and responsive solution. Main outer container cards will have a white opaque background, partially revealing the background wallpaper. Inner cards will sit within the outer container.
+	
+	- It is the intention to include pagination where a page has a lot of content so as to avoid causing cognitive overload to the user. In particular, a page displaying all the dog profile cards would benefit from such a feature. 
+
+-  #### Colour Scheme
+
+	- The colour scheme for this site is important to help the user feel immediately comfortable. The decision was made to employ the Materialize [base colours](https://materializecss.com/color.html) for much of the site's colour palette. Any additional CSS styling can then use the colour HEX values.
+	
+	- In the interests of consistency and to help create a fun vibe, the same background wallpaper involving dog-related images will be used across all pages. In order to not create too much of a distraction, a white background with relatively small black images has been chosen. The standard #000 Black and #FFF white will also be used across the site, where appropriate, to complement the background. 
+	
+	- The decision has also been made to keep the site fairly simple in terms of colours used. This will help focus attention on the content and user interactions. The site will instead rely on the imagery and component colours to add the requisite visual depth. 
+	
+	- All colours are checked with [WebAIM](https://webaim.org/resources/contrastchecker/) to ensure that the colour contrasts meet accessibility guidelines.
+	
+	- **Core Elements**		
+	
+		It is felt that the core elements (e.g. navigation bar and footer) should employ a colour that is warm and reassuring but also complements the background wallpaper. The Materialize #eceff1 blue-grey lighten-5 was first chosen. However, it was felt that something a bit warmer and with a greater contrast capacity was required. After adjusting to a warmer colour with more blue hue added and running through WebAIM to check contrast with black text, the following colour was settled upon -
+	
+		[#ebf1fa](https://icolorpalette.com/color?q=ebf1fa) - Icy Lilac
+	
+		The core text elements contained within the body, such as main headings, require a darker colour in order to contrast against the lighter background and meet accessibility guidelines. The following Materialize colour was chosen as it still remains consistent with the core elements' colour -
+		
+		[#455a64 ](https://icolorpalette.com/color?q=455a64) - blue-grey darken-2 ('San Juan') 		
+
+	- **Buttons**		
+	
+		The choice of colours for the buttons is important as it should add to the intuitive and learnable design features of the site. Navigational buttons which progress the user through the site (such as 'Search' & Back) will use the same colour employed for core navigation elements i.e. 	[#ebf1fa](https://icolorpalette.com/color?q=ebf1fa) - Icy Lilac. This provides added reassurance to the user as to the button's function.
+	
+		Button colours will also be consistent with recognised colour standards used elsewhere. These include - 
+	
+    	[#26a69a](https://icolorpalette.com/color?q=26a69a) - teal lighten-1 ('Baltic'). This Materialize teal colour represents a 'green for go' instruction. This will be used for buttons that initiate an action, such as 'Submit', 'Edit' and 'Register'. This colour will also be used as a border on card elements to provide contrast against the background and complement the action buttons.
+    
+    	[#f44336](https://icolorpalette.com/color?q=f44336) - red ('Vermilion Bird'). This Materialize red colour represents a negative instruction, such as 'Delete' and 'Cancel'.
+    	
+    	[#ffab00](https://icolorpalette.com/color?q=ffab00) - amber accent-4 ('Flash of Orange'). This Materialize accent colour will be used to draw attention to certain features such as call to action buttons and any flash messages.
+
+		Buttons will react to user interactions, such as when the mouse hovers over the button, the colour will change or the Materialize `waves-effect` class will be employed to indicate that clicking the button will cause something to happen.
+
+	- **Palette** 
+	
+		The chosen colours are displayed in the following palette -
+		
+	![Pooch Pals Palette](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/colour-palette.JPG)
+	
+-  #### Typography
+
+	- The font choices for the site will also adhere to the fun, playful and lively theme outlined previously. Research from other sites with a similar dog theme (see Credits) helped to decide on the best fonts to use to achieve this.
+
+	-  The [Neucha](https://fonts.google.com/specimen/Neucha?query=neucha#standard-styles) font on [Google Fonts](https://fonts.google.com/) has been selected for the main titles and headings. The sleek and clean look of the [Lato](https://fonts.google.com/specimen/Lato?query=lato#standard-styles) font complements Neucha well and will be used for the main body text. Sans serif will act as a fall-back font in case the chosen fonts are not imported correctly.
+
+-  #### Imagery
+
+	- The choice of images to use for the site is straightforward in that it will focus on dog imagery. This is what a user would expect from such a site. Principally, the images will come from the dog profile pictures uploaded by the users. If a user does not upload a photo or the link fails, a dedicated default image will be displayed, including a message informing the viewer that no image is available.
+
+	- In addition to the profile photos, the site will include cartoon-style pictures. This is again in keeping with the fun and playful nature of the site. These pictures will also be used to tell a story, indicating the nature of the current page or link button e.g. a picture of a person and dog with a computer indicates login or registration is required.	
