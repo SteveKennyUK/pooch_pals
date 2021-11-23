@@ -125,10 +125,11 @@ It is felt that features should be provided in the following order of importance
 ---
 The structural design of the site aims to make the user interaction with the site as easy and as comfortable as possible. This is achieved by creating meaningful relationships between the various site elements so that users can intuitively understand their meaning and purpose.
 
-**Interactive Design**
+ #### Interactive Design
+
 The principles of Interactive Design (IxD) promote consistency, predictability, visibility, learnability and feedback as central to the above aim. The structure of this site aims to follow these principles.  
 
- -  #### Page Structure
+ -  **Page Structure**
 
 	- The nature of this site necessarily involves spreading content over several pages. The user expects different functions to have their own pages e.g. registration, login, profile pages. The user will therefore be provided with good, clear and intuitive links to the different pages, either via the navigation bar or through buttons and links.
 	
@@ -140,7 +141,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	
 	- Separate error pages in the event of a broken link or server error will be added. This feedback adds reassurance to the user and provides them with clear instructions on how to return to the site.
   
- -  #### Visibility
+ -  **Visibility**
 
 	- The location and purpose of elements should be clear to users. Where appropriate, there will be partial overlay of elements on the screens to hint to the user that there is more content below. Additionally, if necessary, a scroll down arrow will be employed to indicate to the user that useful content can be accessed further down. 
 
@@ -148,7 +149,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 
 	-  Dropdown menus will have an arrow to indicate that there are further options available. This is a common practice to make elements more visible so should be predictable to the user. If not, the consistent use of this practice will help the user to learn what such arrows mean and be comfortable when encountering them.
   
- -  #### Navigation
+ -  **Navigation**
 
 	- The site navigation will again be consistent and predictable by following the convention of the site logo on the top left with a horizontal navigation bar to the right of the logo. 
 	
@@ -156,7 +157,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	
 	- The navigation bar will be responsive and will use a hamburger menu for smaller devices. This is consistent and predictable with most sites on mobile devices. The menu will then push the page content down when activated to maximise visibility of the options.  
 
- -  #### Buttons and Links
+ -  **Buttons and Links**
 
 	- Buttons and links will be used to create a smoother navigation process for the user. The purpose of these must be made clear to the user. Buttons and links will react when the mouse hovers over them. This conventionally suggests that clicking on the button or link will make something happen. The use of unambiguous text or iconography will make it clear to the user what will happen when the button or link is clicked.
 	
@@ -167,26 +168,44 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	- External links will always open in another page (by adding the `target="_blank"`attribute inside the link's anchor element). This makes for a better user experience as the user will not need to use the back button to return to the site. It is also good practice to add `rel="noopener"` as this adds a security layer by preventing the new page from accessing the original window object.
   
 
- -  #### Iconography
+ -  **Iconography**
 
 	- Icons will be used to help users to quickly identify content matter. A visual representation can say more than words and often stands out more. A quick scan of the page will pick out icons and well chosen ones will stand out and immediately assure the user as to the associated content.
 
 	- The site logo acts in a similar fashion and the user quickly learns to associate the image with the site and its purpose. A favicon, using a dog paw print image, will be also be added. This is now generally expected by users and helps them to identify the site if they have several pages open.
 
-**Information Architecture (IA)**
+#### Information Architecture (IA)
 
  - The navigation paths follow a tree structure with the head branches representing the main features. These feature pages, where appropriate, will contain buttons and links leading the user to any sub features relevant to the main branches, avoiding overloading the navigation bar. Sub features include links to edit, delete and create new content; these will require no more than three clicks to reach. 
 
  - Once the site evolves, additional branches can be added but the fundamental structure will remain.
  
- - The IA varies slightly, dependent on the current user category - please see below.
+ - The IA varies slightly, dependent on the current user category - please see below. 
 
 ![User 1 - not registered/logged in](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/User%20-%20not%20logged%20in.jpeg)
-
 ![User 2 - registered & logged in](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/User%20-%20registered%20&%20logged%20in.jpeg)
-
 ![User 3 - Admin](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/Admin.jpeg) 	
+
+#### Database Architecture
+
+ -  **Database Choice**
+
+The non-relational document-based database of [MongoDB](https://www.mongodb.com/) was selected as the best fit for this project. The various data collections only have a few relational elements so the greater flexibility provided by MongoDB (e.g. over a SQL relational database) is preferable.
+
+Where there are relational elements between collections, the ObjectId of one collection will be inserted as a key in the relational collection. This guards against issues arising using key names from a collection as a key in another collection e.g. in the event the key name is changed. The ObjectId will remain constant so is safer to use. These relationships are colour coded in the below schema diagram.
+
+ - **Data Collections**
+ 
+	**Users** - this collection stores user information for registration, login and profile purposes. It also stores admin and verification status as Booleans. The ObjectId will be used as a reference when a user adds a dog profile (in the Dog collection) or leaves a review (in the Reviews collection).
 	
+	**Breed Group** - this collection stores information regarding the categorisation of dogs by breed group. It will used as a filter and as an informational tool. The breed groups are a set standard so are unlikely to change. Consequently, only admin users will have access to this collection, should the description or image require updating. If the standards are ever changed, it would be simple to enable admin to make any additions or amendments. The ObjectId will be used as a reference when a user adds a new dog profile.
+	
+	**Dogs** - this is the core collection, storing all information regarding dog profiles, most of which will be provided by user input on the 'Add Dog' profile form. This information will then be used to display information on the 'Dog Profile' pages. The ObjectId will be used as a reference when a review is left on a dog profile (in the Reviews collection).
+	
+	**Reviews** - this collection stores information when a review is left on a dog profile. It will store the ObjectId of both the user who has left the review and the dog profile that is subject to the review.
+
+
+![Database schema diagram](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/database-ER-diagram%20.jpeg)
 ### Project Design (Skeleton and Surface)
 ---
 The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
@@ -204,6 +223,7 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 	
 	-  Content will be displayed principally using Materialize card components. These provide a visually appealing and responsive solution. Main outer container cards will have a white opaque background, partially revealing the background wallpaper. Inner cards will sit within the outer container.
 	
+
 	- It is the intention to include pagination where a page has a lot of content so as to avoid causing cognitive overload to the user. In particular, a page displaying all the dog profile cards would benefit from such a feature. 
 
 -  #### Colour Scheme
