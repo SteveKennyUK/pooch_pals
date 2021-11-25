@@ -205,7 +205,8 @@ Where there are relational elements between collections, the ObjectId of one col
 	**Reviews** - this collection stores information when a review is left on a dog profile. It will store the ObjectId of both the user who has left the review and the dog profile that is subject to the review.
 
 
-![Database schema diagram](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/database-ER-diagram%20.jpeg)
+![Database schema diagram](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/database-ER-diagram.jpeg)
+
 ### Project Design (Skeleton and Surface)
 ---
 The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
@@ -272,8 +273,23 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 
 	-  The [Neucha](https://fonts.google.com/specimen/Neucha?query=neucha#standard-styles) font on [Google Fonts](https://fonts.google.com/) has been selected for the main titles and headings. The sleek and clean look of the [Lato](https://fonts.google.com/specimen/Lato?query=lato#standard-styles) font complements Neucha well and will be used for the main body text. Sans serif will act as a fall-back font in case the chosen fonts are not imported correctly.
 
--  #### Imagery
+- #### Imagery
 
 	- The choice of images to use for the site is straightforward in that it will focus on dog imagery. This is what a user would expect from such a site. Principally, the images will come from the dog profile pictures uploaded by the users. If a user does not upload a photo or the link fails, a dedicated default image will be displayed, including a message informing the viewer that no image is available.
 
 	- In addition to the profile photos, the site will include cartoon-style pictures. This is again in keeping with the fun and playful nature of the site. These pictures will also be used to tell a story, indicating the nature of the current page or link button e.g. a picture of a person and dog with a computer indicates login or registration is required.	
+
+- #### Wireframes
+
+	 - Eleven html pages were identified as being required to display the project data in the initial development stages. The wireframes for these pages were developed using [Balsamiq](https://balsamiq.com/) and can be viewed below (please right-click on the mouse to open in an external page).
+		 - [Home Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/home_page_pooch_pals.pdf)
+		 - [Register Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/register_pooch_pals.pdf)
+		 - [Login Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/login_pooch_pals.pdf)
+		 - [Profile Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/profile_pooch_pals.pdf)
+		 - [All Dogs Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/all_dogs_pooch_pals.pdf)
+		 - [View Dog Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/view_dog_pooch_pals.pdf)
+		 - [Add Dog Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/add_dog_pooch_pals.pdf)
+		 - [Edit Dog Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/edit_dog_pooch_pals.pdf)
+		 - [Breed Groups Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/breed_groups_pooch_pals.pdf)
+		 - [Contact Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/contact_pooch_pals.pdf)
+		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
