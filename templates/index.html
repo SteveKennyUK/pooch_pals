@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pooch Pals</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>Extend base</h2>
+
     {% for breed in breeds %}
         {{ breed.breed_name }}<br>
         {{ breed.description }}<br>
         <img src="{{ breed.image_url }}" alt=""><br>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
