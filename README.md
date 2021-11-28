@@ -172,7 +172,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 
 	- Icons will be used to help users to quickly identify content matter. A visual representation can say more than words and often stands out more. A quick scan of the page will pick out icons and well chosen ones will stand out and immediately assure the user as to the associated content.
 
-	- The site logo acts in a similar fashion and the user quickly learns to associate the image with the site and its purpose. A favicon, using a dog paw print image, will be also be added. This is now generally expected by users and helps them to identify the site if they have several pages open.
+	- The site logo acts in a similar fashion and the user quickly learns to associate the image with the site and its purpose. A favicon, using the dog logo image, will be also be added. This is now generally expected by users and helps them to identify the site if they have several pages open.
 
 #### Information Architecture (IA)
 
