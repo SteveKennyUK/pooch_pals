@@ -293,3 +293,111 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 		 - [Breed Groups Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/breed_groups_pooch_pals.pdf)
 		 - [Contact Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/contact_pooch_pals.pdf)
 		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
+
+
+## Deployment
+---
+Although the application has been developed using GitHub, GitHub Pages is only capable of hosting static websites. It is therefore necessary to use a platform capable of hosting backend applications. The chosen platform is [Heroku](https://www.heroku.com/), a container-based cloud Platform as a Service (PaaS).
+
+### Environmental Variables
+The application's environmental variables are contained within a file named `env.py`. This file contains sensitive information so should be stored within the application's `.gitignore` file to prevent the information being shared e.g. committed to GitHub.
+The default environmental variables are set as follows -
+
+    import os  
+    
+    os.environ.setdefault("IP", "0.0.0.0")
+    os.environ.setdefault("PORT", "5000")
+    os.environ.setdefault("SECRET_KEY", "<application's secret key>")
+
+In order to connect to MongoDB, these additional environmental variables are required - 
+
+    os.environ.setdefault("MONGO_URI", "<mongodb connection string>")
+    os.environ.setdefault("MONGO_DBNAME", "<database name>")
+
+The connection string is obtained within MongoDB by 
+
+ 1. Navigating to 'Databases'.
+ 2. Within the 'Database Deployments' section, selecting 'Connect'.
+ 3. Ensuring the correct driver and version is selected e.g. Python 3.6 or later.
+ 4. Copying the connection string and pasting into the `env.py` file, inserting your own information where there is placeholder text for password and database name.
+
+
+### Heroku
+In order to make the application ready to work in Heroku, the following steps are first necessary -
+
+ 1. Provide Heroku with a list of applications and dependencies that are required to run the site. These are stored in the requirements.txt file, which is created using the following command - 
+ 
+	`pip3 freeze --local > requirements.txt`
+	
+	This command should be run each time a new application is added.
+
+ 2. Inform Heroku of the Python file that is used to run the application. This information is stored in the Procfile and the following command is used to include the Python `app.py` file used for this application -    
+   
+	 `echo web: python app.py > Procfile`
+	 
+	 Ensure that any extra blank line in the Procfile is deleted as this could 		cause issues when running the app. 
+ 
+ 3. Push the files to GitHub and deploy to Heroku using the below steps.
+
+### Deployment Steps
+
+ 1. Log in to [Heroku](https://www.heroku.com/), select **New** on the upper right hand side and **Create new app** from the dropdown.
+ ![deployment image 1](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_1.JPG)
+ 2. Create an original name for the app and select the region closest to your location.
+ ![deployment image 2](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_2.JPG)
+ 3. Go to the **Deploy** tab and under **Deployment method**, select **GitHub**. 
+ 4. Enter the repository name ('pooch_pals') in the **Connect to GitHub** search box. When the repository appears beneath, click **Connect**. 
+![deployment image 3](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_3.JPG)
+5. Click on **Settings** and under **Config Vars**, select **Reveal Config Vars**. This is where the hidden environmental variables need to be stored so Heroku can read them.
+![deployment image 4](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_4.JPG)
+6. Add the environmental variables (matching those inserted into the `env.py` file) to the Config Vars -
+
+|KEY|VALUE  |
+|--|--|
+| IP | 0.0.0.0 |
+| PORT | 5000 |
+| SECRET_KEY | < app's secret key > |
+| MONGO_URI | < mongodb connection string > |
+| MONGO_DBNAME | < database name > |
+
+7. Back in **Deploy**, select **Enable Automatic Deploys** to enable Heroku to automatically update when pushes are made to GitHub.
+8. Under **Manual Deploy**, select **Deploy Branch** to start building the app. ![deployment image 5](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_5.JPG)
+'Your app was successfully deployed' will appear once deployment is complete and you may view the live site.   
+
+### Making a Local Clone
+
+It is possible to copy the repository to your local machine so that you can fix merge conflicts, add or remove files and push larger commits without affecting the original repository.  
+
+Cloning a repository pulls down a full copy of all the repository data that GitHub has at that point in time. See [GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) for further information and below for a summary.
+
+**Please note that the application will only run locally if the environmental variables (including secret keys) used in the original `env.py` file are included in the cloned `env.py` file**.
+
+1. Log in to your GitHub account and locate the [relevant repository](https://github.com/SteveKennyUK/pooch_pals).
+
+2. Click on the 'Code' button, next to the green 'Gitpod' button. This will reveal the 'Clone' option.
+
+3. In order to clone the repository using HTTPS, select HTTPS and copy the link. There is a copy button to the right of the URL.
+![deployment image 6](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/deployment/deployment_6.JPG)
+
+4. Next, open Git Bash. See [here](https://git-scm.com/downloads) for download options, if required.
+
+5. Change the current working directory on your local machine to the location where you want the cloned directory to be made.
+
+6. Type `git clone` into your IDE terminal followed by the URL you copied in Step 3.
+```
+$ git clone https://github.com/SteveKennyUK/pooch_pals.git
+```
+7. Press Enter.
+
+8. Your local clone will be created.
+```
+$  git clone https://github.com/SteveKennyUK/pooch_pals.git
+Cloning into 'pooch_pals'...
+remote: Enumerating objects: 97, done.
+remote: Counting objects: 100% (97/97), done.
+remote: Compressing objects: 100% (73/73), done.
+remote: Total 97 (delta 27), reused 82 (delta 16), pack-reused 0
+Receiving objects: 100% (97/97), 1.20 MiB | 12.66 MiB/s, done.
+Resolving deltas: 100% (27/27), done.
+```
+  
