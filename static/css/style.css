@@ -22,9 +22,16 @@ body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
-            flex-direction: column;     
+            flex-direction: column; 
+    background: url(../images/background-wallpaper.jpg) center/cover no-repeat fixed;    
 }
 
+main {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+  }
+  
 h1 {
     font-size: 4rem;
     font-family: 'Neucha', cursive;
@@ -38,14 +45,17 @@ p {
     font-size: 1.4rem;
     padding: 1rem;
 }
+
+.text-shadow {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
 /*================================== Colours ==================================*/
 nav,
 footer {
     background-color: #ebf1fa;
 }
 
-nav ul li a,
-.sidenav-trigger {
+.dropdown-content li a {
     color: #000;
 }
 /*================================== Navbar ==================================*/
@@ -62,4 +72,11 @@ span.logo-text {
     color: #000;
     vertical-align: top;
     font-weight: 600;
+}
+
+nav ul li a {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0 1rem;
 }

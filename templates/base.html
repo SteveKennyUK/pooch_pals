@@ -24,11 +24,14 @@
     {% block styles %}
     {% endblock %}
     <!-- Dynamic page titles -->
-    <title>{% block title %}{% endblock %}</title>
+    <title>Pooch Pals - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
     <header>
+        <!-- Navbar -->
+        <!-- Credit : navbar built using Materialize Navbar as template then customised with own styling -->
+        <!-- Navbar styling ideas inspired in part by https://github.com/Edb83/self-isolution/blob/master/templates/base.html -->
         <!-- Account Dropdown List -->
         <ul id="account_dropdown" class="dropdown-content">            
             <li><a href="#!">Profile</a></li>
@@ -40,17 +43,17 @@
         </ul>
         <!-- Top Navbar -->
         <div class="navbar-fixed">
-            <nav>
+            <nav class="nav-extended text-shadow">
                 <div class="nav-wrapper">
                     <a href="{{ url_for('index') }}" class="brand-logo"><img src="static/images/logo.png" alt="Pooch Pals logo"><span class="logo-text hide-on-small-only">Pooch Pals</span></a>
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('index') }}">Home</a></li>
-                        <li><a href="#!">Breeds</a></li>
-                        <li><a href="#!">Dogs</a></li>
-                        <li><a href="#!">Contact</a></li>
+                        <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="{% block nav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
+                        <li class="{% block nav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
+                        <li class="{% block nav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger" href="#!" data-target="account_dropdown">Account<i
+                        <li class="{% block nav_account %}{% endblock %}"><a class="dropdown-trigger" href="#!" data-target="account_dropdown">Account<i
                                     class="fa-solid fa-caret-down right"></i></a></li>
                     </ul>
                 </div>
@@ -58,15 +61,15 @@
         </div>
         <!-- Mobile Side Navbar -->
         <ul class="sidenav" id="mobile-nav">
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="#!">Breeds</a></li>
-            <li><a href="#!">Dogs</a></li>
-            <li><a href="#!">Profile</a></li>
+            <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="{% block mobnav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
+            <li class="{% block mobnav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
+            <li class="{% block mobnav_profile %}{% endblock %}"><a href="#!">Profile</a></li>
             <li><a href="#!">Logout</a></li>
-            <li><a href="#!">Admin</a></li>
-            <li><a href="#!">Register</a></li>
-            <li><a href="#!">Login</a></li>
-            <li><a href="#!">Contact</a></li>
+            <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
+            <li class="{% block mobnav_register %}{% endblock %}"><a href="#!">Register</a></li>
+            <li class="{% block mobnav_login %}{% endblock %}"><a href="#!">Login</a></li>
+            <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
         </ul>
     </header>
 
