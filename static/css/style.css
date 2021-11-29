@@ -57,6 +57,8 @@ footer {
 
 .dropdown-content li a {
     color: #000;
+    text-shadow: none;
+    background-color: #ebf1fa;
 }
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
@@ -67,11 +69,12 @@ footer {
     margin: 0.1rem 0.2rem 0 0.8rem;
 }
 
-span.logo-text {
+.logo-text {
     font-family: 'Neucha', cursive;
     color: #000;
     vertical-align: top;
     font-weight: 600;
+    padding-left: 0.5rem;
 }
 
 nav ul li a {
