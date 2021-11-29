@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Neucha&display=swap');
+
+/*================================== General Styling ==================================*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    font-size: 62.5%;
+    font-weight: 400;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;     
+}
+
+h1 {
+    font-size: 4rem;
+    font-family: 'Neucha', cursive;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.4rem;
+    padding: 1rem;
+}
+/*================================== Colours ==================================*/
+nav,
+footer {
+    background-color: #ebf1fa;
+}
+
+nav ul li a,
+.sidenav-trigger {
+    color: #000;
+}
+/*================================== Navbar ==================================*/
+/*--- navbar logo ---*/
+.brand-logo img {
+    height: 4rem;
+    width: 4rem;
+    border-style: none;
+    margin: 0.1rem 0.2rem 0 0.8rem;
+}
+
+span.logo-text {
+    font-family: 'Neucha', cursive;
+    color: #000;
+    vertical-align: top;
+    font-weight: 600;
+}

@@ -4,8 +4,8 @@
 
 
     {% for breed in breeds %}
-        {{ breed.breed_name }}<br>
-        {{ breed.description }}<br>
+        <p>{{ breed.breed_name }}</p><br>
+        <p>{{ breed.description }}</p><br>
         <img src="{{ breed.image_url }}" alt=""><br>
     {% endfor %}
 

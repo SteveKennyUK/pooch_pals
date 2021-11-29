@@ -271,7 +271,7 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 
 	- The font choices for the site will also adhere to the fun, playful and lively theme outlined previously. Research from other sites with a similar dog theme (see Credits) helped to decide on the best fonts to use to achieve this.
 
-	-  The [Neucha](https://fonts.google.com/specimen/Neucha?query=neucha#standard-styles) font on [Google Fonts](https://fonts.google.com/) has been selected for the main titles and headings. The sleek and clean look of the [Lato](https://fonts.google.com/specimen/Lato?query=lato#standard-styles) font complements Neucha well and will be used for the main body text. Sans serif will act as a fall-back font in case the chosen fonts are not imported correctly.
+	-  The [Neucha](https://fonts.google.com/specimen/Neucha?query=neucha#standard-styles) font on [Google Fonts](https://fonts.google.com/) has been selected for the main titles and headings. The sleek and clean look of the [Lato](https://fonts.google.com/specimen/Lato?query=lato#standard-styles) font complements Neucha well and will be used for the main body text. 'Sans serif' will act as a fall-back font for Lato and 'cursive' as a fall-back font for Neucha, in case the chosen fonts are not imported correctly.
 
 - #### Imagery
 
