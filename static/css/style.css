@@ -102,6 +102,12 @@ nav ul li a {
     background-color: #ebf1fa;
 }
 /*================================== Footer ==================================*/
+/*--- sticky footer. Credit: https://css-tricks.com/a-clever-sticky-footer-technique/ ---*/
+body > footer {
+    position: sticky;
+    top: 100vh;
+  }
+
 .icon-links {
     display: flex;
     justify-content: space-around;
