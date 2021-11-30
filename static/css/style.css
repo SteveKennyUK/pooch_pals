@@ -49,17 +49,29 @@ p {
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
+
+.underline {
+    text-decoration: underline;
+}
+
+.list-unstyled {
+    list-style-type: none;
+}
 /*================================== Colours ==================================*/
 nav,
 footer {
     background-color: #ebf1fa;
 }
 
-.dropdown-content li a {
+.icon-links a,
+.text-links a {
     color: #000;
-    text-shadow: none;
-    background-color: #ebf1fa;
 }
+
+.text-links a:hover {
+    /* color: #455a64; */
+    font-weight: 800;
+} 
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
 .brand-logo img {
@@ -76,10 +88,34 @@ footer {
     font-weight: 600;
     padding-left: 0.5rem;
 }
-
+/*--- navbar links ---*/
 nav ul li a {
     color: #000;
     font-size: 1.2rem;
     font-weight: 500;
     padding: 0 1rem;
+}
+
+.dropdown-content li a {
+    color: #000;
+    text-shadow: none;
+    background-color: #ebf1fa;
+}
+/*================================== Footer ==================================*/
+.icon-links {
+    display: flex;
+    justify-content: space-around;
+    padding: 1.5rem 0;
+}
+
+.footer-container {
+    width: 80%;
+}
+
+.text-links {
+    font-size: 1rem;
+}
+
+.contact-links li {
+    padding-bottom: 0.75rem;
 }

@@ -17,6 +17,13 @@
             referrerpolicy="no-referrer"
             type="text/css"
         />
+        <!-- Hover.css link tag -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+            integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg=="
+            crossorigin="anonymous"
+        />
         <!-- Materialize link tag -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" />
         <!-- Favicon link tags -->
@@ -48,7 +55,7 @@
                 <nav class="nav-extended text-shadow">
                     <div class="nav-wrapper">
                         <a href="{{ url_for('index') }}" class="brand-logo"><img src="static/images/logo.png" alt="Pooch Pals logo" /><span class="logo-text hide-on-small-only">Pooch Pals</span></a>
-                        <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text"><i class="fas fa-bars"></i></a>
+                        <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text" aria-label="side navigation bar trigger"><i class="fas fa-bars"></i></a>
                         <ul class="right hide-on-med-and-down">
                             <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                             <li class="{% block nav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
@@ -56,7 +63,7 @@
                             <li class="{% block nav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
                             <!-- Dropdown Trigger -->
                             <li class="{% block nav_account %}{% endblock %}">
-                                <a class="dropdown-trigger" href="#!" data-target="account_dropdown">Account<i class="fa-solid fa-caret-down right"></i></a>
+                                <a class="dropdown-trigger" href="#!" data-target="account_dropdown" aria-label="Account dropdown trigger">Account<i class="fa-solid fa-caret-down right"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -64,7 +71,9 @@
             </div>
             <!-- Mobile Side Navbar -->
             <ul class="sidenav" id="mobile-nav">
-                <li><h4 class="logo-text">Pooch Pals</h4></li>
+                <li>
+                    <h4 class="logo-text">Pooch Pals</h4>
+                </li>
                 <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="{% block mobnav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
                 <li class="{% block mobnav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
@@ -78,6 +87,51 @@
         </header>
 
         {% block content %} {% endblock %}
+
+        <footer>
+            <div class="container footer-container">
+                <div class="row">
+                    <div class="col s12 m4 push-m8"> 
+                        <div class="icon-links">                                              
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Pooch Pals Facebook page (link opens in a new tab)"><i class="fa-brands fa-facebook fa-3x hvr-buzz-out"></i></a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Pooch Pals Instagram page (link opens in a new tab)"><i class="fa-brands fa-instagram fa-3x hvr-buzz-out"></i></a>
+                            <a href="https://github.com/SteveKennyUK" target="_blank" rel="noopener" aria-label="Site developer's GitHub page (link opens in a new tab)"><i class="fa-brands fa-github fa-3x hvr-buzz-out"></i></a>
+                        </div> 
+                        <div class="center-align">
+                            <p>	&copy; 2021 Steven Kenny</p>
+                        </div>
+                    </div>
+
+                
+                
+                    <div class="col s12 m4 pull-m4 center-align">
+                        <h5 class="underline">Resources</h5>
+                        <ul class="list-unstyled text-links">
+                            <li><a href="https://www.thekennelclub.org.uk/" target="_blank" rel="noopener" aria-label="The Kennel Club website (link opens in a new tab)">Kennel Club</a></li>
+                            <li><a href="https://www.pdsa.org.uk/" target="_blank" rel="noopener" aria-label="The PDSA website (link opens in a new tab)">PDSA</a></li>
+                            <li><a href="https://www.petsathome.com/shop/en/pets/dog" target="_blank" rel="noopener" aria-label="Pets At Home dog accessory webpage (link opens in a new tab)">Dog Accessories</a></li>
+                            <li><a href="https://www.petplan.co.uk/" target="_blank" rel="noopener" aria-label="The Petplan website (link opens in a new tab)">Pet Insurance</a></li>
+                            <li><a href="https://www.caninecottages.co.uk/" target="_blank" rel="noopener" aria-label="The Canine Cottages website (link opens in a new tab)">Dog Friendly Holidays</a></li>
+                        </ul>
+                    </div>
+                
+                
+                    <div class="col s12 m4 pull-m4 center-align">
+                        <h5 class="underline">Contact</h5>
+                        <ul class="list-unstyled text-links contact-links">
+                            <li><a href="#" aria-label="Website Contact Form">Contact Form</a></li>
+
+                            <li>
+                                <a href="mailto:contact@poochpals.co.uk" aria-label="email contact@poochpals.co.uk"><i class="far fa-envelope" aria-hidden="true"></i> Email</a>
+                            </li>
+                            <li>
+                                <a href="tel:02085555555" aria-label="telephone 02085555555"><i class="fas fa-phone" aria-hidden="true"></i> Telephone</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
