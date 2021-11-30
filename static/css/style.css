@@ -38,6 +38,8 @@ h1 {
 }
 
 h2 {
+    font-family: 'Neucha', cursive;
+    font-weight: 600;
     font-size: 3rem;
 }
 
@@ -100,6 +102,12 @@ nav ul li a {
     color: #000;
     text-shadow: none;
     background-color: #ebf1fa;
+}
+/*================================== Cards ==================================*/
+.card-panel {
+    border: solid 2px #26a69a ;
+    border-radius: 1.2rem;
+    margin-top: 2rem;
 }
 /*================================== Footer ==================================*/
 /*--- sticky footer. Credit: https://css-tricks.com/a-clever-sticky-footer-technique/ ---*/
