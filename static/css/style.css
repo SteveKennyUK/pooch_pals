@@ -39,8 +39,9 @@ h1 {
 
 h2 {
     font-family: 'Neucha', cursive;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 3rem;
+    color: #455a64;
 }
 
 p {
@@ -105,8 +106,15 @@ nav ul li a {
 }
 /*================================== Cards ==================================*/
 .card-panel {
-    border: solid 2px #26a69a ;
+    border: solid 0.25rem #26a69a ;
     border-radius: 1.2rem;
+    margin-top: 2rem;
+}
+/*================================== Flash messages ==================================*/
+.flashes h4 {
+    width: 60%;
+    border-radius: 1rem;
+    margin: 0 auto;
     margin-top: 2rem;
 }
 /*================================== Footer ==================================*/
