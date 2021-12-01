@@ -49,7 +49,7 @@
                 <li class="divider"></li>
                 <li><a href="#!">Admin</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
-                <li><a href="#!">Login</a></li>
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
             </ul>
             <!-- Top Navbar -->
             <div class="navbar-fixed">
@@ -82,7 +82,7 @@
                 <li><a href="#!">Logout</a></li>
                 <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
                 <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
-                <li class="{% block mobnav_login %}{% endblock %}"><a href="#!">Login</a></li>
+                <li class="{% block mobnav_login %}{% endblock %}"><a href="{{ url_for('login') }}">Log In</a></li>
                 <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
             </ul>
         </header>
