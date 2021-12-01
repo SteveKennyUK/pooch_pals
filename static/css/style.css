@@ -57,6 +57,11 @@ p {
     text-decoration: underline;
 }
 
+.underline-link:hover {
+    text-decoration: none;
+    border-bottom: 0.2rem solid #26a69a;
+}
+
 .list-unstyled {
     list-style-type: none;
 }
@@ -72,7 +77,6 @@ footer {
 }
 
 .text-links a:hover {
-    /* color: #455a64; */
     font-weight: 800;
 } 
 /*================================== Navbar ==================================*/
