@@ -27,9 +27,9 @@
         <!-- Materialize link tag -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" />
         <!-- Favicon link tags -->
-        <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png') }}"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon/favicon-32x32.png') }}" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon/favicon-16x16.png') }}" />
         <!-- Styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
         {% block styles %} {% endblock %}
@@ -44,7 +44,7 @@
                 <!-- Navbar styling ideas inspired in part by https://github.com/Edb83/self-isolution/blob/master/templates/base.html -->
             <!-- Account Dropdown List -->
             <ul id="account_dropdown" class="dropdown-content">
-                <li><a href="#!">Profile</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="#!">Logout</a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Admin</a></li>
@@ -55,7 +55,7 @@
             <div class="navbar-fixed">
                 <nav class="nav-extended text-shadow">
                     <div class="nav-wrapper">
-                        <a href="{{ url_for('index') }}" class="brand-logo"><img src="static/images/logo.png" alt="Pooch Pals logo" /><span class="logo-text hide-on-small-only">Pooch Pals</span></a>
+                        <a href="{{ url_for('index') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Pooch Pals logo" /><span class="logo-text hide-on-small-only">Pooch Pals</span></a>
                         <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text" aria-label="side navigation bar trigger"><i class="fas fa-bars"></i></a>
                         <ul class="right hide-on-med-and-down">
                             <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
@@ -78,7 +78,7 @@
                 <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="{% block mobnav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
                 <li class="{% block mobnav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
-                <li class="{% block mobnav_profile %}{% endblock %}"><a href="#!">Profile</a></li>
+                <li class="{% block mobnav_profile %}{% endblock %}"><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="#!">Logout</a></li>
                 <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
                 <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
