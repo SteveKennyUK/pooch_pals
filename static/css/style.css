@@ -38,7 +38,10 @@ h1 {
 }
 
 h2 {
+    font-family: 'Neucha', cursive;
+    font-weight: 700;
     font-size: 3rem;
+    color: #455a64;
 }
 
 p {
@@ -101,7 +104,26 @@ nav ul li a {
     text-shadow: none;
     background-color: #ebf1fa;
 }
+/*================================== Cards ==================================*/
+.card-panel {
+    border: solid 0.25rem #26a69a ;
+    border-radius: 1.2rem;
+    margin-top: 2rem;
+}
+/*================================== Flash messages ==================================*/
+.flashes h4 {
+    width: 60%;
+    border-radius: 1rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
 /*================================== Footer ==================================*/
+/*--- sticky footer. Credit: https://css-tricks.com/a-clever-sticky-footer-technique/ ---*/
+body > footer {
+    position: sticky;
+    top: 100vh;
+  }
+
 .icon-links {
     display: flex;
     justify-content: space-around;

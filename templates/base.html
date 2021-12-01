@@ -30,6 +30,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon/favicon-16x16.png" />
+        <!-- Styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
         {% block styles %} {% endblock %}
         <!-- Dynamic page titles -->
@@ -39,15 +40,15 @@
     <body>
         <header>
             <!-- Navbar -->
-            <!-- Credit : navbar built using Materialize Navbar as template then customised with own styling -->
-            <!-- Navbar styling ideas inspired in part by https://github.com/Edb83/self-isolution/blob/master/templates/base.html -->
+                <!-- Credit : navbar built using Materialize Navbar as template then customised with own styling -->
+                <!-- Navbar styling ideas inspired in part by https://github.com/Edb83/self-isolution/blob/master/templates/base.html -->
             <!-- Account Dropdown List -->
             <ul id="account_dropdown" class="dropdown-content">
                 <li><a href="#!">Profile</a></li>
                 <li><a href="#!">Logout</a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Admin</a></li>
-                <li><a href="#!">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="#!">Login</a></li>
             </ul>
             <!-- Top Navbar -->
@@ -80,30 +81,46 @@
                 <li class="{% block mobnav_profile %}{% endblock %}"><a href="#!">Profile</a></li>
                 <li><a href="#!">Logout</a></li>
                 <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
-                <li class="{% block mobnav_register %}{% endblock %}"><a href="#!">Register</a></li>
+                <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
                 <li class="{% block mobnav_login %}{% endblock %}"><a href="#!">Login</a></li>
                 <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
             </ul>
         </header>
 
-        {% block content %} {% endblock %}
+        <section>
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="row flashes">
+                            <h4 class="amber accent-4 center-align">{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
 
+        <main class="container">
+            {% block content %} 
+            {% endblock %}
+        </main>       
+        
+        <!-- Footer -->
+            <!-- Credit for social media icons hover effects: https://ianlunn.github.io/Hover/ -->
         <footer>
             <div class="container footer-container">
                 <div class="row">
-                    <div class="col s12 m4 push-m8"> 
-                        <div class="icon-links">                                              
+                    <div class="col s12 m4 push-m8">
+                        <div class="icon-links">
                             <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Pooch Pals Facebook page (link opens in a new tab)"><i class="fa-brands fa-facebook fa-3x hvr-buzz-out"></i></a>
                             <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Pooch Pals Instagram page (link opens in a new tab)"><i class="fa-brands fa-instagram fa-3x hvr-buzz-out"></i></a>
                             <a href="https://github.com/SteveKennyUK" target="_blank" rel="noopener" aria-label="Site developer's GitHub page (link opens in a new tab)"><i class="fa-brands fa-github fa-3x hvr-buzz-out"></i></a>
-                        </div> 
+                        </div>
                         <div class="center-align">
-                            <p>	&copy; 2021 Steven Kenny</p>
+                            <p>&copy; 2021 Steven Kenny</p>
                         </div>
                     </div>
 
-                
-                
                     <div class="col s12 m4 pull-m4 center-align">
                         <h5 class="underline">Resources</h5>
                         <ul class="list-unstyled text-links">
@@ -114,13 +131,11 @@
                             <li><a href="https://www.caninecottages.co.uk/" target="_blank" rel="noopener" aria-label="The Canine Cottages website (link opens in a new tab)">Dog Friendly Holidays</a></li>
                         </ul>
                     </div>
-                
-                
+
                     <div class="col s12 m4 pull-m4 center-align">
                         <h5 class="underline">Contact</h5>
                         <ul class="list-unstyled text-links contact-links">
                             <li><a href="#" aria-label="Website Contact Form">Contact Form</a></li>
-
                             <li>
                                 <a href="mailto:contact@poochpals.co.uk" aria-label="email contact@poochpals.co.uk"><i class="far fa-envelope" aria-hidden="true"></i> Email</a>
                             </li>
@@ -132,7 +147,7 @@
                 </div>
             </div>
         </footer>
-
+        <!-- JavaScript -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
