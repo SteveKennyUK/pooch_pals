@@ -1,4 +1,5 @@
 import os
+from functools import wraps
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -17,6 +18,21 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# @login_required decorator
+# Credit: https://flask.palletsprojects.com/en/2.0.x/
+# patterns/viewdecorators/#login-required-decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # if no user is in session
+        if "user" not in session:
+            flash("Please Log In To View This Page")
+            return redirect(url_for("login"))
+        # if a user is in session
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
@@ -100,6 +116,7 @@ def login():
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
 def profile(username):
     """
     Profile page for user in session
