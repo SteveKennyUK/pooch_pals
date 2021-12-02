@@ -4,11 +4,23 @@
 {% block mobnav_home %}active{% endblock %}
 {% block content %}
 
-
-    {% for breed in breeds %}
-        <p>{{ breed.breed_name }}</p><br>
-        <p>{{ breed.description }}</p><br>
-        <img src="{{ breed.image_url }}" alt=""><br>
-    {% endfor %}
+<div class="row">
+  {% for breed in breeds %}
+  <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{ breed.image_url }}" alt="">
+        <span class="card-title">{{ breed.breed_name }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{ breed.description }}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
