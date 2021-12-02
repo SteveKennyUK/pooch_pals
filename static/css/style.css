@@ -37,11 +37,13 @@ h1 {
     font-family: 'Neucha', cursive;
 }
 
-h2 {
+h2,
+h3 {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
     color: #455a64;
+    margin: 0;
 }
 
 p {
@@ -75,10 +77,6 @@ footer {
 .text-links a {
     color: #000;
 }
-
-.text-links a:hover {
-    font-weight: 800;
-} 
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
 .brand-logo img {
@@ -114,6 +112,18 @@ nav ul li a {
     border-radius: 1.2rem;
     margin-top: 2rem;
 }
+
+.card-container {
+    background-color: rgba(235, 241, 250, 0.75);
+    margin-top: 2.5rem;
+    border-radius: 1.2rem;
+}
+
+.profile-image {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+}
 /*================================== Flash messages ==================================*/
 .flashes h4 {
     width: 60%;
@@ -144,6 +154,10 @@ body > footer {
 .text-links {
     font-size: 1rem;
 }
+
+.text-links a:hover {
+    font-weight: 800;
+} 
 
 .contact-links li {
     padding-bottom: 0.75rem;
