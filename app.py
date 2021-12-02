@@ -1,4 +1,5 @@
 import os
+from functools import wraps
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -17,6 +18,21 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# @login_required decorator
+# Credit: https://flask.palletsprojects.com/en/2.0.x/
+# patterns/viewdecorators/#login-required-decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # if no user is in session
+        if "user" not in session:
+            flash("Please Log In To View This Page")
+            return redirect(url_for("login"))
+        # if a user is in session
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
@@ -77,11 +93,17 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(existing_user["password"], request.form.get(
                     "password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash(f"""Arooo! Welcome back {request.form.get(
-                        'username')}""")
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                # create session admin user/s (
+                # Credit: https://github.com/irasan/hackpride2021)
+                check_admin = mongo.db.users.find_one(
+                        {"username": request.form.get("username").lower()})
+                if check_admin["is_admin"]:
+                        session["admin"] = True
+                flash(f"""Arooo! Welcome back {request.form.get(
+                    'username')}""")
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -94,6 +116,7 @@ def login():
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
 def profile(username):
     """
     Profile page for user in session
@@ -104,6 +127,16 @@ def profile(username):
             {"username": session["user"]})["username"]
         return render_template("profile.html", username=username)
     flash("Please log in to view your profile")
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    """
+    logout user by removing session cookies
+    """
+    flash("You have been logged out")
+    session.clear()
     return redirect(url_for("login"))
 
 

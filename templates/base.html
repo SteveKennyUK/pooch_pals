@@ -44,12 +44,17 @@
                 <!-- Navbar styling ideas inspired in part by https://github.com/Edb83/self-isolution/blob/master/templates/base.html -->
             <!-- Account Dropdown List -->
             <ul id="account_dropdown" class="dropdown-content">
-                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="#!">Logout</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Admin</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
-                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                {% if session.user %}
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% if session.admin == True %}
+                        <li class="divider"></li>
+                        <li><a href="#!">Admin</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}
             </ul>
             <!-- Top Navbar -->
             <div class="navbar-fixed">
@@ -78,12 +83,19 @@
                 <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="{% block mobnav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
                 <li class="{% block mobnav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
-                <li class="{% block mobnav_profile %}{% endblock %}"><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="#!">Logout</a></li>
-                <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
-                <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
-                <li class="{% block mobnav_login %}{% endblock %}"><a href="{{ url_for('login') }}">Log In</a></li>
                 <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
+                <li class="divider"></li>
+                {% if session.user %}
+                    <li class="{% block mobnav_profile %}{% endblock %}"><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% if session.admin == True %}
+                        <li class="divider"></li>
+                        <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
+                    {% endif %}
+                {% else %}
+                    <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
+                    <li class="{% block mobnav_login %}{% endblock %}"><a href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}                
             </ul>
         </header>
 
