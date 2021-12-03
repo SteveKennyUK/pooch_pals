@@ -125,6 +125,18 @@ nav ul li a {
     margin: 0 auto;
     padding-bottom: 0.5rem;
 }
+/*================================== Add Dog Form ==================================*/
+.add-form-helper {
+    font-size: 0.9rem;
+}
+
+.add-radio {
+    margin-left: 2rem;
+}
+
+.m-tb {
+    margin: 3rem 0;
+}
 /*================================== Flash messages ==================================*/
 .flashes h4 {
     width: 60%;

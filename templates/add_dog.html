@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="">
         <div class="card card-panel">
             <h2 class="center-align">Add A Dog</h2>
             <div class="card-image title-image">
@@ -18,24 +18,120 @@
                         <option value="{{ breed.breed_name }}">{{ breed.breed_name|upper }}</option>
                         {% endfor %}
                     </select>
-                    <label for="breed_group">Breed Group (see <a href="#!">Breeds</a> page for guidance)</label>                                 
-                </div>                
+                    <label for="breed_group" class="blue-grey-text text-darken-2">Breed Group</label>
+                    <div class="add-form-helper">
+                        <em>Unsure? See <a href="#!">Breeds</a> page for guidance</em>
+                    </div>
+                </div>
             </div>
             <!-- breed name -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-dog prefix teal-text text-lighten-1"></i>
                     <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" class="validate" required />
-                    <label for="breed_name">Breed Name</label>                   
+                    <label for="breed_name" class="blue-grey-text text-darken-2">Breed Name</label>
                 </div>
             </div>
+            <!-- dog's name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-tag prefix teal-text text-lighten-1"></i>
+                    <input id="dog_name" name="dog_name" type="text" minlength="2" maxlength="15" class="validate" required />
+                    <label for="dog_name" class="blue-grey-text text-darken-2">Dog's Name</label>
+                </div>
+            </div>
+            <!-- location -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-location-dot prefix teal-text text-lighten-1"></i>
+                    <input id="location" name="location" type="text" minlength="3" maxlength="25" class="validate" required />
+                    <label for="location" class="blue-grey-text text-darken-2">Location (Town, City or Postcode)</label>
+                </div>
+            </div>
+            <!-- image url -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-image prefix teal-text text-lighten-1"></i>
+                    <input id="image" name="image" type="url" class="validate" />
+                    <label for="image" class="blue-grey-text text-darken-2">URL of Image of Dog</label>
+                    <div class="add-form-helper hide-on-med-and-down">
+                        <em>Right-click the image, click 'Copy Link Address' then paste in here</em>
+                    </div>
+                    <div class="add-form-helper hide-on-large-only">
+                        <em>Hold down image, 'Open image in new tab' then copy and paste the browser address </em>
+                    </div>
+                </div>
+            </div>
+            <!-- dog's age -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-list-ol prefix teal-text text-lighten-1"></i>
+                    <input id="age" name="age" type="text" minlength="1" maxlength="2" class="validate" required />
+                    <label for="age" class="blue-grey-text text-darken-2">Dog's Age</label>
+                </div>
+            </div>
+            <!-- dog's sex radio buttons -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-venus-mars prefix teal-text text-lighten-1"></i>
+                    <p class="add-radio">
+                        <label for="male" class="blue-grey-text text-darken-2">
+                            <input name="sex" id="male" value="male" type="radio" checked />
+                            <span>Male</span>
+                        </label>
+                        <label for="female" class="blue-grey-text text-darken-2">
+                            <input name="sex" id="female" value="female" type="radio" />
+                            <span>Female</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <!-- dog's size radio buttons -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-weight-scale prefix teal-text text-lighten-1"></i>
+                    <p class="add-radio">
+                        <label for="small" class="blue-grey-text text-darken-2">
+                            <input name="size" id="small" value="small" type="radio" checked />
+                            <span>S (0-10kg)</span>
+                        </label>
+                        <label for="medium" class="blue-grey-text text-darken-2">
+                            <input name="size" id="medium" value="medium" type="radio" />
+                            <span>M (10-25kg)</span>
+                        </label>
+                        <label for="large" class="blue-grey-text text-darken-2">
+                            <input name="size" id="large" value="large" type="radio" />
+                            <span>L (25+kg)</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <!-- Neutered checkbox -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-neuter prefix teal-text text-lighten-1"></i>
+                    <label for="neutered" class="blue-grey-text text-darken-2">
+                        <input type="checkbox" class="filled-in" id="neutered" name="neutered" />
+                        <span>Neutered</span>
+                    </label>
+                </div>
+            </div>
+            <!-- personality -->
+            <div class="row">
+                <div class="input-field col s12 m-tb">
+                    <i class="fas fa-comment-dots prefix teal-text text-lighten-1"></i>                    
+                    <textarea id="personality" name="personality" minlength="5"
+                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                    <label for="personality" class="blue-grey-text text-darken-2">Brief personality description</label>
+                </div>
+            </div>            
             <!-- Submit button -->
             <div class="center-align">
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     Add Dog
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
-            </div>           
+            </div>
         </div>
     </form>
 </div>
