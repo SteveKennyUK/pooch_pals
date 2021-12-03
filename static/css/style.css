@@ -119,10 +119,11 @@ nav ul li a {
     border-radius: 1.2rem;
 }
 
-.profile-image {
+.title-image {
     height: 50%;
     width: 50%;
     margin: 0 auto;
+    padding-bottom: 0.5rem;
 }
 /*================================== Flash messages ==================================*/
 .flashes h4 {

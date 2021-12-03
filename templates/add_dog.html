@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+        <div class="card card-panel">
+            <h2 class="center-align">Add A Dog</h2>
+            <div class="card-image title-image">
+                <img src="{{ url_for('static', filename='images/add-dog-img.JPG') }}" alt="head of a smiling dog" loading="lazy" />
+            </div>
+            <!-- breed group -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-brands fa-wolf-pack-battalion prefix teal-text text-lighten-1"></i>
+                    <select id="breed_group" name="breed_group" class="validate" required>
+                        <option value="" disabled selected>Choose Breed Group</option>
+                        {% for breed in breeds %}
+                        <option value="{{ breed.breed_name }}">{{ breed.breed_name|upper }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="breed_group">Breed Group (see <a href="#!">Breeds</a> page for guidance)</label>                                 
+                </div>                
+            </div>
+            <!-- breed name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-dog prefix teal-text text-lighten-1"></i>
+                    <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" class="validate" required />
+                    <label for="breed_name">Breed Name</label>                   
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Add Dog
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>           
+        </div>
+    </form>
+</div>
+
+{% endblock %}
