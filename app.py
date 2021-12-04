@@ -6,9 +6,9 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-
 if os.path.exists("env.py"):
     import env
+import uuid
 
 
 app = Flask(__name__)
@@ -101,7 +101,7 @@ def login():
                 if check_admin["is_admin"]:
                         session["admin"] = True
                 flash(f"""Arooo! Welcome back {request.form.get(
-                    'username')}""")
+                    "username")}""")
                 return redirect(url_for(
                     "profile", username=session["user"]))
             else:
@@ -133,11 +133,49 @@ def profile(username):
 @app.route("/logout")
 def logout():
     """
-    logout user by removing session cookies
+    Logout user by removing session cookies
     """
     flash("You have been logged out")
     session.clear()
     return redirect(url_for("login"))
+
+
+@app.route("/add_dog", methods=["GET", "POST"])
+@login_required
+def add_dog():
+    """
+    User can add a new dog profile to database
+    """
+    # Credit: https://github.com/MelindaZhang2020(
+    # guidance in using ObjectId)
+    if request.method == "POST":
+        breed = mongo.db.breed_groups.find_one(
+            {"breed_name": request.form.get("breed_group")}
+        )
+        neutered = bool(True) if request.form.get(
+            "neutered") else bool(False)
+        user = mongo.db.users.find_one({"username": session["user"]})
+        rand = uuid.uuid4()
+        dog = {
+            "breed_group": ObjectId(breed["_id"]),
+            "breed_name": request.form.get("breed_name"),
+            "dog_name": request.form.get("dog_name"),
+            "age": int(request.form.get("age")),
+            "sex": request.form.get("sex"),
+            "image_url": request.form.get("image"),
+            "size": request.form.get("size"),
+            "neutered": neutered,
+            "location": request.form.get("location"),
+            "personality": request.form.get("personality"),
+            "created_by": ObjectId(user["_id"]),
+            "reference": str(rand)[:8],
+        }
+        mongo.db.dogs.insert_one(dog)
+        flash(f"""Welcome to the pack {request.form.get(
+            "dog_name")}!""")
+        return redirect(url_for("profile", username=session["user"]))
+    breeds = mongo.db.breed_groups.find().sort("breed_name", 1)
+    return render_template("add_dog.html", breeds=breeds)
 
 
 if __name__ == "__main__":

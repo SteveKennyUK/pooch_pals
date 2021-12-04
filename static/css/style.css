@@ -77,6 +77,15 @@ footer {
 .text-links a {
     color: #000;
 }
+/*================================== Buttons ==================================*/
+.btn-return {
+    background-color: #ebf1fa;
+    color: #000;
+    font-size: 1rem;
+    border: solid 0.1rem #000;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
 .brand-logo img {
@@ -119,10 +128,23 @@ nav ul li a {
     border-radius: 1.2rem;
 }
 
-.profile-image {
+.title-image {
     height: 50%;
     width: 50%;
     margin: 0 auto;
+    padding-bottom: 0.5rem;
+}
+/*================================== Add Dog Form ==================================*/
+.add-form-helper {
+    font-size: 0.9rem;
+}
+
+.add-radio {
+    margin-left: 2rem;
+}
+
+.m-tb {
+    margin: 3rem 0;
 }
 /*================================== Flash messages ==================================*/
 .flashes h4 {
@@ -138,7 +160,8 @@ body > footer {
     top: 100vh;
   }
 
-.icon-links {
+.icon-links,
+.form-buttons {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
