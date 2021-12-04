@@ -4,6 +4,16 @@
 <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="">
         <div class="card card-panel">
+            <div class="row">
+                <div class="col s4">
+                   
+                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-return waves-effect waves-light" aria-label="button to return to user profile page">
+                            <i class="fa-solid fa-rotate-left"></i> Profile
+                        </a>
+                    
+
+                </div>
+            </div>
             <h2 class="center-align">Add A Dog</h2>
             <div class="card-image title-image">
                 <img src="{{ url_for('static', filename='images/add-dog-img.JPG') }}" alt="head of a smiling dog" loading="lazy" />

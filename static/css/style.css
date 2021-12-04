@@ -77,6 +77,15 @@ footer {
 .text-links a {
     color: #000;
 }
+/*================================== Buttons ==================================*/
+.btn-return {
+    background-color: #ebf1fa;
+    color: #000;
+    font-size: 1rem;
+    border: solid 0.1rem #000;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
 .brand-logo img {
