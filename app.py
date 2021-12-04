@@ -125,7 +125,12 @@ def profile(username):
         # grab the session user's username from database
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        return render_template("profile.html", username=username)
+        # grab only dog profiles created by session user
+        user = mongo.db.users.find_one({"username": session["user"]})
+        dogs = list(mongo.db.dogs.find(
+            {"created_by": ObjectId(user["_id"])}))
+        return render_template(
+            "profile.html", username=username, dogs=dogs)
     flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
