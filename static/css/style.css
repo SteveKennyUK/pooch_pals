@@ -154,14 +154,23 @@ nav ul li a {
 #dog-title {
     font-size: 2rem;
 }
-
-.dog-image {
-    height: 9.5rem;
-    overflow: hidden;
+/*--- keep user uploaded images the same size ---*/
+.dog-image img{
+    aspect-ratio: 3/2;
 }
 
 .card-reveal p {
     font-size: 2rem;
+}
+/*--- set position and spacing for cancel and delete buttons ---*/
+.card-reveal-delete {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-between;
+    flex-direction: column;
+    border-bottom: 2rem solid transparent;
 }
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
@@ -203,4 +212,10 @@ body > footer {
 
 .contact-links li {
     padding-bottom: 0.75rem;
+}
+/*================================== Media queries ==================================*/
+@media only screen and (min-width: 1441px) {
+    .profile-card {
+        height: 600px;
+    }    
 }

@@ -39,9 +39,9 @@
                                         <div class="card profile-card card-panel">
                                             <div class="card-image dog-image">
                                                 {% if dog.image_url == "" or dog.image_url is none %}
-                                                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog">
+                                                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog" loading="lazy">
                                                 {% else %}
-                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the dog"> 
+                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the dog" loading="lazy"> 
                                                 {% endif %}                                                
                                             </div>
                                             <div class="card-content">
@@ -69,14 +69,14 @@
                                                 <span class="card-title"><i class="fa-solid fa-xmark right" aria-hidden="true"></i></span>
                                                 <p>Are you sure you want to delete {{ dog.dog_name }}?</p>
                                                 <div class="row">
-                                                    <div class="form-buttons">
-                                                        <div>
+                                                    <div class="card-reveal-delete">
+                                                        <div class="card-reveal-delete">
                                                             <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" aria-label="cancel delete and return to user profile page">
                                                                 Cancel
                                                                 <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
-                                                        <div>
+                                                        <div class="card-reveal-delete">
                                                             <a href="#!" class="btn red white-text waves-effect waves-light text-shadow" aria-label="delete dog profile from database">
                                                                 Delete
                                                                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
