@@ -61,7 +61,7 @@
                 <nav class="nav-extended text-shadow">
                     <div class="nav-wrapper">
                         <a href="{{ url_for('index') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Pooch Pals logo" /><span class="logo-text hide-on-small-only">Pooch Pals</span></a>
-                        <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text" aria-label="side navigation bar trigger"><i class="fas fa-bars"></i></a>
+                        <a href="#" data-target="mobile-nav" class="sidenav-trigger right black-text" aria-label="side navigation bar trigger"><i class="fas fa-bars" aria-hidden="true"></i></a>
                         <ul class="right hide-on-med-and-down">
                             <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                             <li class="{% block nav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
@@ -69,7 +69,7 @@
                             <li class="{% block nav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
                             <!-- Dropdown Trigger -->
                             <li class="{% block nav_account %}{% endblock %}">
-                                <a class="dropdown-trigger" href="#!" data-target="account_dropdown" aria-label="Account dropdown trigger">Account<i class="fa-solid fa-caret-down right"></i></a>
+                                <a class="dropdown-trigger" href="#!" data-target="account_dropdown" aria-label="Account dropdown trigger">Account<i class="fa-solid fa-caret-down right" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -124,9 +124,9 @@
                 <div class="row">
                     <div class="col s12 m4 push-m8">
                         <div class="icon-links">
-                            <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Pooch Pals Facebook page (link opens in a new tab)"><i class="fa-brands fa-facebook fa-3x hvr-buzz-out"></i></a>
-                            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Pooch Pals Instagram page (link opens in a new tab)"><i class="fa-brands fa-instagram fa-3x hvr-buzz-out"></i></a>
-                            <a href="https://github.com/SteveKennyUK" target="_blank" rel="noopener" aria-label="Site developer's GitHub page (link opens in a new tab)"><i class="fa-brands fa-github fa-3x hvr-buzz-out"></i></a>
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Pooch Pals Facebook page (link opens in a new tab)"><i class="fa-brands fa-facebook fa-3x hvr-buzz-out" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Pooch Pals Instagram page (link opens in a new tab)"><i class="fa-brands fa-instagram fa-3x hvr-buzz-out" aria-hidden="true"></i></a>
+                            <a href="https://github.com/SteveKennyUK" target="_blank" rel="noopener" aria-label="Site developer's GitHub page (link opens in a new tab)"><i class="fa-brands fa-github fa-3x hvr-buzz-out" aria-hidden="true"></i></a>
                         </div>
                         <div class="center-align">
                             <p>&copy; 2021 Steven Kenny</p>

@@ -25,11 +25,11 @@
                         </div>
                         <!-- Add dog button link -->
                         <div class="col s2 center-align">
-                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" data-position="top" data-tooltip="Add New Dog" aria-label="Add dog button">
-                                <i class="fa-solid fa-plus"></i>
+                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" data-position="top" data-tooltip="Add New Dog" aria-label="add dog button">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                             </a>
                         </div>
-                        <!-- Dog profile cards -->
+                        <!-- Dog profile cards, using Materialize cards -->
                         <div class="row">
                             <!-- If the session user has created any dog profiles -->
                             {% if dogs|length > 0 %}
@@ -38,44 +38,48 @@
                                     <div class="col s12 m6 l4">
                                         <div class="card profile-card card-panel">
                                             <div class="card-image dog-image">
-                                                <img src="{{ dog.image_url }}" />
+                                                {% if dog.image_url == "" or dog.image_url is none %}
+                                                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog">
+                                                {% else %}
+                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the dog"> 
+                                                {% endif %}                                                
                                             </div>
                                             <div class="card-content">
                                                 <p class="card-title" id="dog-title">{{ dog.dog_name }}</p>
-                                                <p><i class="fas fa-location-dot prefix"></i> {{ dog.location }}</p>
+                                                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location }}</p>
                                                 <!-- View dog's full profile -->
-                                                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                             <div class="card-action form-buttons">
                                                 <!-- Edit dog profile -->
                                                 <div>
                                                     <p>
-                                                        <a href="#" class="waves-effect waves-light teal-text lighten-1"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                        <a href="#" class="waves-effect waves-light teal-text lighten-1" aria-label="edit dog profile"><i class="fa-solid fa-pen-to-square fa-lg" aria-hidden="true"></i></a>
                                                     </p>
                                                 </div>
                                                 <!-- Delete dog profile -->
                                                 <div>
                                                     <p>
-                                                        <span class="activator waves-effect waves-light red-text"><i class="fa-solid fa-trash fa-lg"></i></span>
+                                                        <span class="activator waves-effect waves-light red-text" aria-label="delete dog profile from database"><i class="fa-solid fa-trash fa-lg" aria-hidden="true"></i></span>
                                                     </p>
                                                 </div>
                                             </div>
-                                            <!-- Confirm delete card reveal -->
+                                            <!-- Confirm delete, using Materialize card reveal -->
                                             <div class="card-reveal">
-                                                <span class="card-title"><i class="fa-solid fa-xmark right"></i></span>
+                                                <span class="card-title"><i class="fa-solid fa-xmark right" aria-hidden="true"></i></span>
                                                 <p>Are you sure you want to delete {{ dog.dog_name }}?</p>
                                                 <div class="row">
                                                     <div class="form-buttons">
                                                         <div>
-                                                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" aria-label="cancel and return to user profile page">
+                                                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" aria-label="cancel delete and return to user profile page">
                                                                 Cancel
-                                                                <i class="fa-solid fa-rotate-left"></i>
+                                                                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="#!" class="btn red white-text waves-effect waves-light text-shadow" aria-label="delete dog profile from database">
                                                                 Delete
-                                                                <i class="fa-solid fa-xmark"></i>
+                                                                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                     </div>
