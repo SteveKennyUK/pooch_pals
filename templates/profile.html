@@ -25,42 +25,81 @@
                         </div>
                         <!-- Add dog button link -->
                         <div class="col s2 center-align">
-                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" data-position="top" data-tooltip="Add New Dog" aria-label="Add dog button">
-                                <i class="fa-solid fa-plus"></i>
+                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" data-position="top" data-tooltip="Add New Dog" aria-label="add dog button">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                             </a>
                         </div>
-                        <!-- Dog profile cards -->
+                        <!-- Dog profile cards, using Materialize cards -->
                         <div class="row">
-                            <div class="col s12 m6 l4">
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src="{{ url_for('static', filename='images/profile-img.JPG') }}" />
-                                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">view</i></a>
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title">Dog name</span>
-                                        <p>Location</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <div>
-                                            <p>
-                                                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </p>
+                            <!-- If the session user has created any dog profiles -->
+                            {% if dogs|length > 0 %}
+                                <!-- Loop through each dog profile --> 
+                                {% for dog in dogs %}                                
+                                    <div class="col s12 m6 l4">
+                                        <div class="card profile-card card-panel">
+                                            <div class="card-image dog-image">
+                                                {% if dog.image_url == "" or dog.image_url is none %}
+                                                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog" loading="lazy">
+                                                {% else %}
+                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the {{ dog.breed_name }}" loading="lazy"> 
+                                                {% endif %}                                                
+                                            </div>
+                                            <div class="card-content">
+                                                <p class="card-title" id="dog-title">{{ dog.dog_name }}</p>
+                                                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location }}</p>
+                                                <!-- View dog's full profile -->
+                                                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
+                                                    <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="card-action form-buttons">
+                                                <!-- Edit dog profile -->
+                                                <div>
+                                                    <p>
+                                                        <a href="#" class="waves-effect waves-light teal-text lighten-1" aria-label="edit dog profile">
+                                                            <i class="fa-solid fa-pen-to-square fa-lg center-align" aria-hidden="true"></i></a>
+                                                    </p>
+                                                </div>
+                                                <!-- Delete dog profile -->
+                                                <div>
+                                                    <p>
+                                                        <a href="#!" class="activator waves-effect waves-light red-text" aria-label="delete dog profile from database">
+                                                            <i class="fa-solid fa-trash fa-lg center-align" aria-hidden="true"></i></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!-- Confirm delete, using Materialize card reveal -->
+                                            <div class="card-reveal">
+                                                <span class="card-title"><i class="fa-solid fa-xmark right" aria-hidden="true"></i></span>
+                                                <p>Are you sure you want to delete {{ dog.dog_name }}?</p>
+                                                <div class="row">
+                                                    <div class="card-reveal-delete">
+                                                        <div class="card-reveal-delete">
+                                                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" aria-label="cancel delete and return to user profile page">
+                                                                Cancel
+                                                                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-reveal-delete">
+                                                            <a href="#!" class="btn red white-text waves-effect waves-light text-shadow" aria-label="delete dog profile from database">
+                                                                Delete
+                                                                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p>
-                                                <span class="activator"><i class="fa-solid fa-trash"></i></span>
-                                            </p>
-                                        </div>
                                     </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Delete Dog<i class="fa-solid fa-xmark right"></i></span>
-                                        <p>Are you sure you want to delete?</p>
-                                        <button>yes</button>
-                                        <button>no</button>
-                                    </div>
+                                {% endfor %}
+                            <!-- If the session user has not created any dog profiles --> 
+                            {% else %}
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <p>You haven't added a pooch pal yet</p>
+                                    <p>Please click <a href="{{ url_for('add_dog') }}">here</a> to create a new dog profile!</p>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -68,6 +107,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}

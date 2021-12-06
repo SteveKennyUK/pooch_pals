@@ -38,7 +38,8 @@ h1 {
 }
 
 h2,
-h3 {
+h3,
+#dog-title {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
@@ -47,7 +48,7 @@ h3 {
 }
 
 p {
-    font-size: 1.4rem;
+    font-size: 1rem;
     padding: 1rem;
 }
 
@@ -69,7 +70,8 @@ p {
 }
 /*================================== Colours ==================================*/
 nav,
-footer {
+footer,
+.btn-cancel {
     background-color: #ebf1fa;
 }
 
@@ -77,7 +79,7 @@ footer {
 .text-links a {
     color: #000;
 }
-/*================================== Buttons ==================================*/
+/*================================== Buttons and links ==================================*/
 .btn-return {
     background-color: #ebf1fa;
     color: #000;
@@ -85,6 +87,16 @@ footer {
     border: solid 0.1rem #000;
     border-radius: 0.5rem;
     padding: 0.25rem;
+}
+
+.icon-links,
+.form-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    padding: 1.5rem 0;
 }
 /*================================== Navbar ==================================*/
 /*--- navbar logo ---*/
@@ -134,6 +146,40 @@ nav ul li a {
     margin: 0 auto;
     padding-bottom: 0.5rem;
 }
+
+.profile-card {
+    height: 500px;
+}
+
+#dog-title {
+    font-size: 2rem;
+}
+/*--- keep user uploaded images the same size ---*/
+.dog-image img{
+    aspect-ratio: 3/2;
+}
+
+.card-reveal p {
+    font-size: 2rem;
+}
+/*--- set position and spacing for cancel and delete buttons ---*/
+.card-reveal-delete {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        -webkit-box-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    border-bottom: 2rem solid transparent;
+}
+/*--- remove Materialize margin on buttons ---*/
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    margin: 0;
+}
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
     font-size: 0.9rem;
@@ -160,16 +206,6 @@ body > footer {
     top: 100vh;
   }
 
-.icon-links,
-.form-buttons {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    padding: 1.5rem 0;
-}
-
 .footer-container {
     width: 80%;
 }
@@ -184,4 +220,10 @@ body > footer {
 
 .contact-links li {
     padding-bottom: 0.75rem;
+}
+/*================================== Media queries ==================================*/
+@media only screen and (min-width: 1441px) {
+    .profile-card {
+        height: 600px;
+    }    
 }

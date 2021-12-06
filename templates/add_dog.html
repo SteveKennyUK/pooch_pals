@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Add Dog{% endblock %}
 {% block content %}
 
 <div class="row">
@@ -7,7 +8,7 @@
             <div class="row">
                 <div class="col s4">
                     <a href="{{ url_for('profile', username=session['user']) }}" class="btn-return waves-effect waves-light text-shadow" 
-                    aria-label="button to return to user profile page"> <i class="fa-solid fa-rotate-left"></i> Profile </a>
+                    aria-label="button to return to user profile page"> <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Profile </a>
                 </div>
             </div>
             <h2 class="center-align">Add A Dog</h2>
@@ -17,7 +18,7 @@
             <!-- breed group -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-brands fa-wolf-pack-battalion prefix teal-text text-lighten-1"></i>
+                    <i class="fa-brands fa-wolf-pack-battalion prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <select id="breed_group" name="breed_group" class="validate" required>
                         <option value="" disabled selected>Choose Breed Group</option>
                         {% for breed in breeds %}
@@ -33,7 +34,7 @@
             <!-- breed name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-dog prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-dog prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" class="validate" required />
                     <label for="breed_name" class="blue-grey-text text-darken-2">Breed Name</label>
                 </div>
@@ -41,7 +42,7 @@
             <!-- dog's name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-tag prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-tag prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="dog_name" name="dog_name" type="text" minlength="2" maxlength="15" class="validate" required />
                     <label for="dog_name" class="blue-grey-text text-darken-2">Dog's Name</label>
                 </div>
@@ -49,7 +50,7 @@
             <!-- location -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-location-dot prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-location-dot prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="location" name="location" type="text" minlength="3" maxlength="25" class="validate" required />
                     <label for="location" class="blue-grey-text text-darken-2">Location (Town, City or Postcode)</label>
                 </div>
@@ -57,7 +58,7 @@
             <!-- image url -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-image prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-image prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="image" name="image" type="url" class="validate" />
                     <label for="image" class="blue-grey-text text-darken-2">URL of Image of Dog</label>
                     <div class="add-form-helper hide-on-med-and-down">
@@ -71,7 +72,7 @@
             <!-- dog's age -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-list-ol prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-list-ol prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="age" name="age" type="text" minlength="1" maxlength="2" class="validate" required />
                     <label for="age" class="blue-grey-text text-darken-2">Dog's Age</label>
                 </div>
@@ -79,7 +80,7 @@
             <!-- dog's sex radio buttons -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-venus-mars prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-venus-mars prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <p class="add-radio">
                         <label for="male" class="blue-grey-text text-darken-2">
                             <input name="sex" id="male" value="male" type="radio" checked />
@@ -95,7 +96,7 @@
             <!-- dog's size radio buttons -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-weight-scale prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-weight-scale prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <p class="add-radio">
                         <label for="small" class="blue-grey-text text-darken-2">
                             <input name="size" id="small" value="small" type="radio" checked />
@@ -115,7 +116,7 @@
             <!-- Neutered checkbox -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-neuter prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-neuter prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <label for="neutered" class="blue-grey-text text-darken-2">
                         <input type="checkbox" class="filled-in" id="neutered" name="neutered" />
                         <span>Neutered</span>
@@ -125,7 +126,7 @@
             <!-- personality -->
             <div class="row">
                 <div class="input-field col s12 m-tb">
-                    <i class="fas fa-comment-dots prefix teal-text text-lighten-1"></i>
+                    <i class="fas fa-comment-dots prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <textarea id="personality" name="personality" minlength="5" maxlength="200" class="materialize-textarea validate" required></textarea>
                     <label for="personality" class="blue-grey-text text-darken-2">Brief personality description</label>
                 </div>
@@ -136,14 +137,14 @@
                     <div>
                         <button class="btn waves-effect waves-light" type="submit" aria-label="add new dog button">
                             Add Dog
-                            <i class="fa-solid fa-paper-plane"></i>
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </div>
                     <div>
                         <a href="{{ url_for('profile', username=session['user']) }}" class="btn red white-text waves-effect waves-light" 
                         aria-label="cancel and return to user profile page">
                             Cancel
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
