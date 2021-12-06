@@ -48,19 +48,22 @@
                                                 <p class="card-title" id="dog-title">{{ dog.dog_name }}</p>
                                                 <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location }}</p>
                                                 <!-- View dog's full profile -->
-                                                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile"><i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                                                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
+                                                    <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                             <div class="card-action form-buttons">
                                                 <!-- Edit dog profile -->
                                                 <div>
                                                     <p>
-                                                        <a href="#" class="waves-effect waves-light teal-text lighten-1" aria-label="edit dog profile"><i class="fa-solid fa-pen-to-square fa-lg" aria-hidden="true"></i></a>
+                                                        <a href="#" class="waves-effect waves-light teal-text lighten-1" aria-label="edit dog profile">
+                                                            <i class="fa-solid fa-pen-to-square fa-lg center-align" aria-hidden="true"></i></a>
                                                     </p>
                                                 </div>
                                                 <!-- Delete dog profile -->
                                                 <div>
                                                     <p>
-                                                        <span class="activator waves-effect waves-light red-text" aria-label="delete dog profile from database"><i class="fa-solid fa-trash fa-lg" aria-hidden="true"></i></span>
+                                                        <a href="#!" class="activator waves-effect waves-light red-text" aria-label="delete dog profile from database">
+                                                            <i class="fa-solid fa-trash fa-lg center-align" aria-hidden="true"></i></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -88,6 +91,13 @@
                                         </div>
                                     </div>
                                 {% endfor %} 
+                            {% else %}
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <p>You haven't added a pooch pal yet</p>
+                                    <p>Please click <a href="{{ url_for('add_dog') }}">here</a> to create a new dog profile!</p>
+                                </div>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -96,7 +106,5 @@
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}

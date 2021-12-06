@@ -168,9 +168,17 @@ nav ul li a {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-        justify-content: space-between;
-    flex-direction: column;
+        -webkit-box-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     border-bottom: 2rem solid transparent;
+}
+/*--- remove Materialize margin on buttons ---*/
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    margin: 0;
 }
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
