@@ -183,6 +183,14 @@ def add_dog():
     return render_template("add_dog.html", breeds=breeds)
 
 
+@app.route("/edit_dog/<dog_id>", methods=["GET", "POST"])
+@login_required
+def edit_dog(dog_id):
+    dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    breeds = mongo.db.breed_groups.find().sort("breed_name", 1)
+    return render_template("edit_dog.html", dog=dog, breeds=breeds)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
