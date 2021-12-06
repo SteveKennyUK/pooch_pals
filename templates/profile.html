@@ -41,7 +41,7 @@
                                                 {% if dog.image_url == "" or dog.image_url is none %}
                                                 <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog" loading="lazy">
                                                 {% else %}
-                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the dog" loading="lazy"> 
+                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the {{ dog.breed_name }}" loading="lazy"> 
                                                 {% endif %}                                                
                                             </div>
                                             <div class="card-content">
@@ -90,7 +90,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                {% endfor %} 
+                                {% endfor %}
+                            <!-- If the session user has not created any dog profiles --> 
                             {% else %}
                             <div class="row center-align">
                                 <div class="col s12">
