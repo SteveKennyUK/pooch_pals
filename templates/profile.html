@@ -25,7 +25,8 @@
                         </div>
                         <!-- Add dog button link -->
                         <div class="col s2 center-align">
-                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" data-position="top" data-tooltip="Add New Dog" aria-label="add dog button">
+                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" 
+                            data-position="top" data-tooltip="Add New Dog" aria-label="add dog button">
                                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -41,12 +42,12 @@
                                                 {% if dog.image_url == "" or dog.image_url is none %}
                                                 <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog" loading="lazy">
                                                 {% else %}
-                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name }} the {{ dog.breed_name }}" loading="lazy"> 
+                                                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}" loading="lazy"> 
                                                 {% endif %}                                                
                                             </div>
                                             <div class="card-content">
-                                                <p class="card-title" id="dog-title">{{ dog.dog_name }}</p>
-                                                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location }}</p>
+                                                <p class="card-title" id="dog-title">{{ dog.dog_name|title }}</p>
+                                                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location|title }}</p>
                                                 <!-- View dog's full profile -->
                                                 <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
                                                     <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
@@ -70,11 +71,12 @@
                                             <!-- Confirm delete, using Materialize card reveal -->
                                             <div class="card-reveal">
                                                 <span class="card-title"><i class="fa-solid fa-xmark right" aria-hidden="true"></i></span>
-                                                <p>Are you sure you want to delete {{ dog.dog_name }}?</p>
+                                                <p>Are you sure you want to delete {{ dog.dog_name|title }}?</p>
                                                 <div class="row">
                                                     <div class="card-reveal-delete">
                                                         <div class="card-reveal-delete">
-                                                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" aria-label="cancel delete and return to user profile page">
+                                                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-cancel black-text text-shadow waves-effect waves-light" 
+                                                                aria-label="cancel delete and return to user profile page">
                                                                 Cancel
                                                                 <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
                                                             </a>
