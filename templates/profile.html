@@ -84,7 +84,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="card-reveal-delete">
-                                                                <a href="#!" class="btn red white-text waves-effect waves-light text-shadow" aria-label="delete dog profile from database">
+                                                                <a href="{{ url_for('delete_dog', dog_id=dog._id) }}" class="btn red white-text waves-effect waves-light text-shadow" aria-label="delete dog profile from database">
                                                                     Delete
                                                                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                                                 </a>
