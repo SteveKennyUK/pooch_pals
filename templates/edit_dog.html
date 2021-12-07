@@ -1,32 +1,37 @@
 {% extends "base.html" %}
-{% block title %}Add Dog{% endblock %}
+{% block title %}Edit Dog{% endblock %}
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_dog') }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_dog', dog_id=dog._id) }}">
         <div class="card card-panel">
-            <!-- Return to profile page -->
+            <!-- Return to previous page -->
             <div class="row">
                 <div class="col s4">
-                    <a href="{{ url_for('profile', username=session['user']) }}" class="btn-return waves-effect waves-light text-shadow" 
-                    aria-label="button to return to user profile page"> <i class="fa-solid fa-rotate-left" 
-                    aria-hidden="true"></i> Profile </a>
+                    <a href="{{ request.referrer }}" class="btn-return waves-effect waves-light text-shadow" 
+                    aria-label="button to return to previous page"> <i class="fa-solid fa-rotate-left" 
+                    aria-hidden="true"></i> Back </a>
                 </div>
             </div>
             <!-- Title and image -->
-            <h2 class="center-align">Add A Dog</h2>
+            <h2 class="center-align">Edit Dog Profile</h2>
             <div class="card-image title-image">
-                <img src="{{ url_for('static', filename='images/add-dog-img.JPG') }}" 
-                alt="head of a smiling dog" loading="lazy" />
+                <img src="{{ url_for('static', filename='images/edit-img.jpg') }}" 
+                alt="children with dog and pencil" loading="lazy" />
             </div>
             <!-- breed group -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-brands fa-wolf-pack-battalion prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <select id="breed_group" name="breed_group" class="validate" required>
-                        <option value="" disabled selected>Choose Breed Group</option>
+                        <option value="" disabled>Choose Breed Group</option>
                         {% for breed in breeds %}
-                        <option value="{{ breed.breed_name }}">{{ breed.breed_name|upper }}</option>
+                            <!-- Display dog's breed group currently in database -->
+                            {% if breed._id == dog.breed_group %}
+                            <option value="{{ breed.breed_name }}" selected>{{ breed.breed_name|upper }}</option>
+                            {% else %}
+                            <option value="{{ breed.breed_name }}">{{ breed.breed_name|upper }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <label for="breed_group" class="blue-grey-text text-darken-2">Breed Group</label>
@@ -40,7 +45,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-dog prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" 
-                        class="validate" required />
+                        value="{{ dog.breed_name|title }}" class="validate" required />
                     <label for="breed_name" class="blue-grey-text text-darken-2">Breed Name</label>
                 </div>
             </div>
@@ -49,7 +54,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-tag prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="dog_name" name="dog_name" type="text" minlength="2" maxlength="15" 
-                        class="validate" required />
+                        value="{{ dog.dog_name|title }}" class="validate" required />
                     <label for="dog_name" class="blue-grey-text text-darken-2">Dog's Name</label>
                 </div>
             </div>
@@ -58,7 +63,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-location-dot prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="location" name="location" type="text" minlength="3" maxlength="25" 
-                        class="validate" required />
+                        value="{{ dog.location|title }}" class="validate" required />
                     <label for="location" class="blue-grey-text text-darken-2">
                         Location (Town, City or Postcode)</label>
                 </div>
@@ -67,7 +72,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-image prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="image" name="image" type="url" class="validate" />
+                    <input id="image" name="image" type="url" value="{{ dog.image_url }}" class="validate" />
                     <label for="image" class="blue-grey-text text-darken-2">URL of Image of Dog</label>
                     <div class="add-form-helper hide-on-med-and-down">
                         <em>Right-click the image, click 'Copy image address' then paste in here</em>
@@ -82,7 +87,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-list-ol prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <input id="age" name="age" type="text" minlength="1" maxlength="2" 
-                        class="validate" required />
+                        value="{{ dog.age }}" class="validate" required />
                     <label for="age" class="blue-grey-text text-darken-2">Dog's Age</label>
                 </div>
             </div>
@@ -92,11 +97,19 @@
                     <i class="fas fa-venus-mars prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <p class="add-radio">
                         <label for="male" class="blue-grey-text text-darken-2">
-                            <input name="sex" id="male" value="male" type="radio" checked />
+                            {% if dog.sex == "male" %}
+                                <input name="sex" id="male" value="male" type="radio" checked />
+                            {% else %}
+                                <input name="sex" id="male" value="male" type="radio" />
+                            {% endif %}
                             <span>Male</span>
                         </label>
                         <label for="female" class="blue-grey-text text-darken-2">
-                            <input name="sex" id="female" value="female" type="radio" />
+                            {% if dog.sex == "female" %}
+                                <input name="sex" id="female" value="female" type="radio" checked/>
+                            {% else %}
+                                <input name="sex" id="female" value="female" type="radio"/>
+                            {% endif %}
                             <span>Female</span>
                         </label>
                     </p>
@@ -108,15 +121,27 @@
                     <i class="fas fa-weight-scale prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <p class="add-radio">
                         <label for="small" class="blue-grey-text text-darken-2">
-                            <input name="size" id="small" value="small" type="radio" checked />
+                            {% if dog.size == "small" %}
+                                <input name="size" id="small" value="small" type="radio" checked/>
+                            {% else %}
+                                <input name="size" id="small" value="small" type="radio"/>
+                            {% endif %}                            
                             <span>S (0-10kg)</span>
                         </label>
                         <label for="medium" class="blue-grey-text text-darken-2">
-                            <input name="size" id="medium" value="medium" type="radio" />
+                            {% if dog.size == "medium" %}
+                                <input name="size" id="medium" value="medium" type="radio" checked/>
+                            {% else %}
+                            <input name="size" id="medium" value="medium" type="radio"/>
+                            {% endif %}
                             <span>M (10-25kg)</span>
                         </label>
                         <label for="large" class="blue-grey-text text-darken-2">
-                            <input name="size" id="large" value="large" type="radio" />
+                            {% if dog.size == "large" %}
+                                <input name="size" id="large" value="large" type="radio" checked/>
+                            {% else %}
+                            <input name="size" id="large" value="large" type="radio"/>
+                            {% endif %}
                             <span>L (25+kg)</span>
                         </label>
                     </p>
@@ -127,7 +152,11 @@
                 <div class="input-field col s12">
                     <i class="fas fa-neuter prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <label for="neutered" class="blue-grey-text text-darken-2">
-                        <input type="checkbox" class="filled-in" id="neutered" name="neutered" />
+                        {% if dog.neutered == True %}
+                            <input type="checkbox" class="filled-in" id="neutered" name="neutered" checked/>
+                        {% else %}
+                            <input type="checkbox" class="filled-in" id="neutered" name="neutered"/>
+                        {% endif %}
                         <span>Neutered</span>
                     </label>
                 </div>
@@ -137,23 +166,22 @@
                 <div class="input-field col s12 m-tb">
                     <i class="fas fa-comment-dots prefix teal-text text-lighten-1" aria-hidden="true"></i>
                     <textarea id="personality" name="personality" minlength="5" maxlength="200" 
-                        class="materialize-textarea validate" required></textarea>
-                    <label for="personality" class="blue-grey-text text-darken-2">
-                        Brief personality description</label>
+                        class="materialize-textarea validate" required>{{ dog.personality }}</textarea>
+                    <label for="personality" class="blue-grey-text text-darken-2">Brief personality description</label>
                 </div>
             </div>
             <!-- Submit button -->
             <div class="row">
                 <div class="form-buttons">
                     <div>
-                        <button class="btn waves-effect waves-light" type="submit" aria-label="add new dog button">
-                            Add Dog
-                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        <button class="btn waves-effect waves-light" type="submit" aria-label="edit dog button">
+                            Edit Dog
+                            <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                         </button>
                     </div>
                     <div>
-                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn red white-text waves-effect waves-light" 
-                        aria-label="cancel and return to user profile page">
+                        <a href="{{ request.referrer }}" class="btn red white-text waves-effect waves-light" 
+                        aria-label="cancel and return to previous page">
                             Cancel
                             <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                         </a>
@@ -163,6 +191,5 @@
         </div>
     </form>
 </div>
-
 
 {% endblock %}

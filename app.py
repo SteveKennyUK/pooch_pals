@@ -130,7 +130,7 @@ def profile(username):
         dogs = list(mongo.db.dogs.find(
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
-            "profile.html", username=username, dogs=dogs)
+            "profile.html", username=username, dogs=dogs, user=user)
     flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
@@ -160,6 +160,12 @@ def add_dog():
         neutered = bool(True) if request.form.get(
             "neutered") else bool(False)
         user = mongo.db.users.find_one({"username": session["user"]})
+        # Capitalise each sentence in the personality description
+        # Credit: https://codehandbook.org/
+        #     python-capitalize-first-letter-of-all-sentences/
+        personality = request.form.get("personality")
+        personality_cap = '. '.join(
+            [i.lstrip().capitalize() for i in personality.split('.')])
         rand = uuid.uuid4()
         dog = {
             "breed_group": ObjectId(breed["_id"]),
@@ -171,16 +177,60 @@ def add_dog():
             "size": request.form.get("size"),
             "neutered": neutered,
             "location": request.form.get("location"),
-            "personality": request.form.get("personality"),
+            "personality": personality_cap,
             "created_by": ObjectId(user["_id"]),
             "reference": str(rand)[:8],
         }
         mongo.db.dogs.insert_one(dog)
         flash(f"""Welcome to the pack {request.form.get(
-            "dog_name")}!""")
+            "dog_name").title()}!""")
         return redirect(url_for("profile", username=session["user"]))
     breeds = mongo.db.breed_groups.find().sort("breed_name", 1)
     return render_template("add_dog.html", breeds=breeds)
+
+
+@app.route("/edit_dog/<dog_id>", methods=["GET", "POST"])
+@login_required
+def edit_dog(dog_id):
+    """
+    User can edit their dog profiles and update the database
+    """
+    dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    # keep the same reference number
+    reference = dog["reference"]
+    if request.method == "POST":
+        breed = mongo.db.breed_groups.find_one(
+            {"breed_name": request.form.get("breed_group")}
+        )
+        neutered = bool(True) if request.form.get(
+            "neutered") else bool(False)
+        user = mongo.db.users.find_one({"username": session["user"]})
+        # Capitalise each sentence in the personality description
+        # Credit: https://codehandbook.org/
+        #     python-capitalize-first-letter-of-all-sentences/
+        personality = request.form.get("personality")
+        personality_cap = '. '.join(
+            [i.lstrip().capitalize() for i in personality.split('.')])
+        update_dog = {
+            "breed_group": ObjectId(breed["_id"]),
+            "breed_name": request.form.get("breed_name"),
+            "dog_name": request.form.get("dog_name"),
+            "age": int(request.form.get("age")),
+            "sex": request.form.get("sex"),
+            "image_url": request.form.get("image"),
+            "size": request.form.get("size"),
+            "neutered": neutered,
+            "location": request.form.get("location"),
+            "personality": personality_cap,
+            "created_by": ObjectId(user["_id"]),
+            "reference": reference,
+        }
+        mongo.db.dogs.update({"_id": ObjectId(dog_id)}, update_dog)
+        flash(f"""{request.form.get(
+            "dog_name").title()}'s profile updated!""")
+        return redirect(url_for("profile", username=session["user"]))
+    breeds = mongo.db.breed_groups.find().sort("breed_name", 1)
+    return render_template("edit_dog.html", dog=dog, breeds=breeds)
 
 
 if __name__ == "__main__":
