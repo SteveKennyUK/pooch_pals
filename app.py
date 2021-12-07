@@ -186,6 +186,9 @@ def add_dog():
 @app.route("/edit_dog/<dog_id>", methods=["GET", "POST"])
 @login_required
 def edit_dog(dog_id):
+    """
+    User can edit their dog profiles and update the database
+    """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     breeds = mongo.db.breed_groups.find().sort("breed_name", 1)
     return render_template("edit_dog.html", dog=dog, breeds=breeds)

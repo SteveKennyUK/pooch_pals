@@ -9,13 +9,15 @@
             <div class="row">
                 <div class="col s4">
                     <a href="{{ url_for('profile', username=session['user']) }}" class="btn-return waves-effect waves-light text-shadow" 
-                    aria-label="button to return to user profile page"> <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Profile </a>
+                    aria-label="button to return to user profile page"> <i class="fa-solid fa-rotate-left" 
+                    aria-hidden="true"></i> Profile </a>
                 </div>
             </div>
             <!-- Title and image -->
             <h2 class="center-align">Add A Dog</h2>
             <div class="card-image title-image">
-                <img src="{{ url_for('static', filename='images/add-dog-img.JPG') }}" alt="head of a smiling dog" loading="lazy" />
+                <img src="{{ url_for('static', filename='images/add-dog-img.JPG') }}" 
+                alt="head of a smiling dog" loading="lazy" />
             </div>
             <!-- breed group -->
             <div class="row">
@@ -37,7 +39,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-dog prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" class="validate" required />
+                    <input id="breed_name" name="breed_name" type="text" minlength="3" maxlength="30" 
+                        class="validate" required />
                     <label for="breed_name" class="blue-grey-text text-darken-2">Breed Name</label>
                 </div>
             </div>
@@ -45,7 +48,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-tag prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="dog_name" name="dog_name" type="text" minlength="2" maxlength="15" class="validate" required />
+                    <input id="dog_name" name="dog_name" type="text" minlength="2" maxlength="15" 
+                        class="validate" required />
                     <label for="dog_name" class="blue-grey-text text-darken-2">Dog's Name</label>
                 </div>
             </div>
@@ -53,8 +57,10 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-location-dot prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="location" name="location" type="text" minlength="3" maxlength="25" class="validate" required />
-                    <label for="location" class="blue-grey-text text-darken-2">Location (Town, City or Postcode)</label>
+                    <input id="location" name="location" type="text" minlength="3" maxlength="25" 
+                        class="validate" required />
+                    <label for="location" class="blue-grey-text text-darken-2">
+                        Location (Town, City or Postcode)</label>
                 </div>
             </div>
             <!-- image url -->
@@ -75,7 +81,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-list-ol prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="age" name="age" type="text" minlength="1" maxlength="2" class="validate" required />
+                    <input id="age" name="age" type="text" minlength="1" maxlength="2" 
+                        class="validate" required />
                     <label for="age" class="blue-grey-text text-darken-2">Dog's Age</label>
                 </div>
             </div>
@@ -129,8 +136,10 @@
             <div class="row">
                 <div class="input-field col s12 m-tb">
                     <i class="fas fa-comment-dots prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <textarea id="personality" name="personality" minlength="5" maxlength="200" class="materialize-textarea validate" required></textarea>
-                    <label for="personality" class="blue-grey-text text-darken-2">Brief personality description</label>
+                    <textarea id="personality" name="personality" minlength="5" maxlength="200" 
+                        class="materialize-textarea validate" required></textarea>
+                    <label for="personality" class="blue-grey-text text-darken-2">
+                        Brief personality description</label>
                 </div>
             </div>
             <!-- Submit button -->
