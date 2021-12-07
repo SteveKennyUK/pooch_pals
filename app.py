@@ -130,7 +130,7 @@ def profile(username):
         dogs = list(mongo.db.dogs.find(
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
-            "profile.html", username=username, dogs=dogs)
+            "profile.html", username=username, dogs=dogs, user=user)
     flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
