@@ -233,6 +233,17 @@ def edit_dog(dog_id):
     return render_template("edit_dog.html", dog=dog, breeds=breeds)
 
 
+@app.route("/delete_dog/<dog_id>")
+@login_required
+def delete_dog(dog_id):
+    """
+    User can delete their dog profile
+    """
+    mongo.db.dogs.remove({"_id": ObjectId(dog_id)})
+    flash("Dog Profile Removed")
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
