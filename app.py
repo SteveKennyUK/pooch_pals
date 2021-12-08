@@ -244,6 +244,16 @@ def delete_dog(dog_id):
     return redirect(url_for("index"))
 
 
+@app.route("/all_dogs")
+def all_dogs():
+    """
+    Displays all dog profiles on database
+    """
+    dogs = list(mongo.db.dogs.find())
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template("all_dogs.html", dogs=dogs, user=user)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

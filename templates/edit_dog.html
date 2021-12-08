@@ -6,13 +6,7 @@
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_dog', dog_id=dog._id) }}">
         <div class="card card-panel">
             <!-- Return to previous page -->
-            <div class="row">
-                <div class="col s4">
-                    <a href="{{ request.referrer }}" class="btn-return waves-effect waves-light text-shadow" 
-                    aria-label="button to return to previous page"> <i class="fa-solid fa-rotate-left" 
-                    aria-hidden="true"></i> Back </a>
-                </div>
-            </div>
+            {% include 'includes/return.html' %}
             <!-- Title and image -->
             <h2 class="center-align">Edit Dog Profile</h2>
             <div class="card-image title-image">
