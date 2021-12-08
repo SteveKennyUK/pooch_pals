@@ -65,7 +65,7 @@
                         <ul class="right hide-on-med-and-down">
                             <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                             <li class="{% block nav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
-                            <li class="{% block nav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
+                            <li class="{% block nav_dogs %}{% endblock %}"><a href="{{ url_for('all_dogs') }}">Dogs</a></li>
                             <li class="{% block nav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
                             <!-- Dropdown Trigger -->
                             <li class="{% block nav_account %}{% endblock %}">
@@ -82,7 +82,7 @@
                 </li>
                 <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="{% block mobnav_breeds %}{% endblock %}"><a href="#!">Breeds</a></li>
-                <li class="{% block mobnav_dogs %}{% endblock %}"><a href="#!">Dogs</a></li>
+                <li class="{% block mobnav_dogs %}{% endblock %}"><a href="{{ url_for('all_dogs') }}">Dogs</a></li>
                 <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
                 <li class="divider"></li>
                 {% if session.user %}

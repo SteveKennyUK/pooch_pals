@@ -180,6 +180,10 @@ nav ul li a {
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
     margin: 0;
 }
+
+.no-results {
+    font-size: 2rem;
+}
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
     font-size: 0.9rem;
