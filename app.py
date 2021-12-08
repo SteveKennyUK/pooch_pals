@@ -255,6 +255,17 @@ def all_dogs():
     return render_template("all_dogs.html", dogs=dogs, user=user)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """
+    Users can search all dog profiles for keywords
+    """
+    query = request.form.get("query")
+    dogs = list(mongo.db.dogs.find({"$text": {"$search": query}}))
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template("all_dogs.html", dogs=dogs, user=user)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
