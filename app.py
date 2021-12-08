@@ -245,6 +245,7 @@ def delete_dog(dog_id):
 
 
 @app.route("/all_dogs")
+@login_required
 def all_dogs():
     """
     Displays all dog profiles on database
