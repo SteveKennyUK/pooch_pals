@@ -32,11 +32,7 @@ main {
             flex: 1 0 auto;
   }
   
-h1 {
-    font-size: 4rem;
-    font-family: 'Neucha', cursive;
-}
-
+h1,
 h2,
 h3,
 #dog-title {
@@ -47,9 +43,20 @@ h3,
     margin: 0;
 }
 
+h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
 p {
     font-size: 1rem;
     padding: 1rem;
+}
+
+.card-reveal p,
+#dog-title,
+.no-results {
+    font-size: 2rem;
 }
 
 .text-shadow {
@@ -71,7 +78,8 @@ p {
 /*================================== Colours ==================================*/
 nav,
 footer,
-.btn-cancel {
+.btn-cancel,
+.btn-contact {
     background-color: #ebf1fa;
 }
 
@@ -150,17 +158,9 @@ nav ul li a {
 .profile-card {
     height: 500px;
 }
-
-#dog-title {
-    font-size: 2rem;
-}
 /*--- keep user uploaded images the same size ---*/
 .dog-image img{
-    aspect-ratio: 3/2;
-}
-
-.card-reveal p {
-    font-size: 2rem;
+    aspect-ratio: 3/2;    
 }
 /*--- set position and spacing for cancel and delete buttons ---*/
 .card-reveal-delete {
@@ -181,8 +181,13 @@ nav ul li a {
     margin: 0;
 }
 
-.no-results {
-    font-size: 2rem;
+.view-dog-list p {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.view-dog-list p i {
+    margin-right: 1.5rem;
 }
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
@@ -195,6 +200,24 @@ nav ul li a {
 
 .m-tb {
     margin: 3rem 0;
+}
+/*================================== View Dog ==================================*/
+/*-- keep the delete confirmation card reveal at the foot of the view dog card --*/
+.view-card .card-reveal {
+    position: relative;
+    bottom: 0;
+}
+
+hr {
+    height: 0.5rem;
+    width: 50%;
+    margin: 2rem auto;   
+    background-color: #26a69a;
+}
+
+.view-h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 /*================================== Flash messages ==================================*/
 .flashes h4 {

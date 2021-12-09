@@ -266,6 +266,17 @@ def search():
     return render_template("all_dogs.html", dogs=dogs, user=user)
 
 
+@app.route("/view_dog/<dog_id>", methods=["GET", "POST"])
+@login_required
+def view_dog(dog_id):
+    """
+    Allows user to view individual dog profile page
+    """
+    dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template("view_dog.html", dog=dog, user=user)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

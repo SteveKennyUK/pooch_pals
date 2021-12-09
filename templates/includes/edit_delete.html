@@ -1,0 +1,43 @@
+<div class="card-action form-buttons">
+    <!-- Edit dog profile -->
+    <div>
+        <p>
+            <a href="{{ url_for('edit_dog', dog_id=dog._id) }}" class="waves-effect waves-light teal-text lighten-1"
+                aria-label="edit dog profile">
+                <i class="fa-solid fa-pen-to-square fa-lg center-align" aria-hidden="true"></i></a>
+        </p>
+    </div>
+    <!-- Delete dog profile -->
+    <div>
+        <p>
+            <a href="#!" class="activator waves-effect waves-light red-text"
+                aria-label="delete dog profile from database">
+                <i class="fa-solid fa-trash fa-lg center-align" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</div>
+<!-- Confirm delete, using Materialize card reveal -->
+<div class="card-reveal">
+    <span class="card-title"><i class="fa-solid fa-xmark right" aria-hidden="true"></i></span>
+    <p>Are you sure you want to delete {{ dog.dog_name|title }}?</p>
+    <div class="row">
+        <div class="card-reveal-delete">
+            <div class="card-reveal-delete">
+                <a href="{{ url_for('profile', username=session['user']) }}"
+                    class="btn btn-cancel black-text text-shadow waves-effect waves-light"
+                    aria-label="cancel delete and return to user profile page">
+                    Cancel
+                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="card-reveal-delete">
+                <a href="{{ url_for('delete_dog', dog_id=dog._id) }}"
+                    class="btn red white-text waves-effect waves-light text-shadow"
+                    aria-label="delete dog profile from database">
+                    Delete
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
