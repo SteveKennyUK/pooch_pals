@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Breed Groups{% endblock %}
+{% block nav_breeds %}active{% endblock %}
+{% block mobnav_breeds %}active{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m10 offset-m1 l12 card-container">
+        <!-- Title and image -->
+        <div class="col s12 m8 offset-m2">
+            <div class="card card-panel">
+                <!-- Return to previous page -->
+                {% include 'includes/return.html' %}
+                <h2 class="center-align">Breed Groups</h2>
+                <div class="card-image title-image">
+                    <img src="{{ url_for('static', filename='images/breeds-img.JPG') }}" alt="group of different dog breeds"
+                        loading="lazy" />
+                </div>
+            </div>
+        </div>
+        <!-- Information card -->
+        <div class="col s12 m10 offset-m1">
+            <div class="row card card-panel">
+                <p>Every dog will have an individual personality but their breed can have a big impact on their
+                    behaviour and personality just as much as it affects their looks. This means that a dog will often
+                    have some traits that come more naturally to
+                    them, for example being really active or wanting to chase smaller animals.
+                    These traits are often
+                    similar within certain breeds and this is why dogs are categorised into breed groups.
+                    Working dogs are likely to need more exercise, for example, and gundogs are likely to want to
+                    retrieve.
+                </p>
+                <p>While every dog is different, as each of the group of dogs were bred to have certain traits, which
+                    breed category a dog belongs to can give you a really good idea about what their personality
+                    might be like. This could help you to decide which dogs may be suitable to play with your own dog.
+                    Similarly, if you are thinking of bringing a new dog into your home, research the breeds before
+                    choosing one to make sure that you’re fully prepared to meet their needs!
+                </p>
+                <p>There are seven breed groups recognised here in the UK. These are: gundog, hound, pastoral, terrier,
+                    toy, utility and working. Please see below for some information on each of the seven groups plus
+                    crossbreeds.
+                </p>
+                <p>Please also see <a href="https://www.thekennelclub.org.uk/breed-standards/" target="_blank"
+                        rel="noopener" aria-label="The Kennel Club website (link opens in a new tab)">The Kennel
+                        Club</a> for further information on how each breed is categorised.</p>
+            </div>
+        </div>
+        <!-- All breed profiles -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel center-align">
+                    <div class="row">
+                        <!-- Breed profile cards, using Materialize cards -->
+                        <div class="row">
+                            <!-- If there are any breed profiles -->
+                            {% if breeds|length > 0 %}
+                                
+                            <!-- If there are no dog profiles -->
+                            {% else %}
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <p class="no-results">No results found!</p>
+                                    <p class="no-results">Please <a href="{{ url_for('all_dogs') }}">Contact</a>
+                                         us if problem persists</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

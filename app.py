@@ -42,6 +42,15 @@ def index():
     return render_template("index.html", breeds=breeds)
 
 
+@app.route("/breed_groups")
+def breed_groups():
+    """
+    Displays information about dog breed groups
+    """
+    breeds = list(mongo.db.breed_groups.find())
+    return render_template("breed_groups.html", breeds=breeds)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
