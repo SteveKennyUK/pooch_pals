@@ -200,6 +200,12 @@ nav ul li a {
 .m-tb {
     margin: 3rem 0;
 }
+/*================================== View Dog ==================================*/
+/*-- keep the delete confirmation card reveal at the foot of the view dog card --*/
+.view-card .card-reveal {
+    position: relative;
+    bottom: 0;
+}
 /*================================== Flash messages ==================================*/
 .flashes h4 {
     width: 60%;
