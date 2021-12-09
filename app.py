@@ -273,7 +273,8 @@ def view_dog(dog_id):
     Allows user to view individual dog profile page
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-    return render_template("view_dog.html", dog=dog)
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template("view_dog.html", dog=dog, user=user)
 
 
 if __name__ == "__main__":

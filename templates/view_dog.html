@@ -15,6 +15,12 @@
                 {% else %}
                 <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}" loading="lazy"> 
                 {% endif %}                                                
+            </div>
+            <!-- reference number -->
+            <div class="row">
+                <div class="col s12 view-dog-list">                    
+                    <p><span class="prefix teal-text text-lighten-1"><b>REF: </b></span>{{ dog.reference|upper }}</p>
+                </div>
             </div>            
             <!-- breed name -->
             <div class="row">
@@ -24,91 +30,45 @@
             </div>
             <!-- location -->
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-location-dot prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="location" name="location" type="text" minlength="3" maxlength="25" 
-                        class="validate" required />
-                    <label for="location" class="blue-grey-text text-darken-2">
-                        Location (Town, City or Postcode)</label>
+                <div class="col s12 view-dog-list">
+                    <p><i class="fas fa-location-dot prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>{{ dog.location|title }}</p>                   
                 </div>
-            </div>
-            <!-- image url -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-image prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="image" name="image" type="url" class="validate" />
-                    <label for="image" class="blue-grey-text text-darken-2">URL of Image of Dog</label>
-                    <div class="add-form-helper hide-on-med-and-down">
-                        <em>Right-click the image, click 'Copy image address' then paste in here</em>
-                    </div>
-                    <div class="add-form-helper hide-on-large-only">
-                        <em>Hold down image, 'Open image in new tab' then copy and paste the browser address </em>
-                    </div>
-                </div>
-            </div>
+            </div>            
             <!-- dog's age -->
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-list-ol prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <input id="age" name="age" type="text" minlength="1" maxlength="2" 
-                        class="validate" required />
-                    <label for="age" class="blue-grey-text text-darken-2">Dog's Age</label>
+                <div class="col s12 view-dog-list">
+                    <p><i class="fas fa-list-ol prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>{{ dog.age }} years old</p>                    
                 </div>
             </div>
-            <!-- dog's sex radio buttons -->
+            <!-- dog's sex -->
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-venus-mars prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <p class="add-radio">
-                        <label for="male" class="blue-grey-text text-darken-2">
-                            <input name="sex" id="male" value="male" type="radio" checked />
-                            <span>Male</span>
-                        </label>
-                        <label for="female" class="blue-grey-text text-darken-2">
-                            <input name="sex" id="female" value="female" type="radio" />
-                            <span>Female</span>
-                        </label>
-                    </p>
+                <div class="col s12 view-dog-list">
+                    <p><i class="fas fa-venus-mars prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>{{ dog.sex|title }}</p>                
                 </div>
             </div>
-            <!-- dog's size radio buttons -->
+            <!-- dog's size -->
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-weight-scale prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <p class="add-radio">
-                        <label for="small" class="blue-grey-text text-darken-2">
-                            <input name="size" id="small" value="small" type="radio" checked />
-                            <span>S (0-10kg)</span>
-                        </label>
-                        <label for="medium" class="blue-grey-text text-darken-2">
-                            <input name="size" id="medium" value="medium" type="radio" />
-                            <span>M (10-25kg)</span>
-                        </label>
-                        <label for="large" class="blue-grey-text text-darken-2">
-                            <input name="size" id="large" value="large" type="radio" />
-                            <span>L (25+kg)</span>
-                        </label>
-                    </p>
+                <div class="col s12 view-dog-list">
+                    <p><i class="fas fa-weight-scale prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>{{ dog.size|title }} size</p>               
                 </div>
             </div>
-            <!-- Neutered checkbox -->
+            <!-- Neutered -->
             <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-neuter prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <label for="neutered" class="blue-grey-text text-darken-2">
-                        <input type="checkbox" class="filled-in" id="neutered" name="neutered" />
-                        <span>Neutered</span>
-                    </label>
+                <div class="col s12 view-dog-list">
+                    <p><i class="fas fa-neuter prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>
+                        Neutered:
+                    {% if dog.neutered %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                    </p>                    
                 </div>
             </div>
             <!-- personality -->
             <div class="row">
-                <div class="input-field col s12 m-tb">
-                    <i class="fas fa-comment-dots prefix teal-text text-lighten-1" aria-hidden="true"></i>
-                    <textarea id="personality" name="personality" minlength="5" maxlength="200" 
-                        class="materialize-textarea validate" required></textarea>
-                    <label for="personality" class="blue-grey-text text-darken-2">
-                        Brief personality description</label>
+                <div class="col s12 view-dog-list">
+                    <p>{{ dog.personality }}</p>                   
                 </div>
             </div>
             <!-- Submit button -->
