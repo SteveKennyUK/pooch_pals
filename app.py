@@ -51,6 +51,25 @@ def breed_groups():
     return render_template("breed_groups.html", breeds=breeds)
 
 
+@app.route("/filter/breed_group/<breed_group_id>")
+@login_required
+def filter_breed_group(breed_group_id):
+    """
+    Filters dog profiles by breed group
+    """
+    # Credit: https://github.com/Edb83/self-isolution(
+    # guidance in creating a filter)
+    breeds = list(mongo.db.breed_groups.find())
+    breed = mongo.db.breed_groups.find_one({"_id": ObjectId(breed_group_id)})
+    dogs = list(mongo.db.dogs.find({"breed_group": breed["_id"]}))
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template(
+        "all_dogs.html",
+        dogs=dogs,
+        user=user,
+        breeds=breeds)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """

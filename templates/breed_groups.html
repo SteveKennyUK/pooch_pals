@@ -13,8 +13,8 @@
                 {% include 'includes/return.html' %}
                 <h2 class="center-align">Breed Groups</h2>
                 <div class="card-image title-image">
-                    <img src="{{ url_for('static', filename='images/breeds-img.JPG') }}" alt="group of different dog breeds"
-                        loading="lazy" />
+                    <img src="{{ url_for('static', filename='images/breeds-img.JPG') }}"
+                        alt="group of different dog breeds" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -60,13 +60,19 @@
                                     <div class="card card-panel breed-card">
                                         <h3 class="card-title" id="breed-title">{{ breed.breed_name|title }}</h3>
                                         <div class="card-image">
-                                            <img src="{{ breed.image_url }}" alt="">                                            
+                                            <img src="{{ breed.image_url }}"
+                                                alt="example image of a {{ breed.breed_name }} breed">
                                         </div>
                                         <div class="card-content">
                                             <p class="p-0">{{ breed.description }}</p>
                                         </div>
-                                        <div class="card-action">
-                                            <a href="#">This is a link</a>
+                                        <div class="card-action center-align">
+                                            <a href="{{ url_for('filter_breed_group', breed_group_id=breed._id) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light"
+                                                aria-label="link to all dogs page, results filtered by breed group">
+                                                View Dogs
+                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +83,8 @@
                             <div class="row center-align">
                                 <div class="col s12">
                                     <p class="no-results">No results found!</p>
-                                    <p class="no-results">Please <a href="{{ url_for('all_dogs') }}">Contact</a>
+                                    <p class="no-results">Please <a href="{{ url_for('all_dogs') }}"
+                                            aria-label="link to contact page">Contact</a>
                                         us if problem persists</p>
                                 </div>
                             </div>
