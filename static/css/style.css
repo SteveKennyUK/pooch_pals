@@ -35,7 +35,8 @@ main {
 h1,
 h2,
 h3,
-#dog-title {
+#dog-title,
+#breed-title {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
@@ -55,7 +56,8 @@ p {
 
 .card-reveal p,
 #dog-title,
-.no-results {
+.no-results,
+#breed-title {
     font-size: 2rem;
 }
 
@@ -74,6 +76,10 @@ p {
 
 .list-unstyled {
     list-style-type: none;
+}
+
+.p-0 {
+    padding: 0;
 }
 /*================================== Colours ==================================*/
 nav,
@@ -154,7 +160,15 @@ nav ul li a {
     margin: 0 auto;
     padding-bottom: 0.5rem;
 }
+/*-- breed_groups page cards --*/
+.breed-card {
+    height: 550px
+}
 
+.breed-card .card-content {
+    padding: 0.5rem;
+}
+/*-- dog_cards template cards --*/
 .profile-card {
     height: 500px;
 }
@@ -180,15 +194,6 @@ nav ul li a {
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
     margin: 0;
 }
-
-.view-dog-list p {
-    font-size: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.view-dog-list p i {
-    margin-right: 1.5rem;
-}
 /*================================== Add Dog Form ==================================*/
 .add-form-helper {
     font-size: 0.9rem;
@@ -206,6 +211,15 @@ nav ul li a {
 .view-card .card-reveal {
     position: relative;
     bottom: 0;
+}
+/*--- view_dog information lists styling ---*/
+.view-dog-list p {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.view-dog-list p i {
+    margin-right: 1.5rem;
 }
 
 hr {
