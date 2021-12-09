@@ -4,7 +4,7 @@
         <div class="card profile-card card-panel">
             <div class="card-image dog-image">
                 {% if dog.image_url == "" or dog.image_url is none %}
-                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="pluto the dog" loading="lazy">
+                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="image not available" loading="lazy">
                 {% else %}
                 <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}" loading="lazy"> 
                 {% endif %}                                                
@@ -13,7 +13,7 @@
                 <p class="card-title" id="dog-title">{{ dog.dog_name|title }}</p>
                 <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location|title }}</p>
                 <!-- View dog's full profile -->
-                <a href="#!" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
+                <a href="{{ url_for('view_dog', dog_id=dog._id) }}" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
             </div>
             <!-- Only display edit/delete buttons if session user created the dog profile -->
