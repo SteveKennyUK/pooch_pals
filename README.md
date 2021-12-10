@@ -293,6 +293,7 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 		 - [Breed Groups Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/breed_groups_pooch_pals.pdf)
 		 - [Contact Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/contact_pooch_pals.pdf)
 		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
+	- **EDIT** - There was a slight amendment in the final layout of the View Dog page for medium and large screen sizes. It was decided to place the image at the top of the page, as per the small screen sizes, with the information list below. This is in keeping with the rest of the pages on the site and it was felt that the consistency would provide a better UX. 
 
 
 ## Deployment

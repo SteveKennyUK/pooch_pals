@@ -38,7 +38,7 @@ def login_required(f):
 @app.route("/")
 @app.route("/index")
 def index():
-    breeds = mongo.db.breed_groups.find()
+    breeds = list(mongo.db.breed_groups.find())
     return render_template("index.html", breeds=breeds)
 
 
