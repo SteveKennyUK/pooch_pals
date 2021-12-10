@@ -5,22 +5,165 @@
 {% block content %}
 
 <div class="row">
-  {% for breed in breeds %}
-  <div class="col s12 m6 l4">
-    <div class="card">
-      <div class="card-image">
-        <img src="{{ breed.image_url }}" alt="">
-        <span class="card-title">{{ breed.breed_name }}</span>
-      </div>
-      <div class="card-content">
-        <p>{{ breed.description }}</p>
-      </div>
-      <div class="card-action">
-        <a href="#">This is a link</a>
-      </div>
+    <div class="col s12 m10 offset-m1 l12 card-container">
+        <!-- Title and image -->
+        <div class="col s12 m10 offset-m1">
+            <div class="card card-panel">
+                <h1 class="center-align">Welcome to Pooch Pals!</h1>
+                <div class="card-image title-image">
+                    <img src="{{ url_for('static', filename='images/home-img.jpeg') }}" 
+                    alt="two dogs playing" loading="lazy" />
+                </div>
+            </div>
+        </div>
+        <!-- Information card -->
+        <div class="col s12 m10 offset-m1">
+            <div class="row card card-panel home-card center-align">
+                <p>Recent times have shown us the importance of socialising for mental wellbeing.
+                    This not only applies to humans but to dogs as well!
+                </p>
+                <p>With dog ownership on the rise since the start of the pandemic, there is an even greater
+                    responsibility to protect the welfare of our dogs.
+                </p>
+                <p>Are you looking to socialise your dog with other dogs?<br>
+                    Do you want to spend some time with different breeds before committing to ownership?
+                </p>
+                <p>Look no further than <b>Pooch Pals!</b></p>
+                <p><em><b>User profiles are subject to security checks prior to verification</b></em></p>
+            </div>
+        </div>
+        <!-- Welcome panel with link buttons -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card card-panel">
+                    <!-- Image -->
+                    <div class="card-image title-image">
+                        <!-- Show different image depending whether user is logged in -->
+                        {% if session.user %}
+                        <img src="{{ url_for('static', filename='images/profile-img.JPG') }}" 
+                            alt="smiling man and dog" loading="lazy" />
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/login-img.JPG') }}"
+                            alt="man and dog at computer" loading="lazy" />
+                        {% endif %}
+                    </div>
+                    <!-- Button links -->
+                    <div class="card-content">
+                        <div class="form-buttons">
+                            <div>
+                                <!-- Show different buttons depending whether user is logged in -->
+                                <!-- Display large buttons on medium screens and above, small buttons on small screens only -->
+                                {% if session.user %}
+                                <a href="{{ url_for('profile', username=session['user']) }}"
+                                    class="btn-large waves-effect waves-light hide-on-small-only"
+                                    aria-label="link to profile page">
+                                    Profile
+                                </a>
+                                <a href="{{ url_for('profile', username=session['user']) }}"
+                                    class="btn waves-effect waves-light hide-on-med-and-up"
+                                    aria-label="link to profile page">
+                                    Profile
+                                </a>
+                                {% else %}
+                                <a href="{{ url_for('login') }}"
+                                    class="btn-large waves-effect waves-light hide-on-small-only"
+                                    aria-label="link to login page">
+                                    Log In
+                                </a>
+                                <a href="{{ url_for('login') }}" 
+                                    class="btn waves-effect waves-light hide-on-med-and-up"
+                                    aria-label="link to login page">
+                                    Log In
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div>
+                                {% if session.user %}
+                                <a href="{{ url_for('all_dogs') }}"
+                                    class="btn-large waves-effect waves-light hide-on-small-only"
+                                    aria-label="link to all dogs page">
+                                    All Dogs
+                                </a>
+                                <a href="{{ url_for('all_dogs') }}"
+                                    class="btn waves-effect waves-light hide-on-med-and-up"
+                                    aria-label="link to all dogs page">
+                                    All Dogs
+                                </a>
+                                {% else %}
+                                <a href="{{ url_for('register') }}"
+                                    class="btn-large waves-effect waves-light hide-on-small-only"
+                                    aria-label="link to register page">
+                                    Register
+                                </a>
+                                <a href="{{ url_for('register') }}"
+                                    class="btn waves-effect waves-light hide-on-med-and-up"
+                                    aria-label="link to register page">
+                                    Register
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dog profiles -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card-panel center-align">
+                            <h2>Our Newest Pals</h2>
+                            <div class="row">
+                                <!-- Dog profile cards, using Materialize cards -->
+                                <div class="row">
+                                    <!-- If there are any dog profiles -->
+                                    {% if dogs|length > 0 %}                                    
+                                    {% for dog in dogs %}
+                                    <div class="col s12 m6 l4">
+                                        <div class="card profile-card card-panel">
+                                            <!-- Dog image -->
+                                            <div class="card-image dog-image">
+                                                {% if dog.image_url == "" or dog.image_url is none %}
+                                                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}"
+                                                    alt="image not available" loading="lazy">
+                                                {% else %}
+                                                <img src="{{ dog.image_url }}"
+                                                    alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}"
+                                                    loading="lazy">
+                                                {% endif %}
+                                            </div>
+                                            <!-- Card content -->
+                                            <div class="card-content">
+                                                <p class="card-title" id="dog-title">{{ dog.dog_name|title }}</p>
+                                                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i>
+                                                    {{ dog.location|title }}</p>
+                                                <!-- View dog's full profile -->
+                                                <a href="{{ url_for('view_dog', dog_id=dog._id) }}"
+                                                    class="btn-floating waves-effect waves-light teal lighten-1"
+                                                    aria-label="view dog's full profile">
+                                                    <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="card-action">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- If there are no dog profiles -->
+                                    {% else %}
+                                    <div class="row center-align">
+                                        <div class="col s12">
+                                            <p class="no-results">No results found!</p>
+                                            <p class="no-results">Please <a href="{{ url_for('all_dogs') }}"
+                                                    aria-label="link to contact page">Contact</a>
+                                                us if problem persists</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  {% endfor %}
 </div>
 
 {% endblock %}

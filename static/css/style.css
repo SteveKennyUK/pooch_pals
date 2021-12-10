@@ -54,6 +54,10 @@ p {
     padding: 1rem;
 }
 
+.home-card p {
+    font-size: 1.5rem;
+}
+
 .card-reveal p,
 #dog-title,
 .no-results,
@@ -267,4 +271,4 @@ body > footer {
     .profile-card {
         height: 600px;
     }    
-}
+} 
