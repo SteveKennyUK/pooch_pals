@@ -9,6 +9,8 @@
         <!-- User welcome card -->
         <div class="col s12 m8 offset-m2">
             <div class="card card-panel">
+                <!-- Return to previous page -->
+                {% include 'includes/return.html' %}
                 <h2 class="center-align">{{ username }}'s den</h2>
                 <div class="card-image title-image">
                     <img src="{{ url_for('static', filename='images/profile-img.JPG') }}" alt="smiling man and dog" loading="lazy" />

@@ -54,7 +54,8 @@ p {
     padding: 1rem;
 }
 
-.home-card p {
+.home-card p,
+.contact-card {
     font-size: 1.5rem;
 }
 
