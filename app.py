@@ -38,8 +38,11 @@ def login_required(f):
 @app.route("/")
 @app.route("/index")
 def index():
-    breeds = list(mongo.db.breed_groups.find())
-    return render_template("index.html", breeds=breeds)
+    """
+    Display the six most recently added dog profiles
+    """
+    dogs = list(mongo.db.dogs.find().sort("_id", -1).limit(6))
+    return render_template("index.html", dogs=dogs)
 
 
 @app.route("/breed_groups")
