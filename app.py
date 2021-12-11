@@ -39,7 +39,7 @@ def login_required(f):
 @app.route("/index")
 def index():
     """
-    Display the six most recently added dog profiles
+    Displays the six most recently added dog profiles
     """
     dogs = list(mongo.db.dogs.find().sort("_id", -1).limit(6))
     return render_template("index.html", dogs=dogs)
@@ -306,6 +306,14 @@ def view_dog(dog_id):
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
     return render_template("view_dog.html", dog=dog, user=user)
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    """
+    Allows users to contact the site
+    """
+    return render_template("contact.html")
 
 
 if __name__ == "__main__":

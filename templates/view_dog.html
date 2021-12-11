@@ -18,41 +18,41 @@
                     loading="lazy">
                 {% endif %}
             </div>
-            <!-- reference number -->
+            <!-- Reference number -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><span class="prefix teal-text text-lighten-1"><b>REF: </b></span>{{ dog.reference|upper }}</p>
                 </div>
             </div>
-            <!-- breed name -->
+            <!-- Breed name -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><i class="fas fa-dog prefix teal-text text-lighten-1 fa-2xl"
                             aria-hidden="true"></i>{{ dog.breed_name|title }}</p>
                 </div>
             </div>
-            <!-- location -->
+            <!-- Location -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><i class="fas fa-location-dot prefix teal-text text-lighten-1 fa-2xl"
                             aria-hidden="true"></i>{{ dog.location|title }}</p>
                 </div>
             </div>
-            <!-- dog's age -->
+            <!-- Dog's age -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><i class="fas fa-list-ol prefix teal-text text-lighten-1 fa-2xl"
                             aria-hidden="true"></i>{{ dog.age }} years old</p>
                 </div>
             </div>
-            <!-- dog's sex -->
+            <!-- Dog's sex -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><i class="fas fa-venus-mars prefix teal-text text-lighten-1 fa-2xl"
                             aria-hidden="true"></i>{{ dog.sex|title }}</p>
                 </div>
             </div>
-            <!-- dog's size -->
+            <!-- Dog's size -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p><i class="fas fa-weight-scale prefix teal-text text-lighten-1 fa-2xl"
@@ -72,7 +72,7 @@
                     </p>
                 </div>
             </div>
-            <!-- personality -->
+            <!-- Personality -->
             <div class="row">
                 <div class="col s12 view-dog-list">
                     <p>{{ dog.personality }}</p>
@@ -86,7 +86,7 @@
             <hr>
             <h2 class="view-h2 center-align">Interested in becoming pals with {{dog.dog_name|title}}?</h2>
             <div class="center-align">
-                <a href="{{ url_for('profile', username=session['user']) }}"
+                <a href="{{ url_for('contact') }}"
                     class="btn btn-contact black-text waves-effect waves-light"
                     aria-label="link to contact page">
                     Contact

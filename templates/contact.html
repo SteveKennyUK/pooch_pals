@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block styles %} 
+<!-- EmailJS script -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+    (function () {
+        emailjs.init("user_o09G9wcOUufIvMTrZgEDy");
+    })();
+</script>
+{% endblock %}
+{% block title %}Contact{% endblock %}
+{% block nav_contact %}active{% endblock %}
+{% block mobnav_contact %}active{% endblock %}
+{% block content %}
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" id="form" method="POST" action="https://formdump.codeinstitute.net">
+        <div class="card card-panel">
+            <!-- Return to previous page -->
+            {% include 'includes/return.html' %}
+            <h2 class="center-align">Contact</h2>
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/contact-img.JPG') }}" alt="dog with envelope in mouth" loading="lazy" />
+                <p class="contact-card">If you would like to pal up with a pooch or require further information, please provide details below.</p>
+                <p><em><b>*Please note: non-verified members will need to undergo safety checks prior to any introductions being arranged*</b></em></p>
+            </div>
+            <hr>
+            <!-- Name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-tag prefix teal-text text-lighten-1" aria-hidden="true"></i>
+                    <input id="name" name="name" type="text" class="validate" required />
+                    <label for="name">Name:</label>
+                    <span class="helper-text" data-error="Please provide a name"></span>
+                </div>
+            </div>            
+            <!-- Email -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-envelope prefix teal-text text-lighten-1" aria-hidden="true"></i>
+                    <input id="email" name="email" type="email" class="validate" required />
+                    <label for="email">Email:</label>
+                    <span class="helper-text" data-error="Please provide a valid email address"></span>
+                </div>
+            </div>
+            {% if session['user'] %}
+            <!-- Reference -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-dog prefix teal-text text-lighten-1" aria-hidden="true"></i>
+                    <input id="reference" name="reference" type="text" minlength="8" maxlength="8" class="validate"/>
+                    <label for="reference">Dog Ref:</label>                    
+                    <div class="add-form-helper">
+                        <em>Ref of dog you would like to contact (found on dog's profile page)</em>
+                    </div>
+                    <span class="helper-text" data-error="Must contain 8 characters"></span>
+                </div>
+            </div> 
+            {% endif %}
+            <!-- Message -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-comment-dots prefix teal-text text-lighten-1" aria-hidden="true"></i>
+                    <textarea id="message" name="message" minlength="5" maxlength="200" 
+                        class="materialize-textarea validate" required></textarea>
+                    <label for="message" class="blue-grey-text text-darken-2">
+                        Your Message:</label>
+                    <span class="helper-text" data-error="Please provide a few more details to assist with your enquiry"></span>
+                </div>
+            </div>        
+            <!-- Buttons -->
+            <div class="row">
+                <div class="form-buttons">
+                    <!-- Submit button -->
+                    <div>
+                        <button class="btn waves-effect waves-light" id="button" value="Submit" type="submit" aria-label="submit contact form">
+                            Submit  
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <!-- Cancel button -->
+                    <div>
+                        <a href="{{ request.referrer }}" class="btn red white-text waves-effect waves-light" 
+                        aria-label="cancel and return to previous page">
+                            Cancel
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for successful email submission -->
+            <div id="email-success" class="modal">
+                <div class="modal-content center-align">
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for your enquiry<br />
+                        We will respond as soon as possible.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('contact') }}" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+            <!-- Modal for failed email submission -->
+            <div id="email-fail" class="modal">
+                <div class="modal-content center-align">
+                    <h3>An Error Has Occurred</h3>
+                    <p>Please try to submit again.<br />
+                        Check that all fields have been filled correctly.<br />
+                        If problems persist, please contact us at
+                        <a href="mailto:contact@poochpals.co.uk" aria-label="email contact@poochpals.co.uk">
+                            contact@poochpals.co.uk</a>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('contact') }}" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+<!-- EmailJS script -->
+{% block scripts %} 
+<script src="{{ url_for('static', filename='js/email.js') }}"></script>
+{% endblock %}

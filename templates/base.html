@@ -66,7 +66,7 @@
                             <li class="{% block nav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                             <li class="{% block nav_breeds %}{% endblock %}"><a href="{{ url_for('breed_groups') }}">Breeds</a></li>
                             <li class="{% block nav_dogs %}{% endblock %}"><a href="{{ url_for('all_dogs') }}">Dogs</a></li>
-                            <li class="{% block nav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
+                            <li class="{% block nav_contact %}{% endblock %}"><a href="{{ url_for('contact') }}">Contact</a></li>
                             <!-- Dropdown Trigger -->
                             <li class="{% block nav_account %}{% endblock %}">
                                 <a class="dropdown-trigger" href="#!" data-target="account_dropdown" aria-label="Account dropdown trigger">Account<i class="fa-solid fa-caret-down right" aria-hidden="true"></i></a>
@@ -83,7 +83,7 @@
                 <li class="{% block mobnav_home %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="{% block mobnav_breeds %}{% endblock %}"><a href="{{ url_for('breed_groups') }}">Breeds</a></li>
                 <li class="{% block mobnav_dogs %}{% endblock %}"><a href="{{ url_for('all_dogs') }}">Dogs</a></li>
-                <li class="{% block mobnav_contact %}{% endblock %}"><a href="#!">Contact</a></li>
+                <li class="{% block mobnav_contact %}{% endblock %}"><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li class="divider"></li>
                 {% if session.user %}
                     <li class="{% block mobnav_profile %}{% endblock %}"><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
@@ -147,7 +147,7 @@
                     <div class="col s12 m4 pull-m4 center-align">
                         <h5 class="underline">Contact</h5>
                         <ul class="list-unstyled text-links contact-links">
-                            <li><a href="#" aria-label="Website Contact Form">Contact Form</a></li>
+                            <li><a href="{{ url_for('contact') }}" aria-label="Website Contact Form">Contact Form</a></li>
                             <li>
                                 <a href="mailto:contact@poochpals.co.uk" aria-label="email contact@poochpals.co.uk"><i class="far fa-envelope" aria-hidden="true"></i> Email</a>
                             </li>
