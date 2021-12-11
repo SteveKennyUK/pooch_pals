@@ -174,15 +174,6 @@ def profile(username):
     """
     Profile page for user in session or admin user
     """
-    if session["admin"]:
-        # grab the username fed through from admin page
-        username = username
-        # grab only dog profiles created by the user
-        user = mongo.db.users.find_one({"username": username})
-        dogs = list(mongo.db.dogs.find(
-            {"created_by": ObjectId(user["_id"])}))
-        return render_template(
-            "profile.html", username=username, dogs=dogs, user=user)
     if session["user"]:
         # grab the session user's username from database
         username = mongo.db.users.find_one(
@@ -354,8 +345,28 @@ def admin():
     """
     Admin only page
     """
-    users = list(mongo.db.users.find())    
+    users = list(mongo.db.users.find())
     return render_template("admin.html", users=users)
+
+
+@app.route("/profile/admin/<username>", methods=["GET", "POST"])
+@login_required
+@is_admin
+def profile_admin(username):
+    """
+    Admin user to view all profile pages
+    """
+    if session["admin"]:
+        # grab the username fed through from admin page
+        username = username
+        # grab only dog profiles created by the user
+        user = mongo.db.users.find_one({"username": username})
+        dogs = list(mongo.db.dogs.find(
+            {"created_by": ObjectId(user["_id"])}))
+        return render_template(
+            "profile.html", username=username, dogs=dogs, user=user)
+        flash("Please log in to view your profile")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
