@@ -1,4 +1,5 @@
 import os
+import uuid
 from functools import wraps
 from flask import (
     Flask, flash, render_template,
@@ -8,7 +9,6 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-import uuid
 
 
 app = Flask(__name__)
@@ -24,6 +24,9 @@ mongo = PyMongo(app)
 # Credit: https://flask.palletsprojects.com/en/2.0.x/
 # patterns/viewdecorators/#login-required-decorator
 def login_required(f):
+    """
+    Restrict page access to logged in users only
+    """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         # if no user is in session
@@ -31,6 +34,25 @@ def login_required(f):
             flash("Please Log In To View This Page")
             return redirect(url_for("login"))
         # if a user is in session
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+# Credit: admin only decorator taken from (
+# https://github.com/irasan/hackpride2021/blob/master/app.py)
+def is_admin(f):
+    """
+    Restrict page access to admin users only
+    """
+    @wraps(f)
+    @login_required  # must be logged-in to access this function
+    def decorated_function(*args, **kwargs):
+        # get session user
+        user = mongo.db.users.find_one({"username": session["user"].lower()})
+        if not user["is_admin"]:
+            flash("This Page Is Restricted To Admin Access")
+            return redirect(url_for("index"))
+        # user is an admin
         return f(*args, **kwargs)
     return decorated_function
 
@@ -314,6 +336,17 @@ def contact():
     Allows users to contact the site
     """
     return render_template("contact.html")
+
+
+@app.route("/admin")
+@login_required
+@is_admin
+def admin():
+    """
+    Admin only page
+    """
+    breeds = list(mongo.db.breed_groups.find())
+    return render_template("admin.html", breeds=breeds)
 
 
 if __name__ == "__main__":

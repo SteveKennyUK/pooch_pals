@@ -49,7 +49,7 @@
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% if session.admin == True %}
                         <li class="divider"></li>
-                        <li><a href="#!">Admin</a></li>
+                        <li><a href="{{ url_for('admin') }}">Admin</a></li>
                     {% endif %}
                 {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>
@@ -90,7 +90,7 @@
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% if session.admin == True %}
                         <li class="divider"></li>
-                        <li class="{% block mobnav_admin %}{% endblock %}"><a href="#!">Admin</a></li>
+                        <li class="{% block mobnav_admin %}{% endblock %}"><a href="{{ url_for('admin') }}">Admin</a></li>
                     {% endif %}
                 {% else %}
                     <li class="{% block mobnav_register %}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
