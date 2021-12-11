@@ -36,7 +36,8 @@ h1,
 h2,
 h3,
 #dog-title,
-#breed-title {
+#breed-title,
+#user-title {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
@@ -62,7 +63,8 @@ p {
 .card-reveal p,
 #dog-title,
 .no-results,
-#breed-title {
+#breed-title,
+#user-title {
     font-size: 2rem;
 }
 

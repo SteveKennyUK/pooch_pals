@@ -11,7 +11,7 @@
             <div class="card card-panel">
                 <!-- Return to previous page -->
                 {% include 'includes/return.html' %}
-                <h2 class="center-align">Admin</h2>                
+                <h2 class="center-align m-tb">Admin</h2>                
             </div>
         </div>
         <!-- All users -->
@@ -22,24 +22,21 @@
                         <!-- Breed profile cards, using Materialize cards -->
                         <div class="row">
                             <!-- If there are any breed profiles -->
-                            {% if breeds|length > 0 %}
+                            {% if users|length > 0 %}
                             <div class="row">
-                                {% for breed in breeds %}
+                                {% for user in users %}
                                 <div class="col s12 m6 l4">
                                     <div class="card card-panel breed-card">
-                                        <h3 class="card-title" id="breed-title">{{ breed.breed_name|title }}</h3>
-                                        <div class="card-image">
-                                            <img src="{{ breed.image_url }}"
-                                                alt="example image of a {{ breed.breed_name }} breed">
-                                        </div>
+                                        <h3 class="card-title" id="user-title">{{ user.username }}</h3>
+                                        
                                         <div class="card-content">
-                                            <p class="p-0">{{ breed.description }}</p>
+                                            <p class=></p>
                                         </div>
                                         <div class="card-action center-align">
-                                            <a href="{{ url_for('filter_breed_group', breed_group_id=breed._id) }}"
+                                            <a href="{{ url_for('profile', username=user.username) }}"
                                                 class="btn btn-contact black-text waves-effect waves-light"
                                                 aria-label="link to all dogs page, results filtered by breed group">
-                                                View <span class="hide-on-small-only">Dogs</span>
+                                                View User</span>
                                                 <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </div>

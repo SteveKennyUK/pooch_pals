@@ -172,8 +172,17 @@ def login():
 @login_required
 def profile(username):
     """
-    Profile page for user in session
+    Profile page for user in session or admin user
     """
+    if session["admin"]:
+        # grab the username fed through from admin page
+        username = username
+        # grab only dog profiles created by the user
+        user = mongo.db.users.find_one({"username": username})
+        dogs = list(mongo.db.dogs.find(
+            {"created_by": ObjectId(user["_id"])}))
+        return render_template(
+            "profile.html", username=username, dogs=dogs, user=user)
     if session["user"]:
         # grab the session user's username from database
         username = mongo.db.users.find_one(
@@ -184,7 +193,7 @@ def profile(username):
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
             "profile.html", username=username, dogs=dogs, user=user)
-    flash("Please log in to view your profile")
+        flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
 
@@ -345,8 +354,8 @@ def admin():
     """
     Admin only page
     """
-    breeds = list(mongo.db.breed_groups.find())
-    return render_template("admin.html", breeds=breeds)
+    users = list(mongo.db.users.find())    
+    return render_template("admin.html", users=users)
 
 
 if __name__ == "__main__":
