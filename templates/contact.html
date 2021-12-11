@@ -1,11 +1,20 @@
 {% extends "base.html" %}
+{% block styles %} 
+<!-- EmailJS script -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+    (function () {
+        emailjs.init("user_o09G9wcOUufIvMTrZgEDy");
+    })();
+</script>
+{% endblock %}
 {% block title %}Contact{% endblock %}
 {% block nav_contact %}active{% endblock %}
 {% block mobnav_contact %}active{% endblock %}
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="https://formdump.codeinstitute.net">
+    <form class="col s12 m8 offset-m2" id="form" method="POST" action="https://formdump.codeinstitute.net">
         <div class="card card-panel">
             <!-- Return to previous page -->
             {% include 'includes/return.html' %}
@@ -59,15 +68,17 @@
                     <span class="helper-text" data-error="Please provide a few more details to assist with your enquiry"></span>
                 </div>
             </div>        
-            <!-- Submit button -->
+            <!-- Buttons -->
             <div class="row">
                 <div class="form-buttons">
+                    <!-- Submit button -->
                     <div>
-                        <button class="btn waves-effect waves-light" type="submit" aria-label="submit contact form">
-                            Submit
+                        <button class="btn waves-effect waves-light" id="button" value="Submit" type="submit" aria-label="submit contact form">
+                            Submit  
                             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </div>
+                    <!-- Cancel button -->
                     <div>
                         <a href="{{ request.referrer }}" class="btn red white-text waves-effect waves-light" 
                         aria-label="cancel and return to previous page">
@@ -76,9 +87,38 @@
                         </a>
                     </div>
                 </div>
-            </div>            
+            </div>
+            <!-- Modal for successful email submission -->
+            <div id="email-success" class="modal">
+                <div class="modal-content center-align">
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for your enquiry<br />
+                        We will respond as soon as possible.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('contact') }}" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+            <!-- Modal for failed email submission -->
+            <div id="email-fail" class="modal">
+                <div class="modal-content center-align">
+                    <h3>An Error Has Occurred</h3>
+                    <p>Please try to submit again.<br />
+                        Check that all fields have been filled correctly.<br />
+                        If problems persist, please contact us at
+                        <a href="mailto:contact@poochpals.co.uk" aria-label="email contact@poochpals.co.uk">
+                            contact@poochpals.co.uk</a>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('contact') }}" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
         </div>
     </form>
 </div>
 
+{% endblock %}
+<!-- EmailJS script -->
+{% block scripts %} 
+<script src="{{ url_for('static', filename='js/email.js') }}"></script>
 {% endblock %}

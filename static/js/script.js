@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('.sidenav').sidenav({edge: "right"});
     $('.tooltipped').tooltip();
     $('select').formSelect();
+    $('.modal').modal();
 
 /* Adds validation to Materialize select fields
     Credit: Code Institute tutorial */
