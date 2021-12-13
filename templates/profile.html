@@ -64,18 +64,28 @@
                             <div class="col s8 offset-s2">
                                 <h3 class="profile-heading center-align m-t">Reviews I've Left</h3>
                             </div>
+                            <!-- Reviews card -->
                             <div class="row">
                                 <div class="col s12">
                                     <div class="card-panel">
                                         {% if reviews|length > 0 %}
-                                        {% for review in reviews %}
-                                        <blockquote class="flow-text">
-                                            {{ review.review }}
-                                        </blockquote>
-                                        <p>Reviewed for {{ review.dog_name }} on {{ review.created_on }}</p>
-                                        <hr>
-                                        {% endfor %}
+                                        <!-- If user has left any reviews -->
+                                            {% for review in reviews %}
+                                            <blockquote class="flow-text">
+                                                {{ review.review }}
+                                            </blockquote>
+                                            <p>Reviewed for {{ review.dog_name }} on {{ review.created_on }}</p>
+                                            <!-- View reviewed dog's profile -->
+                                            <a href="{{ url_for('view_dog', dog_id=review.dog_id) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light"
+                                                aria-label="link to {{review.dog_name}}'s profile page">
+                                                View {{ review.dog_name }}
+                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <hr>
+                                            {% endfor %}
                                         {% else %}
+                                        <!-- If user has left no reviews -->
                                         <div class="row center-align">
                                             <div class="col s12">
                                                 <p class="no-results">You haven't left any reviews yet!</p>
