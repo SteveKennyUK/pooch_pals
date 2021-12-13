@@ -238,7 +238,8 @@ hr {
     background-color: #26a69a;
 }
 
-.view-h2 {
+.view-h2,
+.view-h3 {
     font-size: 2rem;
     margin-bottom: 2rem;
 }

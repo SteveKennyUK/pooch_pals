@@ -102,6 +102,41 @@
             </div>
             {% endif %}
             <hr>
+            <!-- Reviews -->
+            <!-- Title -->
+            <div class="col s8 offset-s2">
+                <h3 class="view-h3 center-align">Reviews</h3>
+            </div>
+            <!-- Add review using Materialize modal -->
+            <div class="col s2 center-align">
+                <a href="#review-modal" class="btn-floating btn-medium waves-effect waves-light amber accent-4 
+                    tooltipped modal-trigger" data-position="top" data-tooltip="Add Review" aria-label="add review">
+                    <i class="fa-solid fa-plus" aria-hidden="true">
+                        <span class="sr-only">Add review</span>
+                    </i>
+                </a>
+                <!-- Add review modal -->                
+                <div id="review-modal" class="modal">
+                    <form method="POST" action="">
+                        <div class="modal-content">
+                            <h4>Add Your Review of {{ dog.dog_name }}</h4>
+                            <div class="input-field">
+                                <textarea id="review" name="review" minlength="5" maxlength="200"
+                                    class="materialize-textarea validate" required></textarea>
+                                <label for="review" class="blue-grey-text text-darken-2">
+                                    Review</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                            <button class="btn waves-effect waves-light" type="submit" aria-label="submit review">
+                                Submit
+                                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
