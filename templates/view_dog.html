@@ -102,12 +102,13 @@
             </div>
             {% endif %}
             <hr>
+
             <!-- Reviews -->
             <!-- Title -->
             <div class="col s8 offset-s2">
                 <h3 class="view-h3 center-align">Reviews</h3>
             </div>
-            <!-- Add review using Materialize modal -->
+            <!-- Add review button -->
             <div class="col s2 center-align">
                 <a href="#review-modal" class="btn-floating btn-medium waves-effect waves-light amber accent-4 
                     tooltipped modal-trigger" data-position="top" data-tooltip="Add Review" aria-label="add review">
@@ -115,9 +116,10 @@
                         <span class="sr-only">Add review</span>
                     </i>
                 </a>
-                <!-- Add review modal -->                
+                <!-- Add review using Materialize modal -->                
                 <div id="review-modal" class="modal">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ url_for('view_dog', dog_id=dog._id) }}">
+                        <!-- Review input field -->
                         <div class="modal-content">
                             <h4>Add Your Review of {{ dog.dog_name }}</h4>
                             <div class="input-field">
@@ -127,6 +129,7 @@
                                     Review</label>
                             </div>
                         </div>
+                        <!-- Cancel and Submit buttons -->
                         <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
                             <button class="btn waves-effect waves-light" type="submit" aria-label="submit review">

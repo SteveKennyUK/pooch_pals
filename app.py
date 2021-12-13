@@ -7,6 +7,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -324,13 +325,33 @@ def search():
 def view_dog(dog_id):
     """
     Allows user to view individual dog profile page
+    Allows user reviews to be added and displayed
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
     # grab user who created the dog profile
     creator = mongo.db.users.find_one({"_id": ObjectId(dog["created_by"])})
+    # grab reviews for each dog profile
+    reviews = list(mongo.db.reviews.find(
+        {"dog_id": ObjectId(dog_id)}))
+    # Credit: reviews code modified from (
+    # https://github.com/irasan/hackpride2021/blob/master/app.py)
+    if request.method == "POST":
+        # Capitalise each sentence in the user review
+        # Credit: see edit_dog above
+        review = request.form.get("review")
+        review_cap = '. '.join(
+            [i.lstrip().capitalize() for i in review.split('.')])
+        user_review = {
+            "review": review_cap,
+            "dog_id": ObjectId(dog_id),
+            "created_by": user["_id"],
+            "created_on": datetime.now().strftime("%d %B, %Y"),
+        }
+        mongo.db.reviews.insert_one(user_review)
+        flash("Thank You For Your Review")
     return render_template(
-        "view_dog.html", dog=dog, user=user, creator=creator)
+        "view_dog.html", dog=dog, user=user, creator=creator, reviews=reviews)
 
 
 @app.route("/contact", methods=["GET", "POST"])
