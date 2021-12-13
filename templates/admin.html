@@ -19,22 +19,35 @@
             <div class="col s12">
                 <div class="card-panel center-align">
                     <div class="row">
-                        <!-- Breed profile cards, using Materialize cards -->
+                        <!-- User profile cards, using Materialize cards -->
                         <div class="row">
-                            <!-- If there are any breed profiles -->
+                            <!-- If there are any user profiles -->
                             {% if users|length > 0 %}
                             <div class="row">
                                 {% for user in users %}
                                 <div class="col s12 m6 l4">
                                     <div class="card card-panel breed-card">
-                                        <h3 class="card-title" id="user-title">{{ user.username }}</h3>
-                                        
+                                        <!-- Card title (username) -->
+                                        <h3 class="card-title" id="user-title">{{ user.username }}</h3>                                        
                                         <div class="card-content">
-                                            <p class=></p>
                                         </div>
                                         <div class="card-action center-align">
+                                            <!-- View user -->
                                             <a href="{{ url_for('profile_admin', username=user.username) }}"
-                                                class="btn btn-contact black-text waves-effect waves-light"
+                                                class="btn btn-contact black-text waves-effect waves-light m-tb"
+                                                aria-label="link to {{user.username}}'s profile page">
+                                                View User</span>
+                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <!-- Verify user -->
+                                            <a href="{{ url_for('verify_user', user_id=user._id) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light m-tb"
+                                                aria-label="verify {{user.username}}">
+                                                Verify User</span>
+                                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="{{ url_for('profile_admin', username=user.username) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light m-tb"
                                                 aria-label="link to all dogs page, results filtered by breed group">
                                                 View User</span>
                                                 <i class="fa-solid fa-eye" aria-hidden="true"></i>

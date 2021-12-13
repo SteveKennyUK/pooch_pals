@@ -172,7 +172,7 @@ def login():
 @login_required
 def profile(username):
     """
-    Profile page for user in session or admin user
+    Profile page for user in session
     """
     if session["user"]:
         # grab the session user's username from database
@@ -365,8 +365,22 @@ def profile_admin(username):
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
             "profile.html", username=username, dogs=dogs, user=user)
-        flash("Please log in to view your profile")
+        flash("Please log in to view profile")
     return redirect(url_for("login"))
+
+
+@app.route("/verify_user/<user_id>")
+@login_required
+@is_admin
+def verify_user(user_id):
+    """
+    Allows admin to verify users
+    """
+    username = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
+    mongo.db.users.find_one_and_update(
+        {"_id": ObjectId(user_id)}, {"$set": {"is_verified": bool(True)}})
+    flash(f"{username} Has Been Verified")
+    return redirect(url_for("admin"))
 
 
 if __name__ == "__main__":
