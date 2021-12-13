@@ -36,7 +36,8 @@ h1,
 h2,
 h3,
 #dog-title,
-#breed-title {
+#breed-title,
+#user-title {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
@@ -62,7 +63,8 @@ p {
 .card-reveal p,
 #dog-title,
 .no-results,
-#breed-title {
+#breed-title,
+#user-title {
     font-size: 2rem;
 }
 
@@ -85,6 +87,10 @@ p {
 
 .p-0 {
     padding: 0;
+}
+
+.m-tb {
+    margin: 3rem 0;
 }
 /*================================== Colours ==================================*/
 nav,
@@ -166,11 +172,13 @@ nav ul li a {
     padding-bottom: 0.5rem;
 }
 /*-- breed_groups page cards --*/
-.breed-card {
+.breed-card,
+.admin-card {
     height: 550px
 }
 
-.breed-card .card-content {
+.breed-card .card-content,
+.admin-card .card-content {
     padding: 0.5rem;
 }
 /*-- dog_cards template cards --*/
@@ -206,10 +214,6 @@ nav ul li a {
 
 .add-radio {
     margin-left: 2rem;
-}
-
-.m-tb {
-    margin: 3rem 0;
 }
 /*================================== View Dog ==================================*/
 /*-- keep the delete confirmation card reveal at the foot of the view dog card --*/

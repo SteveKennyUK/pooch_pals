@@ -1,4 +1,5 @@
 import os
+import uuid
 from functools import wraps
 from flask import (
     Flask, flash, render_template,
@@ -8,7 +9,6 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-import uuid
 
 
 app = Flask(__name__)
@@ -24,6 +24,9 @@ mongo = PyMongo(app)
 # Credit: https://flask.palletsprojects.com/en/2.0.x/
 # patterns/viewdecorators/#login-required-decorator
 def login_required(f):
+    """
+    Restrict page access to logged in users only
+    """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         # if no user is in session
@@ -31,6 +34,25 @@ def login_required(f):
             flash("Please Log In To View This Page")
             return redirect(url_for("login"))
         # if a user is in session
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+# Credit: admin only decorator taken from (
+# https://github.com/irasan/hackpride2021/blob/master/app.py)
+def is_admin(f):
+    """
+    Restrict page access to admin users only
+    """
+    @wraps(f)
+    @login_required  # must be logged-in to access this function
+    def decorated_function(*args, **kwargs):
+        # get session user
+        user = mongo.db.users.find_one({"username": session["user"].lower()})
+        if not user["is_admin"]:
+            flash("This Page Is Restricted To Admin Access")
+            return redirect(url_for("index"))
+        # user is an admin
         return f(*args, **kwargs)
     return decorated_function
 
@@ -162,7 +184,7 @@ def profile(username):
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
             "profile.html", username=username, dogs=dogs, user=user)
-    flash("Please log in to view your profile")
+        flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
 
@@ -305,7 +327,10 @@ def view_dog(dog_id):
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
-    return render_template("view_dog.html", dog=dog, user=user)
+    # grab user who created the dog profile
+    creator = mongo.db.users.find_one({"_id": ObjectId(dog["created_by"])})
+    return render_template(
+        "view_dog.html", dog=dog, user=user, creator=creator)
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -314,6 +339,69 @@ def contact():
     Allows users to contact the site
     """
     return render_template("contact.html")
+
+
+@app.route("/admin")
+@login_required
+@is_admin
+def admin():
+    """
+    Admin only page
+    """
+    users = list(mongo.db.users.find())
+    return render_template("admin.html", users=users)
+
+
+@app.route("/profile/admin/<username>", methods=["GET", "POST"])
+@login_required
+@is_admin
+def profile_admin(username):
+    """
+    Admin user to view all profile pages
+    """
+    if session["admin"]:
+        # grab the username fed through from admin page
+        username = username
+        # grab only dog profiles created by the user
+        user = mongo.db.users.find_one({"username": username})
+        dogs = list(mongo.db.dogs.find(
+            {"created_by": ObjectId(user["_id"])}))
+        return render_template(
+            "profile.html", username=username, dogs=dogs, user=user)
+        flash("Please log in to view profile")
+    return redirect(url_for("login"))
+
+
+@app.route("/verify_user/<user_id>")
+@login_required
+@is_admin
+def verify_user(user_id):
+    """
+    Allows admin to verify users
+    """
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    username = user["username"]
+    # if user is already verified
+    if user["is_verified"]:
+        flash(f"{username} Is Already Verified")
+    # verify user
+    else:
+        mongo.db.users.find_one_and_update(
+            {"_id": ObjectId(user_id)}, {"$set": {"is_verified": bool(True)}})
+        flash(f"{username} Has Been Verified")
+    return redirect(url_for("admin"))
+
+
+@app.route("/delete_user/<user_id>")
+@login_required
+@is_admin
+def delete_user(user_id):
+    """
+    Admin can delete user profile from database
+    """
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    flash("User Profile Removed")
+    return redirect(url_for("admin"))
 
 
 if __name__ == "__main__":

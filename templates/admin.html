@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block nav_account %}active{% endblock %}
+{% block mobnav_admin %}active{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m10 offset-m1 l12 card-container">
+        <!-- Title -->
+        <div class="col s12 m8 offset-m2">
+            <div class="card card-panel">
+                <!-- Return to previous page -->
+                {% include 'includes/return.html' %}
+                <h2 class="center-align m-tb">Admin</h2>
+            </div>
+        </div>
+        <!-- All users -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel center-align">
+                    <div class="row">
+                        <!-- User profile cards, using Materialize cards -->
+                        <div class="row">
+                            <!-- If there are any user profiles -->
+                            {% if users|length > 0 %}
+                            <div class="row">
+                                {% for user in users %}
+                                <div class="col s12 m6 l4">
+                                    <div class="card card-panel admin-card">
+                                        <!-- Card title (username) -->
+                                        <h3 class="card-title" id="user-title">{{ user.username }}</h3>
+                                        <div class="card-content">
+                                        </div>
+                                        <div class="card-action center-align">
+                                            <!-- View user -->
+                                            <a href="{{ url_for('profile_admin', username=user.username) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light m-tb"
+                                                aria-label="link to {{user.username}}'s profile page">
+                                                View User
+                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <!-- Verify user -->
+                                            <a href="{{ url_for('verify_user', user_id=user._id) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light m-tb"
+                                                aria-label="verify {{user.username}}">
+                                                Verify User
+                                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                            </a>
+                                            <!-- Delete user -->
+                                            <a href="#!"
+                                                class="activator btn btn-contact black-text waves-effect waves-light m-tb"
+                                                aria-label="delete {{user.username}}">
+                                                Delete User
+                                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <!-- Confirm delete, using Materialize card reveal -->
+                                        <div class="card-reveal">
+                                            <span class="card-title"><i class="fa-solid fa-xmark right"
+                                                    aria-hidden="true"></i></span>
+                                            <p>Are you sure you want to delete {{ user.username }}?</p>
+                                            <div class="row">
+                                                <div class="card-reveal-delete">
+                                                    <div class="card-reveal-delete">
+                                                        <a href="{{ url_for('admin') }}"
+                                                            class="btn btn-cancel black-text text-shadow waves-effect waves-light"
+                                                            aria-label="cancel delete and return to admin page">
+                                                            Cancel
+                                                            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-reveal-delete">
+                                                        <a href="{{ url_for('delete_user', user_id=user._id) }}"
+                                                            class="btn red white-text waves-effect waves-light text-shadow"
+                                                            aria-label="delete user profile from database">
+                                                            Delete
+                                                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- If there are no dog profiles -->
+                            {% else %}
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <p class="no-results">No results found!</p>
+                                    <p class="no-results">Please <a href="{{ url_for('contact') }}"
+                                            aria-label="link to contact page">Contact</a>
+                                        us if problem persists</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
