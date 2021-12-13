@@ -6,10 +6,11 @@
     <div class="col s12 m10 offset-m1">
         <div class="card card-panel view-card">
             <section>
+            <!-- Dog profile card -->
                 <!-- Return to previous page -->
-                {% include 'includes/return.html' %}            
+                {% include 'includes/return.html' %}
                 <!-- Title and image -->
-                <h1 class="center-align">{{ dog.dog_name|title }}
+                <h1 class="large-title center-align">{{ dog.dog_name|title }}
                     <!-- Add icon if user who created profile is verified -->
                     {% if creator.is_verified %}
                     <i class="fa-regular fa-circle-check prefix teal-text text-lighten-1 tooltipped" data-position="top"
@@ -87,28 +88,13 @@
                         <p>{{ dog.personality }}</p>
                     </div>
                 </div>
-                <!-- Only display edit/delete buttons if session user created the dog profile -->
-                {% if user._id == dog.created_by or session.admin == True %}
-                <!-- Add edit_delete template -->
-                {% include 'includes/edit_delete.html' %}
-                {% else %}
-                <hr>
-                <h2 class="view-h2 center-align">Interested in becoming pals with {{dog.dog_name|title}}?</h2>
-                <div class="center-align">
-                    <a href="{{ url_for('contact') }}" class="btn btn-contact black-text waves-effect waves-light"
-                        aria-label="link to contact page">
-                        Contact
-                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                    </a>
-                </div>
-                {% endif %}
             </section>
-            <hr>           
+            <hr>
             <section>
             <!-- Reviews -->
                 <!-- Title -->
                 <div class="col s8 offset-s2">
-                    <h3 class="view-h3 center-align m-t">Reviews</h3>
+                    <h2 class="view-heading center-align m-t">Reviews</h2>
                 </div>
                 <!-- Add review button -->
                 <div class="col s2 center-align m-t">
@@ -125,7 +111,7 @@
                     <form method="POST" action="{{ url_for('view_dog', dog_id=dog._id) }}">
                         <!-- Review input field -->
                         <div class="modal-content">
-                            <h4>Add Your Review of {{ dog.dog_name }}</h4>
+                            <h3 class="center-align">Add Your Review of {{ dog.dog_name }}</h3>
                             <div class="input-field">
                                 <textarea id="review" name="review" minlength="5" maxlength="200"
                                     class="materialize-textarea validate" required></textarea>
@@ -153,6 +139,7 @@
                                 {{ review.review }}
                             </blockquote>
                             <p>Reviewed by {{ review.created_by }} on {{ review.created_on }}</p>
+                            <hr>
                             {% endfor %}
                             {% else %}
                             <div class="row center-align">
@@ -167,6 +154,22 @@
                         </div>
                     </div>
                 </div>
+            </section>
+            <section>
+            <!-- Only display edit/delete buttons if session user created the dog profile -->
+                {% if user._id == dog.created_by or session.admin == True %}
+                <!-- Add edit_delete template -->
+                {% include 'includes/edit_delete.html' %}
+                {% else %}
+                <h4 class="view-heading center-align">Interested in becoming pals with {{dog.dog_name|title}}?</h4>
+                <div class="center-align">
+                    <a href="{{ url_for('contact') }}" class="btn btn-contact black-text waves-effect waves-light"
+                        aria-label="link to contact page">
+                        Contact
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                {% endif %}
             </section>
         </div>
     </div>

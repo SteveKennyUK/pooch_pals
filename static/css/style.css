@@ -37,7 +37,8 @@ h2,
 h3,
 #dog-title,
 #breed-title,
-#user-title {
+#user-title,
+.view-heading {
     font-family: 'Neucha', cursive;
     font-weight: 700;
     font-size: 3rem;
@@ -45,7 +46,7 @@ h3,
     margin: 0;
 }
 
-h1 {
+.large-title {
     font-size: 4rem;
     margin-bottom: 1rem;
 }
@@ -242,9 +243,9 @@ hr {
     background-color: #26a69a;
 }
 
-.view-h2,
-.view-h3 {
-    font-size: 2rem;
+.view-heading,
+.profile-heading {
+    font-size: 2.5rem;
     margin-bottom: 2rem;
 }
 

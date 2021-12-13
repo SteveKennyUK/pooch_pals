@@ -183,8 +183,18 @@ def profile(username):
         user = mongo.db.users.find_one({"username": session["user"]})
         dogs = list(mongo.db.dogs.find(
             {"created_by": ObjectId(user["_id"])}))
+        reviews = list(mongo.db.reviews.find(
+            {"created_by": ObjectId(user["_id"])}))
+        for review in reviews:
+            review_dog = mongo.db.dogs.find_one(
+                {"_id": ObjectId(review["dog_id"])})
+            review["dog_name"] = review_dog["dog_name"]
         return render_template(
-            "profile.html", username=username, dogs=dogs, user=user)
+            "profile.html",
+            username=username,
+            dogs=dogs,
+            user=user,
+            reviews=reviews)
         flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
