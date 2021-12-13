@@ -172,11 +172,13 @@ nav ul li a {
     padding-bottom: 0.5rem;
 }
 /*-- breed_groups page cards --*/
-.breed-card {
+.breed-card,
+.admin-card {
     height: 550px
 }
 
-.breed-card .card-content {
+.breed-card .card-content,
+.admin-card .card-content {
     padding: 0.5rem;
 }
 /*-- dog_cards template cards --*/

@@ -392,6 +392,18 @@ def verify_user(user_id):
     return redirect(url_for("admin"))
 
 
+@app.route("/delete_user/<user_id>")
+@login_required
+@is_admin
+def delete_user(user_id):
+    """
+    Admin can delete user profile from database
+    """
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    flash("User Profile Removed")
+    return redirect(url_for("admin"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
