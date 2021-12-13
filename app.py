@@ -376,6 +376,32 @@ def view_dog(dog_id):
         reviews=reviews)
 
 
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@login_required
+def edit_review(review_id):
+    """
+    Allows user or admin to edit reviews
+    """
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    dog_id = review["dog_id"]
+    created_by = review["created_by"]
+    if request.method == "POST":
+        # Capitalise each sentence in the user review
+        # Credit: see edit_dog above
+        rev = request.form.get("review")
+        review_cap = '. '.join(
+            [i.lstrip().capitalize() for i in rev.split('.')])
+        update_review = {
+            "review": review_cap,
+            "dog_id": dog_id,
+            "created_by": created_by,
+            "created_on": datetime.now().strftime("%d %B, %Y"),
+        }
+        mongo.db.reviews.update({"_id": ObjectId(review_id)}, update_review)
+        flash("Review Updated")
+        return redirect(url_for("view_dog", dog_id=dog_id))
+
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """
