@@ -327,6 +327,7 @@ def view_dog(dog_id):
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
+    # grab user who created the dog profile
     creator = mongo.db.users.find_one({"_id": ObjectId(dog["created_by"])})
     return render_template(
         "view_dog.html", dog=dog, user=user, creator=creator)
@@ -378,10 +379,16 @@ def verify_user(user_id):
     """
     Allows admin to verify users
     """
-    username = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
-    mongo.db.users.find_one_and_update(
-        {"_id": ObjectId(user_id)}, {"$set": {"is_verified": bool(True)}})
-    flash(f"{username} Has Been Verified")
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    username = user["username"]
+    # if user is already verified
+    if user["is_verified"]:
+        flash(f"{username} Is Already Verified")
+    # verify user
+    else:
+        mongo.db.users.find_one_and_update(
+            {"_id": ObjectId(user_id)}, {"$set": {"is_verified": bool(True)}})
+        flash(f"{username} Has Been Verified")
     return redirect(url_for("admin"))
 
 
