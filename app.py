@@ -327,7 +327,9 @@ def view_dog(dog_id):
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
-    return render_template("view_dog.html", dog=dog, user=user)
+    creator = mongo.db.users.find_one({"_id": ObjectId(dog["created_by"])})
+    return render_template(
+        "view_dog.html", dog=dog, user=user, creator=creator)
 
 
 @app.route("/contact", methods=["GET", "POST"])

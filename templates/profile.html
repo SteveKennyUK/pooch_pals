@@ -27,9 +27,12 @@
                         </div>
                         <!-- Add dog button link -->
                         <div class="col s2 center-align">
-                            <a href="{{ url_for('add_dog') }}" class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" 
-                            data-position="top" data-tooltip="Add New Dog" aria-label="add dog button">
-                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            <a href="{{ url_for('add_dog') }}" 
+                            class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" 
+                            data-position="top" data-tooltip="Add New Dog" aria-label="add new dog">
+                                <i class="fa-solid fa-plus" aria-hidden="true">
+                                <span class="sr-only">Add new dog</span>
+                                </i>
                             </a>
                         </div>
                         <!-- Dog profile cards, using Materialize cards -->

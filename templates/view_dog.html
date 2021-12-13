@@ -8,7 +8,14 @@
             <!-- Return to previous page -->
             {% include 'includes/return.html' %}
             <!-- Title and image -->
-            <h1 class="center-align">{{ dog.dog_name|title }}</h1>
+            <h1 class="center-align">{{ dog.dog_name|title }}
+                <!-- Add icon if user who created profile is verified -->
+                {% if creator.is_verified %}
+                <i class="fa-regular fa-circle-check prefix teal-text text-lighten-1 tooltipped"
+                data-position="top" data-tooltip="Verified User" aria-hidden="true">
+                <span class="sr-only">Verified User</span></i>
+                {% endif %}
+            </h1>
             <div class="card-image dog-image">
                 {% if dog.image_url == "" or dog.image_url is none %}
                 <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="image not available"
@@ -98,6 +105,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
