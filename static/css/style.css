@@ -56,13 +56,13 @@ p {
 }
 
 .home-card p,
+.no-results,
 .contact-card {
     font-size: 1.5rem;
 }
 
 .card-reveal p,
 #dog-title,
-.no-results,
 #breed-title,
 #user-title {
     font-size: 2rem;
@@ -87,6 +87,10 @@ p {
 
 .p-0 {
     padding: 0;
+}
+
+.m-t {
+    margin-top: 1rem;
 }
 
 .m-tb {
@@ -232,8 +236,8 @@ nav ul li a {
 }
 
 hr {
-    height: 0.5rem;
-    width: 50%;
+    height: 0.25rem;
+    width: 75%;
     margin: 2rem auto;   
     background-color: #26a69a;
 }
@@ -242,6 +246,11 @@ hr {
 .view-h3 {
     font-size: 2rem;
     margin-bottom: 2rem;
+}
+
+blockquote {
+    border-left: 5px solid #26a69a;
+    font-size: 1.5rem;
 }
 /*================================== Flash messages ==================================*/
 .flashes h4 {

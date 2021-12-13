@@ -5,118 +5,122 @@
 <div class="row">
     <div class="col s12 m10 offset-m1">
         <div class="card card-panel view-card">
-            <!-- Return to previous page -->
-            {% include 'includes/return.html' %}
-            <!-- Title and image -->
-            <h1 class="center-align">{{ dog.dog_name|title }}
-                <!-- Add icon if user who created profile is verified -->
-                {% if creator.is_verified %}
-                <i class="fa-regular fa-circle-check prefix teal-text text-lighten-1 tooltipped"
-                data-position="top" data-tooltip="Verified User" aria-hidden="true">
-                <span class="sr-only">Verified User</span></i>
-                {% endif %}
-            </h1>
-            <div class="card-image dog-image">
-                {% if dog.image_url == "" or dog.image_url is none %}
-                <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="image not available"
-                    loading="lazy">
+            <section>
+                <!-- Return to previous page -->
+                {% include 'includes/return.html' %}            
+                <!-- Title and image -->
+                <h1 class="center-align">{{ dog.dog_name|title }}
+                    <!-- Add icon if user who created profile is verified -->
+                    {% if creator.is_verified %}
+                    <i class="fa-regular fa-circle-check prefix teal-text text-lighten-1 tooltipped" data-position="top"
+                        data-tooltip="Verified User" aria-hidden="true">
+                        <span class="sr-only">Verified User</span></i>
+                    {% endif %}
+                </h1>
+                <div class="card-image dog-image">
+                    {% if dog.image_url == "" or dog.image_url is none %}
+                    <img src="{{ url_for('static', filename='images/default-dog.jpg') }}" alt="image not available"
+                        loading="lazy">
+                    {% else %}
+                    <img src="{{ dog.image_url }}"
+                        alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}" loading="lazy">
+                    {% endif %}
+                </div>
+                <!-- Reference number -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><span class="prefix teal-text text-lighten-1"><b>REF: </b></span>{{ dog.reference|upper }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Breed name -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-dog prefix teal-text text-lighten-1 fa-2xl"
+                                aria-hidden="true"></i>{{ dog.breed_name|title }}</p>
+                    </div>
+                </div>
+                <!-- Location -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-location-dot prefix teal-text text-lighten-1 fa-2xl"
+                                aria-hidden="true"></i>{{ dog.location|title }}</p>
+                    </div>
+                </div>
+                <!-- Dog's age -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-list-ol prefix teal-text text-lighten-1 fa-2xl"
+                                aria-hidden="true"></i>{{ dog.age }} years old</p>
+                    </div>
+                </div>
+                <!-- Dog's sex -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-venus-mars prefix teal-text text-lighten-1 fa-2xl"
+                                aria-hidden="true"></i>{{ dog.sex|title }}</p>
+                    </div>
+                </div>
+                <!-- Dog's size -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-weight-scale prefix teal-text text-lighten-1 fa-2xl"
+                                aria-hidden="true"></i>{{ dog.size|title }} size</p>
+                    </div>
+                </div>
+                <!-- Neutered -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p><i class="fas fa-neuter prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>
+                            Neutered:
+                            {% if dog.neutered %}
+                            Yes
+                            {% else %}
+                            No
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <!-- Personality -->
+                <div class="row">
+                    <div class="col s12 view-dog-list">
+                        <p>{{ dog.personality }}</p>
+                    </div>
+                </div>
+                <!-- Only display edit/delete buttons if session user created the dog profile -->
+                {% if user._id == dog.created_by or session.admin == True %}
+                <!-- Add edit_delete template -->
+                {% include 'includes/edit_delete.html' %}
                 {% else %}
-                <img src="{{ dog.image_url }}" alt="image of {{ dog.dog_name|title }} the {{ dog.breed_name|title }}"
-                    loading="lazy">
+                <hr>
+                <h2 class="view-h2 center-align">Interested in becoming pals with {{dog.dog_name|title}}?</h2>
+                <div class="center-align">
+                    <a href="{{ url_for('contact') }}" class="btn btn-contact black-text waves-effect waves-light"
+                        aria-label="link to contact page">
+                        Contact
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
                 {% endif %}
-            </div>
-            <!-- Reference number -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><span class="prefix teal-text text-lighten-1"><b>REF: </b></span>{{ dog.reference|upper }}</p>
-                </div>
-            </div>
-            <!-- Breed name -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-dog prefix teal-text text-lighten-1 fa-2xl"
-                            aria-hidden="true"></i>{{ dog.breed_name|title }}</p>
-                </div>
-            </div>
-            <!-- Location -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-location-dot prefix teal-text text-lighten-1 fa-2xl"
-                            aria-hidden="true"></i>{{ dog.location|title }}</p>
-                </div>
-            </div>
-            <!-- Dog's age -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-list-ol prefix teal-text text-lighten-1 fa-2xl"
-                            aria-hidden="true"></i>{{ dog.age }} years old</p>
-                </div>
-            </div>
-            <!-- Dog's sex -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-venus-mars prefix teal-text text-lighten-1 fa-2xl"
-                            aria-hidden="true"></i>{{ dog.sex|title }}</p>
-                </div>
-            </div>
-            <!-- Dog's size -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-weight-scale prefix teal-text text-lighten-1 fa-2xl"
-                            aria-hidden="true"></i>{{ dog.size|title }} size</p>
-                </div>
-            </div>
-            <!-- Neutered -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p><i class="fas fa-neuter prefix teal-text text-lighten-1 fa-2xl" aria-hidden="true"></i>
-                        Neutered:
-                        {% if dog.neutered %}
-                        Yes
-                        {% else %}
-                        No
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            <!-- Personality -->
-            <div class="row">
-                <div class="col s12 view-dog-list">
-                    <p>{{ dog.personality }}</p>
-                </div>
-            </div>
-            <!-- Only display edit/delete buttons if session user created the dog profile -->
-            {% if user._id == dog.created_by or session.admin == True %}
-            <!-- Add edit_delete template -->
-            {% include 'includes/edit_delete.html' %}
-            {% else %}
-            <hr>
-            <h2 class="view-h2 center-align">Interested in becoming pals with {{dog.dog_name|title}}?</h2>
-            <div class="center-align">
-                <a href="{{ url_for('contact') }}"
-                    class="btn btn-contact black-text waves-effect waves-light"
-                    aria-label="link to contact page">
-                    Contact
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                </a>
-            </div>
-            {% endif %}
-            <hr>
-
+            </section>
+            <hr>           
+            <section>
             <!-- Reviews -->
-            <!-- Title -->
-            <div class="col s8 offset-s2">
-                <h3 class="view-h3 center-align">Reviews</h3>
-            </div>
-            <!-- Add review button -->
-            <div class="col s2 center-align">
-                <a href="#review-modal" class="btn-floating btn-medium waves-effect waves-light amber accent-4 
-                    tooltipped modal-trigger" data-position="top" data-tooltip="Add Review" aria-label="add review">
-                    <i class="fa-solid fa-plus" aria-hidden="true">
-                        <span class="sr-only">Add review</span>
-                    </i>
-                </a>
-                <!-- Add review using Materialize modal -->                
+                <!-- Title -->
+                <div class="col s8 offset-s2">
+                    <h3 class="view-h3 center-align m-t">Reviews</h3>
+                </div>
+                <!-- Add review button -->
+                <div class="col s2 center-align m-t">
+                    <a href="#review-modal" class="btn-floating btn-medium waves-effect waves-light amber accent-4 
+                        tooltipped modal-trigger" data-position="top" data-tooltip="Add Review"
+                        aria-label="add review">
+                        <i class="fa-solid fa-plus" aria-hidden="true">
+                            <span class="sr-only">Add review</span>
+                        </i>
+                    </a>
+                </div>
+                <!-- Add review using Materialize modal -->
                 <div id="review-modal" class="modal">
                     <form method="POST" action="{{ url_for('view_dog', dog_id=dog._id) }}">
                         <!-- Review input field -->
@@ -139,7 +143,31 @@
                         </div>
                     </form>
                 </div>
-            </div>
+                <!-- Show user reviews -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card-panel">
+                            {% if reviews|length > 0 %}
+                            {% for review in reviews %}
+                            <blockquote class="flow-text">
+                                {{ review.review }}
+                            </blockquote>
+                            <p>Reviewed by {{ review.created_by }} on {{ review.created_on }}</p>
+                            {% endfor %}
+                            {% else %}
+                            <div class="row center-align">
+                                <div class="col s12">
+                                    <p class="no-results">{{ dog.dog_name }} has no reviews yet!</p>
+                                    <p class="no-results">Would you like to <a href="#review-modal"
+                                            class="modal-trigger" aria-label="add a review">add a review?</a>
+                                    </p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>

@@ -327,13 +327,20 @@ def view_dog(dog_id):
     Allows user to view individual dog profile page
     Allows user reviews to be added and displayed
     """
+    # grab dog profile by its ObjectId
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    # grab session user
     user = mongo.db.users.find_one({"username": session["user"]})
     # grab user who created the dog profile
     creator = mongo.db.users.find_one({"_id": ObjectId(dog["created_by"])})
     # grab reviews for each dog profile
     reviews = list(mongo.db.reviews.find(
         {"dog_id": ObjectId(dog_id)}))
+    # grab creator of review
+    for review in reviews:
+        review_user = mongo.db.users.find_one(
+            {"_id": ObjectId(review["created_by"])})
+        review["created_by"] = review_user["username"]
     # Credit: reviews code modified from (
     # https://github.com/irasan/hackpride2021/blob/master/app.py)
     if request.method == "POST":
@@ -350,8 +357,13 @@ def view_dog(dog_id):
         }
         mongo.db.reviews.insert_one(user_review)
         flash("Thank You For Your Review")
+        return redirect(url_for("view_dog", dog_id=dog_id))
     return render_template(
-        "view_dog.html", dog=dog, user=user, creator=creator, reviews=reviews)
+        "view_dog.html",
+        dog=dog,
+        user=user,
+        creator=creator,
+        reviews=reviews)
 
 
 @app.route("/contact", methods=["GET", "POST"])
