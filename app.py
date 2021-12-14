@@ -484,6 +484,42 @@ def delete_user(user_id):
     return redirect(url_for("admin"))
 
 
+@app.errorhandler(400)
+def bad_request(error):
+    """
+    400 error page, code from 
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/
+    """
+    return render_template("400.html", error=error), 400
+
+
+@app.errorhandler(401)
+def unauthorised_access(error):
+    """
+    401 error page, code from 
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/
+    """
+    return render_template("401.html", error=error), 401
+
+
+@app.errorhandler(404)
+def error404(error):
+    """
+    404 error page, code from 
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/
+    """
+    return render_template('404.html', error=error), 404
+
+
+@app.errorhandler(500)
+def server_error(error):
+    """
+    500 error page, code from 
+    https://flask.palletsprojects.com/en/2.0.x/errorhandling/
+    """
+    return render_template("500.html", error=error), 500
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
