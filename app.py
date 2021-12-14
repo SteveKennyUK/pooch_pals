@@ -5,6 +5,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -39,6 +40,7 @@ def login_required(f):
     return decorated_function
 
 
+# @is_admin decorator
 # Credit: admin only decorator taken from (
 # https://github.com/irasan/hackpride2021/blob/master/app.py)
 def is_admin(f):
@@ -56,6 +58,27 @@ def is_admin(f):
         # user is an admin
         return f(*args, **kwargs)
     return decorated_function
+
+
+# Pagination
+# Credit: https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+# Credit: https://github.com/Edb83/self-isolution/blob/master/app.py
+PER_PAGE = 6
+
+def paginated(dogs):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+
+    return dogs[offset: offset + PER_PAGE]
+
+
+def pagination_args(dogs):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(dogs)
+
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
 @app.route("/")
@@ -89,9 +112,12 @@ def filter_breed_group(breed_group_id):
     breed = mongo.db.breed_groups.find_one({"_id": ObjectId(breed_group_id)})
     dogs = list(mongo.db.dogs.find({"breed_group": breed["_id"]}))
     user = mongo.db.users.find_one({"username": session["user"]})
+    dogs_paginated = paginated(dogs)
+    pagination = pagination_args(dogs)
     return render_template(
         "all_dogs.html",
-        dogs=dogs,
+        dogs=dogs_paginated,
+        pagination=pagination,
         user=user,
         breeds=breeds)
 
@@ -316,7 +342,13 @@ def all_dogs():
     """
     dogs = list(mongo.db.dogs.find())
     user = mongo.db.users.find_one({"username": session["user"]})
-    return render_template("all_dogs.html", dogs=dogs, user=user)
+    dogs_paginated = paginated(dogs)
+    pagination = pagination_args(dogs)
+    return render_template(
+        "all_dogs.html",
+        dogs=dogs_paginated,
+        user=user,
+        pagination=pagination)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -327,7 +359,14 @@ def search():
     query = request.form.get("query")
     dogs = list(mongo.db.dogs.find({"$text": {"$search": query}}))
     user = mongo.db.users.find_one({"username": session["user"]})
-    return render_template("all_dogs.html", dogs=dogs, user=user)
+    dogs_paginated = paginated(dogs)
+    pagination = pagination_args(dogs)
+    flash(f"See results for '{request.form.get('query')}' below")
+    return render_template(
+        "all_dogs.html",
+        user=user,
+        dogs=dogs_paginated,
+        pagination=pagination)
 
 
 @app.route("/view_dog/<dog_id>", methods=["GET", "POST"])
@@ -351,7 +390,7 @@ def view_dog(dog_id):
         review_user = mongo.db.users.find_one(
             {"_id": ObjectId(review["created_by"])})
         review["created_by"] = review_user["username"]
-    # Credit: reviews code modified from (
+    # Credit: add reviews code modified from (
     # https://github.com/irasan/hackpride2021/blob/master/app.py)
     if request.method == "POST":
         # Capitalise each sentence in the user review
@@ -383,6 +422,7 @@ def edit_review(review_id):
     Allows user or admin to edit reviews
     """
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    # keep dog_id and created_by unchanged
     dog_id = review["dog_id"]
     created_by = review["created_by"]
     if request.method == "POST":

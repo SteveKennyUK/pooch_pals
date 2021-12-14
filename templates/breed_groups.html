@@ -70,7 +70,7 @@
                                             <a href="{{ url_for('filter_breed_group', breed_group_id=breed._id) }}"
                                                 class="btn btn-contact black-text waves-effect waves-light"
                                                 aria-label="link to all dogs page, results filtered by breed group">
-                                                View <span class="hide-on-small-only">Dogs</span>
+                                                {{ breed.breed_name }}
                                                 <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </div>
