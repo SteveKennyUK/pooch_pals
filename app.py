@@ -402,6 +402,17 @@ def edit_review(review_id):
         return redirect(url_for("view_dog", dog_id=dog_id))
 
 
+@app.route("/delete_review/<review_id>")
+@login_required
+def delete_review(review_id):
+    """
+    User can delete reviews they have left
+    """
+    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+    flash("Review Removed")
+    return redirect(url_for("all_dogs"))
+
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """
