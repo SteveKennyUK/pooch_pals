@@ -11,46 +11,95 @@
             <div class="card card-panel">
                 <!-- Return to previous page -->
                 {% include 'includes/return.html' %}
-                <h2 class="center-align">{{ username }}'s den</h2>
+                <h1 class="center-align">{{ username }}'s den</h1>
                 <div class="card-image title-image">
-                    <img src="{{ url_for('static', filename='images/profile-img.JPG') }}" alt="smiling man and dog" loading="lazy" />
+                    <img src="{{ url_for('static', filename='images/profile-img.JPG') }}" alt="smiling man and dog"
+                        loading="lazy" />
                 </div>
             </div>
         </div>
-        <!-- User's dog profiles -->
+        <!-- Information card -->
         <div class="row">
             <div class="col s12">
                 <div class="card-panel center-align">
                     <div class="row">
-                        <div class="col s8 offset-s2">
-                            <h3>My Dogs</h3>
-                        </div>
-                        <!-- Add dog button link -->
-                        <div class="col s2 center-align">
-                            <a href="{{ url_for('add_dog') }}" 
-                            class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped" 
-                            data-position="top" data-tooltip="Add New Dog" aria-label="add new dog">
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                <span class="sr-only">Add new dog</span>
-                                </i>
-                            </a>
-                        </div>
-                        <!-- Dog profile cards, using Materialize cards -->
-                        <div class="row">
-                            <!-- If the session user has created any dog profiles -->
-                            {% if dogs|length > 0 %}
+                        <section>
+                        <!-- User's dog profiles -->
+                            <!-- Title -->
+                            <div class="col s8 offset-s2">
+                                <h2>My Dogs</h2>
+                            </div>
+                            <!-- Add dog button link -->
+                            <div class="col s2 center-align">
+                                <a href="{{ url_for('add_dog') }}"
+                                    class="btn-floating btn-medium waves-effect waves-light amber accent-4 tooltipped"
+                                    data-position="top" data-tooltip="Add New Dog" aria-label="add new dog">
+                                    <i class="fa-solid fa-plus" aria-hidden="true">
+                                        <span class="sr-only">Add new dog</span>
+                                    </i>
+                                </a>
+                            </div>
+                            <!-- Dog profile cards, using Materialize cards -->
+                            <div class="row">
+                                <!-- If the session user has created any dog profiles -->
+                                {% if dogs|length > 0 %}
                                 <!-- Add dog_cards template -->
-                                {% include 'includes/dog_cards.html' %}                                
-                            <!-- If the session user has not created any dog profiles --> 
-                            {% else %}
-                            <div class="row center-align">
+                                {% include 'includes/dog_cards.html' %}
+                                <!-- If the session user has not created any dog profiles -->
+                                {% else %}
+                                <div class="row center-align">
+                                    <div class="col s12">
+                                        <p>You haven't added a pooch pal yet</p>
+                                        <p>Please click <a href="{{ url_for('add_dog') }}">here</a> to create a new dog
+                                            profile!</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </section>
+                        <hr>
+                        <section>
+                        <!-- Reviews left by user -->
+                            <!-- Title -->
+                            <div class="col s8 offset-s2">
+                                <h3 class="profile-heading center-align m-t">Reviews I've Left</h3>
+                            </div>
+                            <!-- Reviews card -->
+                            <div class="row">
                                 <div class="col s12">
-                                    <p>You haven't added a pooch pal yet</p>
-                                    <p>Please click <a href="{{ url_for('add_dog') }}">here</a> to create a new dog profile!</p>
+                                    <div class="card-panel">
+                                        {% if reviews|length > 0 %}
+                                        <!-- If user has left any reviews -->
+                                            {% for review in reviews %}
+                                            <blockquote class="flow-text">
+                                                {{ review.review }}
+                                            </blockquote>
+                                            <p>Reviewed for {{ review.dog_name }} on {{ review.created_on }}</p>
+                                            <!-- View reviewed dog's profile -->
+                                            <a href="{{ url_for('view_dog', dog_id=review.dog_id) }}"
+                                                class="btn btn-contact black-text waves-effect waves-light"
+                                                aria-label="link to {{review.dog_name}}'s profile page">
+                                                View {{ review.dog_name }}
+                                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <hr>
+                                            {% endfor %}
+                                        {% else %}
+                                        <!-- If user has left no reviews -->
+                                        <div class="row center-align">
+                                            <div class="col s12">
+                                                <p class="no-results">You haven't left any reviews yet!</p>
+                                                <p class="no-results">If you would like to leave a review, find the
+                                                    profile <a href="{{ url_for('all_dogs') }}"
+                                                        aria-label="add a review">here</a>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                            {% endif %}
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>
