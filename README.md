@@ -207,6 +207,13 @@ Where there are relational elements between collections, the ObjectId of one col
 
 ![Database schema diagram](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/readme/database-ER-diagram.jpeg)
 
+Screenshots of each collection can be seen below -
+
+ - [Breed Groups](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-breed-groups.JPG)
+ - [Dogs](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-dogs.JPG)
+ - [Reviews](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-reviews.JPG)
+ - [Users](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-users.JPG)
+
 ### Project Design (Skeleton and Surface)
 ---
 The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
@@ -294,6 +301,141 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 		 - [Contact Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/contact_pooch_pals.pdf)
 		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
 	- **EDIT** - There was a slight amendment in the final layout of the View Dog page for medium and large screen sizes. It was decided to place the image at the top of the page, as per the small screen sizes, with the information list below. This is in keeping with the rest of the pages on the site and it was felt that the consistency would provide a better UX. 
+
+## Features
+---
+### Existing Features
+
+#### Navigation and Footer
+
+ - All pages have the same navigation bar at the top and footer at the bottom. These areas are styled with the same colour scheme and all links react to mouse hover to maintain consistency. Navigation links have a darker background shade, external links have a heavier font weight and social media links buzz when hovered. This indicates to the user that not only will clicking the link take them to a new location but also the type of page that will be opened.
+
+ - The navigation bar has the company logo as a clickable 'Home' button. This reinforces the site's image and makes it more recognisable to the user. Similarly, a favicon has been added to the open page tab. This is expected and helps the user to identify the site amongst several open sites. This brand reinforcement is important for building familiarity and trust.
+
+ - The navigation bar is positioned in an expected position at the head of the page. The navigation links stand out and make their purpose clear. The active page link has a darker background shade to emphasise to the user where they are on the site (the 'Account' link is highlighted on desktop when a page within the dropdown menu is active). 
+
+ - The navigation bar is fixed so the user can have access to navigation links wherever they are on the page. This improves the user experience particularly where the page content scrolls down a long way.
+ 
+ - A floating arrow button appears in the bottom right corner on each page once the user has started to scroll down. This provides the user with an additional convenient way to return to the top of the page without having to scroll up. 
+ 
+ - A 'Back' button is situated in the top left of the card container of all pages except the Home page and Add Dog page (see below). This again assists the user in navigating the site. This was placed in its own template as it will be reused on several pages and injected using the Jinja `{% include %}`statement. 'Cancel' buttons in an indicative red colour are used throughout the site and will take the user back a step.
+
+ - A sticky footer has been employed so that it stays at the bottom of the screen where the page has little content.  It also scrolls up at the bottom of pages with longer content but will still remain at the foot of the screen. The footer contains useful information that encourages the user to investigate further.
+ 
+ #### Register Page
+
+ - A centralised card with an indicative image of a person registering a dog on the site followed by a simple sign-up form. The form employs [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) to add a level of security with hashed passwords.
+ 
+ - User authentication - the `input` fields employ the `pattern` attribute to set the length and character types that may be used when choosing usernames and passwords. However, for the email address it was decided that it would be better to use  `<input type="email">` to automatically validate to ensure it is a properly formatted e-mail address.
+
+ - The user's chosen username is checked against the database to check that the name has not already been taken by another user. A confirm password field was added to help ensure that the user has input their chosen password correctly by giving them the chance to repeat it. The two password fields are then checked and only if they match will registration be allowed.
+ 
+ - Following successful registration, the user is redirected to their Profile page and a flash message provides feedback of a successful registration.
+ 
+ - The user's username, password and email are added to the database. There are also two Boolean fields, 'is_admin' and 'is_verified', that are added to the 'users' collection. These are initially set to False so that the user initially has neither admin nor verified status. These fields can be updated by Admin users. 
+
+#### Login Page
+
+ - Same card styling as Register page, with indicative image of person logging in with their dog. As with Register, the input fields have a pattern attribute to prompt the user to enter valid characters and word length. 
+ 
+ - The form checks the database to see if the username input by the user has been registered. It also checks if the password input by the user matches that in the database. If either of these do not match a database record, a flash message informs the user that username and/or password is incorrect. Using **and/or** does not indicate to any unauthorised user attempting brute force login whether they have at least one of username or password correct.
+ 
+ - If the username does exist and the hashed password matches that held in the database for that record, the user is redirected to their Profile page and a flash message provides feedback of a successful login.
+ 
+ - Use of a [login required decorator](https://flask.palletsprojects.com/en/2.0.x/patterns/viewdecorators/#login-required-decorator) provides an additional security feature. If a user attempts to enter a page that has this decorator attached and is not logged in, they will not be able to access the page and will instead be redirected to the login page. 
+
+#### Profile Page
+  
+- A welcoming image and page title ("username's Den"), using Jinja templating to display the user's name. 
+
+- The main body displays any dog profiles that the user has added, providing instructions and a link on how to add a new dog if they have not yet done so. There is also a floating button with indicative 'plus' sign and a tooltip on desktop so users can add a new dog profile. There is a link to take users to the dog's full profile page plus buttons to edit or delete the dog profile. Defensive design is employed here so that if a user selects the delete button, a card reveal asks them to confirm that they wish to delete.
+
+- There is a list of any reviews that users have left for other dogs. They can follow a link to the dog's full profile so that they can view, edit or delete the review. If no reviews have been left, the user is prompted to leave one if desired, with a link to the All Dogs page.
+
+- Users may only view their own profile page. In addition to the login decorator, a profile page may only be viewed if that user is in session. Otherwise, a flash message will inform the user that they need to log in to view the page and they will be redirected to the login page. 
+
+- The `title` filter is used when displaying data from the database's 'dog' collection. This ensures that names are displayed with the first letter in capitals, even if the user added data in lowercase on the 'add dog' form. This was chosen over `capitalize` as some dog breeds will contain two or more words. It was later decided to use `upper` for locations as only the first letter of a postcode would be capitalised using `title`.
+
+#### Add Dog Form
+  
+- A welcome image in keeping with the rest of the site plus a button providing the user with the convenient option to return to their profile page without having to use the browser 'back' button. A simple 'Back' button is not used here as the Profile page is the only page that gives access to the Add Dog page
+
+- The form requests all the details required for the dog profile and writes the information to the 'dog' collection in the database when submitted. There is also a 'cancel' button to take the user back to their profile page without submitting any information.
+
+- The form fields provide the user with guidance, including indicative icons and helper text beneath the form field where appropriate. All form fields are required except the image field. The form line turns green with a valid input and red with an invalid input. The image field currently requires a URL link of the image. This is acceptable for the first development stage but a more suitable method of uploading an image will be added - see 'Future Features'. If an image is not supplied, a default image will be displayed where relevant.
+
+- In addition to the form fields, there is a 'reference' field added in the backend. This field is a randomly generated UUID number, truncated to eight characters, that will be used as a reference number for each dog profile. This was selected in favour of using the ObjectId as an eight character reference was required and truncating the ObjectId would leave similar results, whereas the UUID would give more random and differing results.
+
+#### Edit Dog Form
+  
+- The edit form allows users to amend any of the data they supplied when creating their dog profile. When the form loads, the fields are populated with the data previously supplied so the user knows the current state of ther data. The textarea input in the 'add_dog' view was amended at this point to ensure that the data written to the database would have the first letter of each sentence capitalised. It is then a simple case of injecting the data into the edit form when it loads.
+
+- As an extra security measure, any links to this edit form will only be available to the user who created the dog profile or to the admin user. Once the 'Edit Dog' button is clicked, the database record for that dog profile will be updated with the information submitted in the form. 
+
+#### Delete Functionality
+  
+- The D element of CRUD functionality is satisfied by giving the user the option to delete any records that they have created. Admin users also have access to delete any records stored on the database. In each case, only the user creator and the admin user will have access to this functionality for each record. 
+
+- As part of the defensive design of the site, any time a delete button is clicked, the user will be prompted to confirm that they wish to proceed with the cancellation before the record is removed from the database.
+
+#### All Dogs Page
+  
+- This page displays all the dog profiles on the database. Each profile is presented in a card with basic information of image, name and location. This gives users a quick snapshot of each dog to help them to decide whether the dog may be a match for a pal for their own dog. If they would like to investigate further, they can click on the large indicative eye icon to view the full profile.
+
+- The dog profile cards are the same as those used on the profile page so a template of the card code (`dog_cards.html`) is inserted to avoid repeating code. Similarly, the back button is added by inserting the `return.html` template. The same edit and delete options are therefore available to users who created the profile and to admin users.
+
+- The navigation link to the page is available to all users, including those not logged in. However, the `@login_required` decorator has been added so that only logged in users may view the page content. This is to firstly provide registered users with peace of mind that their dogs' information is not exposed to anyone who comes on the site. Secondly, it encourages unregistered users to sign up to explore the site content.
+
+- As this page will display all the dog profiles on the site, pagination has been added to prevent a long downward scroll. The display has been limited to six profile cards so they will sit uniformly on all screen sizes. 
+
+- A search function is provided so that users can narrow down the profiles to be displayed without having to search through all of them. This includes searches for breed, sex and location. Search indices were created using the Python interpreter in the command line to avoid conflicting simultaneous searches that could occur had they been created in the search view in `app.py`.
+
+#### View Dog Page
+  
+- This page reads the data from the dog collection in the database (that was supplied from the Add Dog form) and displays it in an aesthetic manner so that users can learn about the featured dog. 
+
+- If the user who created the profile has been verified by admin, a green tick with 'Verified User' tooltip appears next to the dog's name. This is to give users some reassurance when selecting which dogs to meet.
+
+- Beneath the dog information, any reviews that the dog has received are displayed . An 'add review' button opens up a modal and allows the user to leave a review for the dog. If the user has left a review, buttons to edit or delete the review are visible. These are also available to admin users.
+
+- Finally, if the user is interested in meeting the dog, there is a button linking to the Contact page. Ideally, a more direct way to contact other users would be employed (see Future Features) but with the developer's current technical knowledge and time available, this method was selected. 
+ 
+#### Contact Page
+  
+- The Contact page is available to all users as it is open for general enquiries. However, not all fields are available to all users. If a registered user is interested in meeting one of the dogs on the site, there is a field for them to input the dog's reference code (found on the dog profile page). This field is not available to users who are not logged in. 
+
+-  An advisory note that members need to undergo safety checks prior to being verified provides reassurance to users as to the safety of the site.
+
+- Once the message has been submitted, the user will be provided with feedback via a modal that either their message has been received or that there has been a problem sending it. Messages are handled by EmailJS and send a copy to the sender as well as to the nominated admin email address. 
+
+#### Home Page
+  
+- The site's landing page immediately provides users with a solid understanding of what the site is about. The heading, image of dogs playing together and background text sets the scene. There is an immediate reassurance that the safety of users and dogs is paramount.
+ 
+ - The secondary image and navigation buttons displayed depend on whether or not the user is logged in. A logged in user will have options to navigate to either their profile page or to the All Dogs page so they can search profiles. Non-logged in users are given the option to either log in or register.
+ 
+ - Finally, in order to provide up-to-date information, the general profile cards of the six most recently added dog profiles is displayed. This is also available to non-logged in users as an incentive to either log in or register. Clicking the view dog button will take users to the All Dogs page but only logged in users will be able to view this page. 
+ 
+ #### Breed Groups Page
+  
+- The breed groups page is educational but also complements the search function. All users can view this page as they are able to learn about the different dog breed groups. This can help to inform a decision for either current owners as to which dog would be suitable to meet their own dog or for prospective owners as to which dog would be suitable to become a part of their home. 
+
+- Some background information is provided for each breed group plus a link to take the user to the All Dogs page. The All Dogs page will display only dogs belonging to that breed group. Again, only logged in users will be able to view the All Dogs page.
+
+ #### Admin Page
+  
+- The Admin page is only available to users with admin rights (`is_admin: true` in the user record). An `@is_admin` decorator  has been added to all pages where only the admin user should have access. This is to prevent other users from forcing their way onto a restricted page by typing in an admin URL.
+
+- The Admin page displays all the registered users with options to view the user's profile page, verify the user or delete the user from the database. A flash message will advise the admin user that the user has been successfully verified or if they are already verified.  Defensive design again requires confirmation before a user profile is deleted.
+ 
+- As previously mentioned, admin users have rights to edit and delete all profiles and reviews across the site.
+
+**ADMIN AUTHENTICATION DETAILS**
+|Username|Password  |
+|--|--|
+| Admin123 |p00chPal5  |
+
+Other test user profiles can be accessed by both username and password set to user0001, user0002, user0003 etc.
 
 
 ## Deployment
