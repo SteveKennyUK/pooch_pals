@@ -260,7 +260,23 @@ blockquote {
 
 .pagination-links nav {
     background-color: transparent;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    display: inline-block;
+}
+/*--- centre the pagination links. 
+Credit: https://stackoverflow.com/questions/48566076/pagination-is-not-getting-centered*/
+.pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+  
+.pagination li {
+    display: block;
 }
 /*================================== Flash messages ==================================*/
 .flashes h4 {
