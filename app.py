@@ -65,6 +65,7 @@ def is_admin(f):
 # Credit: https://github.com/Edb83/self-isolution/blob/master/app.py
 PER_PAGE = 6
 
+
 def paginated(dogs):
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -351,17 +352,17 @@ def all_dogs():
         pagination=pagination)
 
 
-@app.route("/search", methods=["GET", "POST"])
+@app.route("/search")
 def search():
     """
     Users can search all dog profiles for keywords
     """
-    query = request.form.get("query")
+    query = request.args.get("query")
     dogs = list(mongo.db.dogs.find({"$text": {"$search": query}}))
     user = mongo.db.users.find_one({"username": session["user"]})
     dogs_paginated = paginated(dogs)
     pagination = pagination_args(dogs)
-    flash(f"See results for '{request.form.get('query')}' below")
+    flash(f"See results for '{request.args.get('query')}' below")
     return render_template(
         "all_dogs.html",
         user=user,
@@ -488,6 +489,7 @@ def profile_admin(username):
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
             "profile.html", username=username, dogs=dogs, user=user)
+    else:
         flash("Please log in to view profile")
     return redirect(url_for("login"))
 
@@ -527,7 +529,7 @@ def delete_user(user_id):
 @app.errorhandler(400)
 def bad_request(error):
     """
-    400 error page, code from 
+    400 error page, code from
     https://flask.palletsprojects.com/en/2.0.x/errorhandling/
     """
     return render_template("400.html", error=error), 400
@@ -536,7 +538,7 @@ def bad_request(error):
 @app.errorhandler(401)
 def unauthorised_access(error):
     """
-    401 error page, code from 
+    401 error page, code from
     https://flask.palletsprojects.com/en/2.0.x/errorhandling/
     """
     return render_template("401.html", error=error), 401
@@ -545,7 +547,7 @@ def unauthorised_access(error):
 @app.errorhandler(404)
 def error404(error):
     """
-    404 error page, code from 
+    404 error page, code from
     https://flask.palletsprojects.com/en/2.0.x/errorhandling/
     """
     return render_template('404.html', error=error), 404
@@ -554,7 +556,7 @@ def error404(error):
 @app.errorhandler(500)
 def server_error(error):
     """
-    500 error page, code from 
+    500 error page, code from
     https://flask.palletsprojects.com/en/2.0.x/errorhandling/
     """
     return render_template("500.html", error=error), 500

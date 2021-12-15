@@ -60,3 +60,7 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+// When the user clicks on the button, they return to the previous page
+function goBack() {
+    window.history.back();
+}
