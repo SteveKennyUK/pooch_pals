@@ -144,7 +144,7 @@ def register():
                 "password-confirm"):
             flash("Passwords Must Match")
             return redirect(url_for("register"))
-        register = {
+        registration = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get(
                 "password")),
@@ -152,7 +152,7 @@ def register():
             "is_admin": bool(False),
             "is_verified": bool(False),
         }
-        mongo.db.users.insert_one(register)
+        mongo.db.users.insert_one(registration)
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
@@ -180,7 +180,7 @@ def login():
                 check_admin = mongo.db.users.find_one(
                         {"username": request.form.get("username").lower()})
                 if check_admin["is_admin"]:
-                        session["admin"] = True
+                    session["admin"] = True
                 flash(f"""Arooo! Welcome back {request.form.get(
                     "username")}""")
                 return redirect(url_for(
@@ -222,7 +222,7 @@ def profile(username):
             dogs=dogs,
             user=user,
             reviews=reviews)
-        flash("Please log in to view your profile")
+    flash("Please log in to view your profile")
     return redirect(url_for("login"))
 
 
@@ -482,15 +482,14 @@ def profile_admin(username):
     """
     if session["admin"]:
         # grab the username fed through from admin page
-        username = username
+        name = username
         # grab only dog profiles created by the user
-        user = mongo.db.users.find_one({"username": username})
+        user = mongo.db.users.find_one({"username": name})
         dogs = list(mongo.db.dogs.find(
             {"created_by": ObjectId(user["_id"])}))
         return render_template(
             "profile.html", username=username, dogs=dogs, user=user)
-    else:
-        flash("Please log in to view profile")
+    flash("Please log in to view profile")
     return redirect(url_for("login"))
 
 
