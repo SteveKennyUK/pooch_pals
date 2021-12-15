@@ -35,9 +35,7 @@ main {
 h1,
 h2,
 h3,
-#dog-title,
-#breed-title,
-#user-title,
+.card .card-title,
 .view-heading {
     font-family: 'Neucha', cursive;
     font-weight: 700;
@@ -63,9 +61,7 @@ p {
 }
 
 .card-reveal p,
-#dog-title,
-#breed-title,
-#user-title {
+.card .card-title {
     font-size: 2rem;
 }
 
