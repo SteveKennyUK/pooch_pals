@@ -9,6 +9,63 @@ Interest in dog ownership has increased since the start of the COVID pandemic, w
 
 The site allows registered users to provide information to create a profile for their dog, which is stored on a MongoDB database. Users can then search for other user profiles to find a good match for their own dogs, plus modify and delete their own information. The ultimate aim is a happy dog, while also helping dog owners to better understand their best friends.
 
+## [View the live project here.](http://pooch-pals-ms3.herokuapp.com/index)
+
+  
+
+![Mock-up](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/mockup.jpg)
+
+  
+
+# Table of contents
+
+ 
+-  [UX](#ux)
+
+	-  [Project Strategy](#project-strategy)
+
+		-  [User Goals (general)](#user-goals-general)
+		-  [Site Owner Goals](#site-owner-goals)
+		-  [User Stories](#user-stories)
+
+	-  [Project Scope](#project-scope)
+
+		-  [Strategy Trade-off](#strategy-trade-offs)
+		-  [Content Scope](#content-scope)
+
+	-  [Project Structure](#project-structure)
+
+		-  [Interactive Design](#interactive-design)
+			-  [Page Structure](#page-structure)
+			-  [Visibility](#visibility)
+			-  [Navigation](#navigation)
+			-  [Buttons and Links](#buttons-and-links)
+			-  [Iconography](#iconography)
+		-  [Information Architecture](#information-architecture-ia)
+		-  [Database Architecture](#database-architecture)
+			-  [Database Choice](#database-choice)
+			-  [Data Collections](#data-collections)
+			
+	-  [Project Design (Skeleton and Surface)](#project-design-skeleton-and-surface)
+		-  [General Layout](#general-layout)
+		-  [Colour Scheme](#colour-scheme)
+		-  [Typography](#typography)
+		-  [Imagery](#imagery)
+		-  [Wireframes](#wireframes)
+
+-  [Features](#features)
+
+	-  [Existing Features](#existing-features)
+
+	-  [Future Features](#future-features)
+
+-  [Technologies Used](#technologies-used)
+
+-  [Testing](#testing)
+
+-  [Deployment](#deployment)
+
+-  [Credits](#credits)
 
 ## User Experience (UX)
 ---
@@ -120,7 +177,7 @@ It is felt that features should be provided in the following order of importance
  - Contact page.
  - Breed information and filter page. 
   
-
+[Return to Table of contents](#table-of-contents)
 ### Project Structure
 ---
 The structural design of the site aims to make the user interaction with the site as easy and as comfortable as possible. This is achieved by creating meaningful relationships between the various site elements so that users can intuitively understand their meaning and purpose.
@@ -129,7 +186,7 @@ The structural design of the site aims to make the user interaction with the sit
 
 The principles of Interactive Design (IxD) promote consistency, predictability, visibility, learnability and feedback as central to the above aim. The structure of this site aims to follow these principles.  
 
- -  **Page Structure**
+ -  #### Page Structure
 
 	- The nature of this site necessarily involves spreading content over several pages. The user expects different functions to have their own pages e.g. registration, login, profile pages. The user will therefore be provided with good, clear and intuitive links to the different pages, either via the navigation bar or through buttons and links.
 	
@@ -141,7 +198,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	
 	- Separate error pages in the event of a broken link or server error will be added. This feedback adds reassurance to the user and provides them with clear instructions on how to return to the site.
   
- -  **Visibility**
+ -  #### Visibility
 
 	- The location and purpose of elements should be clear to users. Where appropriate, there will be partial overlay of elements on the screens to hint to the user that there is more content below. Additionally, if necessary, a scroll down arrow will be employed to indicate to the user that useful content can be accessed further down. 
 
@@ -149,7 +206,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 
 	-  Dropdown menus will have an arrow to indicate that there are further options available. This is a common practice to make elements more visible so should be predictable to the user. If not, the consistent use of this practice will help the user to learn what such arrows mean and be comfortable when encountering them.
   
- -  **Navigation**
+ -  #### Navigation
 
 	- The site navigation will again be consistent and predictable by following the convention of the site logo on the top left with a horizontal navigation bar to the right of the logo. 
 	
@@ -157,7 +214,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	
 	- The navigation bar will be responsive and will use a hamburger menu for smaller devices. This is consistent and predictable with most sites on mobile devices. The menu will then push the page content down when activated to maximise visibility of the options.  
 
- -  **Buttons and Links**
+ -  #### Buttons and Links
 
 	- Buttons and links will be used to create a smoother navigation process for the user. The purpose of these must be made clear to the user. Buttons and links will react when the mouse hovers over them. This conventionally suggests that clicking on the button or link will make something happen. The use of unambiguous text or iconography will make it clear to the user what will happen when the button or link is clicked.
 	
@@ -168,7 +225,7 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 	- External links will always open in another page (by adding the `target="_blank"`attribute inside the link's anchor element). This makes for a better user experience as the user will not need to use the back button to return to the site. It is also good practice to add `rel="noopener"` as this adds a security layer by preventing the new page from accessing the original window object.
   
 
- -  **Iconography**
+ -  #### Iconography
 
 	- Icons will be used to help users to quickly identify content matter. A visual representation can say more than words and often stands out more. A quick scan of the page will pick out icons and well chosen ones will stand out and immediately assure the user as to the associated content.
 
@@ -188,13 +245,13 @@ The principles of Interactive Design (IxD) promote consistency, predictability, 
 
 #### Database Architecture
 
- -  **Database Choice**
+ -  #### Database Choice
 
 The non-relational document-based database of [MongoDB](https://www.mongodb.com/) was selected as the best fit for this project. The various data collections only have a few relational elements so the greater flexibility provided by MongoDB (e.g. over a SQL relational database) is preferable.
 
 Where there are relational elements between collections, the ObjectId of one collection will be inserted as a key in the relational collection. This guards against issues arising using key names from a collection as a key in another collection e.g. in the event the key name is changed. The ObjectId will remain constant so is safer to use. These relationships are colour coded in the below schema diagram.
 
- - **Data Collections**
+ - #### Data Collections
  
 	**Users** - this collection stores user information for registration, login and profile purposes. It also stores admin and verification status as Booleans. The ObjectId will be used as a reference when a user adds a dog profile (in the Dog collection) or leaves a review (in the Reviews collection).
 	
@@ -214,6 +271,7 @@ Screenshots of each collection can be seen below -
  - [Reviews](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-reviews.JPG)
  - [Users](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-users.JPG)
 
+[Return to Table of contents](#table-of-contents)
 ### Project Design (Skeleton and Surface)
 ---
 The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
@@ -302,6 +360,7 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
 	- **EDIT** - There was a slight amendment in the final layout of the View Dog page for medium and large screen sizes. It was decided to place the image at the top of the page, as per the small screen sizes, with the information list below. This is in keeping with the rest of the pages on the site and it was felt that the consistency would provide a better UX. 
 
+[Return to Table of contents](#table-of-contents)
 ## Features
 ---
 ### Existing Features
@@ -437,6 +496,130 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 
 Other test user profiles can be accessed by both username and password set to user0001, user0002, user0003 etc.
 
+### Future Features
+
+This site is well set up to be further developed, once my knowledge, experience and time allow. Features that I have already identified include -
+
+- A more suitable way for users to add images to the site than the current URL method. In particular for this site, users would most likely want to upload their own photos of their dogs and would not likely have URL image links for them. Uploading to a cloud storage site such as [Amazon AWS](https://aws.amazon.com/media-sharing/) would be a good solution.
+- A better way for users to communicate with each other would be favourable. A real time chat function for verified users, such as that provided by [SocketIO](https://socket.io/) would be ideal.
+- Use of [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) to help locate users on a map would be a good addition to the site.
+- Extra dog profile features such as star ratings or favourites.
+- Additional admin features such as user entries pending admin approval before being published.
+- A forgotten username/password function to assist users when logging in.
+- A dark theme using JavaScript to improve site accessibility.
+- A preloader to display as the pages load to fill in for any page loading delays. 
+
+[Return to Table of contents](#table-of-contents)
+## Technologies Used
+
+### Languages Used
+
+-  [HTML5](https://en.wikipedia.org/wiki/HTML5) for structuring the site
+-  [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) for styling the site
+-  [JavaScript](https://en.wikipedia.org/wiki/JavaScript) for site logic
+- [Python](https://www.python.org/) for site functionality and accessing the database. [Jinja](https://jinja.palletsprojects.com/en/3.0.x/) was used as a templating engine.
+
+	- Although no specific naming methodology was employed (such as BEM), class and function names are descriptive of their purpose so that they can be easily identifiable to other developers.
+
+	- Comments are placed appropriately within the HTML, CSS, Python and JS code to improve readability.
+
+  
+
+### Frameworks, Libraries & Programs Used
+
+1.  [Materialize:](https://materializecss.com/)
+
+	- Materialize CSS was used to assist with the responsiveness and styling of the website.
+
+1.  [Hover.css:](https://ianlunn.github.io/Hover/)
+
+	- Hover.css was used to add reactive functionality to some links and buttons.
+
+1.  [Google Fonts:](https://fonts.google.com/)
+
+	- Google Fonts was used to import the 'Neucha' and 'Lato' fonts into the style.css file, which is used throughout the project.
+
+1.  [Font Awesome:](https://fontawesome.com/)
+
+	- Font Awesome was used to add icons for aesthetic and UX purposes.
+
+1.  [jQuery:](https://jquery.com/)
+
+	- jQuery was used to assist with manipulation of the Document Object Model to make the site interactive for users.
+
+1.  [Git](https://git-scm.com/)
+
+	- Git was used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub. Branches were utilised to develop different features before merging into the main branch, once all changes were considered ready to implement.
+
+1.  [GitHub:](https://github.com/)
+
+	- GitHub was used to store the project code after being pushed from Git.
+
+1.  [GitHub Project Board:](https://github.com/SteveKennyUK/pooch_pals/projects)
+
+	- The GitHub Project Board was used to project manage the creation of the site. This uses a kanban board to display all tasks and view progress.
+
+1.  [Lucidchart](https://www.lucidchart.com/pages/)
+
+	- Lucidchart was used to create the site map drawings and database schema during the design process.
+	
+1.  [Balsamiq:](https://balsamiq.com/)
+
+	- Balsamiq was used to create the [wireframes](https://github.com/SteveKennyUK/pooch_pals/tree/main/static/images/wireframes) during the design process.
+
+1.  [Color-hex](https://www.color-hex.com/user/add-palette.php)
+
+	- Color-hex was used to display the colour palette choice.
+
+1.  [Looka:](https://looka.com/)
+
+	- Looka was used to create the website [Logo](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/logo.png) and [Favicon image](https://github.com/SteveKennyUK/pooch_pals/tree/main/static/images/favicon).
+
+1.  [GIMP:](https://www.gimp.org/)
+
+	- GIMP was used to resize images and edit photos for the website.
+
+1.  [favicon.io:](https://favicon.io/favicon-converter/)
+
+	- favicon.io was used to convert the logo to a favicon to enable full web browser compatibility.
+
+1.  [WebAIM](https://webaim.org/resources/contrastchecker/)
+
+	- WebAIM was used to check that foreground and background colour contrasts meet WCAG accessibility requirements.
+
+1.  [Webformatter](https://webformatter.com)
+
+	- Webformatter was used to assist in optimising code readability.
+
+1.  [Autoprefixer](https://autoprefixer.github.io/)
+
+	- Autoprefixer was used to parse CSS and add vendor prefixes.
+
+1.  [TinyPNG](https://tinypng.com/)
+
+	- Tiny PNG was used for image compression.
+
+1.  [W3Schools](https://www.w3schools.com/)
+
+	- W3Schools was used for coding guidance and clarification.
+
+1.  [RandomKeygen](https://randomkeygen.com/)
+
+	- RandomKeygen was used to generate a secure environmental secret key.
+
+1.  [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+
+	- Werkzeug was used to provide secure user authentication.
+
+1. [EmailJS](https://www.emailjs.com/) 
+	- EmailJS was used to create the email service.
+
+## Testing
+
+---
+
+Testing details can be found [here](TESTING.md).
+
 
 ## Deployment
 ---
@@ -543,4 +726,71 @@ remote: Total 97 (delta 27), reused 82 (delta 16), pack-reused 0
 Receiving objects: 100% (97/97), 1.20 MiB | 12.66 MiB/s, done.
 Resolving deltas: 100% (27/27), done.
 ```
+[Return to Table of contents](#table-of-contents)
+## Credits 
+
+### Code 
+
+-  [Code Institute](https://codeinstitute.net/) tutorials provided helpful guidance in creating the code for this project, particularly [Tim Nelson](https://github.com/TravelTimN/2BN-Tim)'s Task Manager Tutorial. 
+- The following Code Institute students and alumni provided ideas, guidance, inspiration and general improvement in my coding understanding and development while creating this project -
+	- [Ed Bradley](https://github.com/Edb83/self-isolution) 
+	- [Proud Unicorns](https://github.com/irasan/hackpride2021)
+	- [Melinda Zhang](https://github.com/MelindaZhang2020/CI-MS3-Tutti-Fruitti) - in particular, helped to understand the use of ObjectId.
+	- [Suzy Bennett](https://github.com/suzybee1987/the-book-nook-project)
+- Code Institute Tutor Igor Basuga provided invaluable assistance when I was having issues using modals to edit reviews.
+- Code Institute Tutor Rebecca provided invaluable assistance when I was having issues with links and redirection on the search page.  
+- Code for the floating scroll to top button was provided by [W3Schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top) and slightly modified by the developer to suit the site.  
+- Many helpful hints and guidance were provided by posts by other developers on [Stack Overflow](https://stackoverflow.com/).
+
   
+
+### Content
+
+- Dog breed group descriptions courtesy of [PDSA](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/dog-breed-groups). Crossbreed description courtesy of [The Kennel Club](https://www.thekennelclub.org.uk/getting-a-dog/are-you-ready/what-is-a-crossbreed-dog/).
+- Information for dog personality descriptions taken from [The Kennel Club](https://www.thekennelclub.org.uk/breed-standards/)	and [dogtime.com](https://dogtime.com/dog-breeds/profiles).
+
+  
+  
+
+### Media
+ - General
+	-  [Background wallpaper](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/background-wallpaper.jpg) courtesy of [Julia B](https://www.vecteezy.com/members/julia-b2008383144) at [Vecteezy](https://www.vecteezy.com/vector-art/3485476-black-and-white-pattern-with-a-dog-theme). 
+	- [Default dog image](https://github.com/SteveKennyUK/pooch_pals/blob/profile/static/images/default-dog.jpg) courtesy of [pixy.org](https://pixy.org/574674/).
+ - Home Page
+	 - [Landing image](https://github.com/SteveKennyUK/pooch_pals/blob/contact/static/images/home-img.jpeg) courtesy of [raygina at Cleanpng](https://www.cleanpng.com/users/@raygina.html).
+ - Register Page
+	 - [Register form image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/register-img.JPG) courtesy of [volyk at VectorStock](https://www.vectorstock.com/royalty-free-vector/working-at-home-men-vector-30492563).
+ - Log In Page
+	 - [Log In form image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/login-img.JPG) courtesy of [Mentalmind at VectorStock](https://www.vectorstock.com/royalty-free-vector/focused-guy-and-dog-vector-38816185).
+- Profile Page
+	- [Profile page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/profile-img.JPG) courtesy of [jemmastock at VectorStock](https://www.vectorstock.com/royalty-free-vector/man-with-dog-cartoon-vector-18933023).
+- Add Dog Page
+	- [Add Dog page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/add-dog-img.JPG) courtesy of [fizzgig at VectorStock](https://www.vectorstock.com/royalty-free-vector/happy-dog-vector-258271).
+	- Images for dog profiles courtesy of  [Kennel Club](https://www.thekennelclub.org.uk/breed-standards/)	and [dogtime.com](https://dogtime.com/dog-breeds/profiles).
+- Edit Dog Page
+	- [Edit Dog page image](https://github.com/SteveKennyUK/pooch_pals/blob/edit_dog/static/images/edit-img.jpg) courtesy of [Poul_Carlsen at VectorStock](https://www.vectorstock.com/royalty-free-vector/cartoon-of-two-happy-children-with-a-family-dog-vector-19930935).
+- All Dogs Page
+   - [All Dogs page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/dogs-img.JPG) courtesy of [Igor Zakowski at VectorStock](https://www.vectorstock.com/royalty-free-vector/scottish-terrier-purebred-dog-cartoon-vector-35696699).
+ - Breed Group Section
+   - [Breed Group page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/breeds-img.JPG) courtesy of [muchmania at VectorStock](https://www.vectorstock.com/royalty-free-vector/group-of-dog-breeds-vector-20466196).
+	- Breed group images courtesy of [PDSA](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/dog-breed-groups). Crossbreed image courtesy of [Trending Breeds](https://www.trendingbreeds.com/wp-content/uploads/2019/07/Cockapoo-Breed-Overview-large.jpg). 
+- Contact Page
+   - [Contact page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/contact-img.JPG) courtesy of [Skathi at VectorStock](https://www.vectorstock.com/royalty-free-vector/cartoon-style-of-postal-dog-vector-13611534).
+ - Error Pages
+   - [400 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/400.jpg) courtesy of [faster panda kill kill](https://www.flickr.com/photos/chainsawpanda/99058668/) at [HTTP Status Dogs](https://httpstatusdogs.com/400-bad-request). 
+   - [401 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/401.jpg) courtesy of [basykes](https://www.flickr.com/photos/basykes/28995006/) at [HTTP Status Dogs](https://httpstatusdogs.com/401-unauthorized). 
+   - [404 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/404.jpg) courtesy of [HTTP Status Dogs](https://httpstatusdogs.com/404-not-found). 
+   - [500 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/500.jpg) courtesy of [monicaewagner](https://www.flickr.com/photos/11155422@N00/4232049056/) at [HTTP Status Dogs](https://httpstatusdogs.com/500-internal-server-error). 
+
+### Acknowledgements
+
+- My Mentor Antonio Rodriguez for his advice and feedback.
+
+- [BorrowMyDoggy](https://www.borrowmydoggy.com/) provided me with some inspiration and ideas.
+  
+
+### Notice
+
+- This site has been created for educational purposes only.  
+
+[Return to Table of contents](#table-of-contents)
