@@ -659,4 +659,69 @@ remote: Total 97 (delta 27), reused 82 (delta 16), pack-reused 0
 Receiving objects: 100% (97/97), 1.20 MiB | 12.66 MiB/s, done.
 Resolving deltas: 100% (27/27), done.
 ```
+
+## Credits 
+
+### Code 
+
+-  [Code Institute](https://codeinstitute.net/) tutorials provided helpful guidance in creating the code for this project, particularly [Tim Nelson](https://github.com/TravelTimN/2BN-Tim)'s Task Manager Tutorial. 
+- The following Code Institute students and alumni provided ideas, guidance, inspiration and general improvement in my coding understanding and development while creating this project -
+	- [Ed Bradley](https://github.com/Edb83/self-isolution) 
+	- [Proud Unicorns](https://github.com/irasan/hackpride2021)
+	- [Melinda Zhang](https://github.com/MelindaZhang2020/CI-MS3-Tutti-Fruitti) - in particular, helped to understand the use of ObjectId.
+	- [Suzy Bennett](https://github.com/suzybee1987/the-book-nook-project)
+- Code Institute Tutor Igor Basuga provided invaluable assistance when I was having issues using modals to edit reviews.
+- Code Institute Tutor Rebecca provided invaluable assistance when I was having issues with links and redirection on the search page.  
+- Code for the floating scroll to top button was provided by [W3Schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top) and slightly modified by the developer to suit the site.  
+- Many helpful hints and guidance were provided by posts by other developers on [Stack Overflow](https://stackoverflow.com/).
+
   
+
+### Content
+
+- Dog breed group descriptions courtesy of [PDSA](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/dog-breed-groups). Crossbreed description courtesy of [The Kennel Club](https://www.thekennelclub.org.uk/getting-a-dog/are-you-ready/what-is-a-crossbreed-dog/).
+- Information for dog personality descriptions taken from [The Kennel Club](https://www.thekennelclub.org.uk/breed-standards/)	and [dogtime.com](https://dogtime.com/dog-breeds/profiles).
+
+  
+  
+
+### Media
+ - General
+	-  [Background wallpaper](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/background-wallpaper.jpg) courtesy of [Julia B](https://www.vecteezy.com/members/julia-b2008383144) at [Vecteezy](https://www.vecteezy.com/vector-art/3485476-black-and-white-pattern-with-a-dog-theme). 
+	- [Default dog image](https://github.com/SteveKennyUK/pooch_pals/blob/profile/static/images/default-dog.jpg) courtesy of [pixy.org](https://pixy.org/574674/).
+ - Home Page
+	 - [Landing image](https://github.com/SteveKennyUK/pooch_pals/blob/contact/static/images/home-img.jpeg) courtesy of [raygina at Cleanpng](https://www.cleanpng.com/users/@raygina.html).
+ - Register Page
+	 - [Register form image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/register-img.JPG) courtesy of [volyk at VectorStock](https://www.vectorstock.com/royalty-free-vector/working-at-home-men-vector-30492563).
+ - Log In Page
+	 - [Log In form image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/login-img.JPG) courtesy of [Mentalmind at VectorStock](https://www.vectorstock.com/royalty-free-vector/focused-guy-and-dog-vector-38816185).
+- Profile Page
+	- [Profile page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/profile-img.JPG) courtesy of [jemmastock at VectorStock](https://www.vectorstock.com/royalty-free-vector/man-with-dog-cartoon-vector-18933023).
+- Add Dog Page
+	- [Add Dog page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/add-dog-img.JPG) courtesy of [fizzgig at VectorStock](https://www.vectorstock.com/royalty-free-vector/happy-dog-vector-258271).
+	- Images for dog profiles courtesy of  [Kennel Club](https://www.thekennelclub.org.uk/breed-standards/)	and [dogtime.com](https://dogtime.com/dog-breeds/profiles).
+- Edit Dog Page
+	- [Edit Dog page image](https://github.com/SteveKennyUK/pooch_pals/blob/edit_dog/static/images/edit-img.jpg) courtesy of [Poul_Carlsen at VectorStock](https://www.vectorstock.com/royalty-free-vector/cartoon-of-two-happy-children-with-a-family-dog-vector-19930935).
+- All Dogs Page
+   - [All Dogs page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/dogs-img.JPG) courtesy of [Igor Zakowski at VectorStock](https://www.vectorstock.com/royalty-free-vector/scottish-terrier-purebred-dog-cartoon-vector-35696699).
+ - Breed Group Section
+   - [Breed Group page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/breeds-img.JPG) courtesy of [muchmania at VectorStock](https://www.vectorstock.com/royalty-free-vector/group-of-dog-breeds-vector-20466196).
+	- Breed group images courtesy of [PDSA](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/dog-breed-groups). Crossbreed image courtesy of [Trending Breeds](https://www.trendingbreeds.com/wp-content/uploads/2019/07/Cockapoo-Breed-Overview-large.jpg). 
+- Contact Page
+   - [Contact page image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/contact-img.JPG) courtesy of [Skathi at VectorStock](https://www.vectorstock.com/royalty-free-vector/cartoon-style-of-postal-dog-vector-13611534).
+ - Error Pages
+   - [400 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/400.jpg) courtesy of [faster panda kill kill](https://www.flickr.com/photos/chainsawpanda/99058668/) at [HTTP Status Dogs](https://httpstatusdogs.com/400-bad-request). 
+   - [401 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/401.jpg) courtesy of [basykes](https://www.flickr.com/photos/basykes/28995006/) at [HTTP Status Dogs](https://httpstatusdogs.com/401-unauthorized). 
+   - [404 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/404.jpg) courtesy of [HTTP Status Dogs](https://httpstatusdogs.com/404-not-found). 
+   - [500 image](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/500.jpg) courtesy of [monicaewagner](https://www.flickr.com/photos/11155422@N00/4232049056/) at [HTTP Status Dogs](https://httpstatusdogs.com/500-internal-server-error). 
+
+### Acknowledgements
+
+- My Mentor Antonio Rodriguez for his advice and feedback.
+
+- [BorrowMyDoggy](https://www.borrowmydoggy.com/) provided me with some inspiration and ideas.
+  
+
+### Notice
+
+- This site has been created for educational purposes only.  
