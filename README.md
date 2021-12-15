@@ -437,6 +437,19 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 
 Other test user profiles can be accessed by both username and password set to user0001, user0002, user0003 etc.
 
+### Future Features
+
+This site is well set up to be further developed, once my knowledge, experience and time allow. Features that I have already identified include -
+
+- A more suitable way for users to add images to the site than the current URL method. In particular for this site, users would most likely want to upload their own photos of their dogs and would not likely have URL image links for them. Uploading to a cloud storage site such as [Amazon AWS](https://aws.amazon.com/media-sharing/) would be a good solution.
+- A better way for users to communicate with each other would be favourable. A real time chat function for verified users, such as that provided by [SocketIO](https://socket.io/) would be ideal.
+- Use of [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) to help locate users on a map would be a good addition to the site.
+- Extra dog profile features such as star ratings or favourites.
+- Additional admin features such as user entries pending admin approval before being published.
+- A forgotten username/password function to assist users when logging in.
+- A dark theme using JavaScript to improve site accessibility.
+- A preloader to display as the pages load to fill in for any page loading delays. 
+
 
 ## Deployment
 ---
