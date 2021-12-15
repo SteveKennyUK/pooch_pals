@@ -450,6 +450,109 @@ This site is well set up to be further developed, once my knowledge, experience 
 - A dark theme using JavaScript to improve site accessibility.
 - A preloader to display as the pages load to fill in for any page loading delays. 
 
+## Technologies Used
+
+### Languages Used
+
+-  [HTML5](https://en.wikipedia.org/wiki/HTML5) for structuring the site
+-  [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) for styling the site
+-  [JavaScript](https://en.wikipedia.org/wiki/JavaScript) for site logic
+- [Python](https://www.python.org/) for site functionality and accessing the database. [Jinja](https://jinja.palletsprojects.com/en/3.0.x/) was used as a templating engine.
+
+	- Although no specific naming methodology was employed (such as BEM), class and function names are descriptive of their purpose so that they can be easily identifiable to other developers.
+
+	- Comments are placed appropriately within the HTML, CSS, Python and JS code to improve readability.
+
+  
+
+### Frameworks, Libraries & Programs Used
+
+1.  [Materialize:](https://materializecss.com/)
+
+	- Materialize CSS was used to assist with the responsiveness and styling of the website.
+
+1.  [Hover.css:](https://ianlunn.github.io/Hover/)
+
+	- Hover.css was used to add reactive functionality to some links and buttons.
+
+1.  [Google Fonts:](https://fonts.google.com/)
+
+	- Google Fonts was used to import the 'Neucha' and 'Lato' fonts into the style.css file, which is used throughout the project.
+
+1.  [Font Awesome:](https://fontawesome.com/)
+
+	- Font Awesome was used to add icons for aesthetic and UX purposes.
+
+1.  [jQuery:](https://jquery.com/)
+
+	- jQuery was used to assist with manipulation of the Document Object Model to make the site interactive for users.
+
+1.  [Git](https://git-scm.com/)
+
+	- Git was used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub. Branches were utilised to develop different features before merging into the main branch, once all changes were considered ready to implement.
+
+1.  [GitHub:](https://github.com/)
+
+	- GitHub was used to store the project code after being pushed from Git.
+
+1.  [GitHub Project Board:](https://github.com/SteveKennyUK/pooch_pals/projects)
+
+	- The GitHub Project Board was used to project manage the creation of the site. This uses a kanban board to display all tasks and view progress.
+
+1.  [Lucidchart](https://www.lucidchart.com/pages/)
+
+	- Lucidchart was used to create the site map drawings and database schema during the design process.
+	
+1.  [Balsamiq:](https://balsamiq.com/)
+
+	- Balsamiq was used to create the [wireframes](https://github.com/SteveKennyUK/pooch_pals/tree/main/static/images/wireframes) during the design process.
+
+1.  [Color-hex](https://www.color-hex.com/user/add-palette.php)
+
+	- Color-hex was used to display the colour palette choice.
+
+1.  [Looka:](https://looka.com/)
+
+	- Looka was used to create the website [Logo](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/logo.png) and [Favicon image](https://github.com/SteveKennyUK/pooch_pals/tree/main/static/images/favicon).
+
+1.  [GIMP:](https://www.gimp.org/)
+
+	- GIMP was used to resize images and edit photos for the website.
+
+1.  [favicon.io:](https://favicon.io/favicon-converter/)
+
+	- favicon.io was used to convert the logo to a favicon to enable full web browser compatibility.
+
+1.  [WebAIM](https://webaim.org/resources/contrastchecker/)
+
+	- WebAIM was used to check that foreground and background colour contrasts meet WCAG accessibility requirements.
+
+1.  [Webformatter](https://webformatter.com)
+
+	- Webformatter was used to assist in optimising code readability.
+
+1.  [Autoprefixer](https://autoprefixer.github.io/)
+
+	- Autoprefixer was used to parse CSS and add vendor prefixes.
+
+1.  [TinyPNG](https://tinypng.com/)
+
+	- Tiny PNG was used for image compression.
+
+1.  [W3Schools](https://www.w3schools.com/)
+
+	- W3Schools was used for coding guidance and clarification.
+
+1.  [RandomKeygen](https://randomkeygen.com/)
+
+	- RandomKeygen was used to generate a secure environmental secret key.
+
+1.  [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+
+	- Werkzeug was used to provide secure user authentication.
+
+1. [EmailJS](https://www.emailjs.com/) 
+	- EmailJS was used to create the email service.
 
 ## Deployment
 ---
