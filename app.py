@@ -429,7 +429,7 @@ def edit_review(review_id):
     if request.method == "POST":
         # Capitalise each sentence in the user review
         # Credit: see edit_dog above
-        rev = request.form.get("review")
+        rev = request.form.get("edit-review")
         review_cap = '. '.join(
             [i.lstrip().capitalize() for i in rev.split('.')])
         update_review = {
