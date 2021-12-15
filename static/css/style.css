@@ -175,19 +175,23 @@ nav ul li a {
 /*-- breed_groups page cards --*/
 .breed-card,
 .admin-card {
-    height: 550px
+    height: 600px
 }
 
 .breed-card .card-content,
 .admin-card .card-content {
     padding: 0.5rem;
 }
+/*-- breed_group card text --*/
+.breed-description {
+    font-size: 1.25rem;
+}
 /*-- dog_cards template cards --*/
 .profile-card {
     height: 500px;
 }
 /*--- keep user uploaded images the same size ---*/
-.dog-image img{
+.dog-image img {
     aspect-ratio: 3/2;    
 }
 /*--- set position and spacing for cancel and delete buttons ---*/
@@ -336,4 +340,10 @@ body > footer {
     .profile-card {
         height: 600px;
     }    
+} 
+
+@media only screen and (min-width: 600px) {
+    .breed-description {
+        font-size: 1.1rem;
+    }   
 } 

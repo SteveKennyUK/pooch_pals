@@ -21,7 +21,7 @@
         <!-- Information card -->
         <div class="col s12 m10 offset-m1">
             <div class="row card card-panel">
-                <p>Every dog will have an individual personality but their breed can have a big impact on their
+                <p class="flow-text">Every dog will have an individual personality but their breed can have a big impact on their
                     behaviour and personality just as much as it affects their looks. This means that a dog will often
                     have some traits that come more naturally to
                     them, for example being really active or wanting to chase smaller animals.
@@ -30,17 +30,17 @@
                     Working dogs are likely to need more exercise, for example, and gundogs are likely to want to
                     retrieve.
                 </p>
-                <p>While every dog is different, as each of the group of dogs were bred to have certain traits, which
+                <p class="flow-text">While every dog is different, as each of the group of dogs were bred to have certain traits, which
                     breed category a dog belongs to can give you a really good idea about what their personality
                     might be like. This could help you to decide which dogs may be suitable to play with your own dog.
                     Similarly, if you are thinking of bringing a new dog into your home, research the breeds before
                     choosing one to make sure that you’re fully prepared to meet their needs!
                 </p>
-                <p>There are seven breed groups recognised here in the UK. These are: gundog, hound, pastoral, terrier,
+                <p class="flow-text">There are seven breed groups recognised here in the UK. These are: gundog, hound, pastoral, terrier,
                     toy, utility and working. Please see below for some information on each of the seven groups plus
                     crossbreeds.
                 </p>
-                <p>Please also see <a href="https://www.thekennelclub.org.uk/breed-standards/" target="_blank"
+                <p class="flow-text">Please also see <a href="https://www.thekennelclub.org.uk/breed-standards/" target="_blank"
                         rel="noopener" aria-label="The Kennel Club website (link opens in a new tab)">The Kennel
                         Club</a> for further information on how each breed is categorised.</p>
             </div>
@@ -64,7 +64,7 @@
                                                 alt="example image of a {{ breed.breed_name }} breed">
                                         </div>
                                         <div class="card-content">
-                                            <p class="p-0">{{ breed.description }}</p>
+                                            <p class="p-0 breed-description">{{ breed.description }}</p>
                                         </div>
                                         <div class="card-action center-align">
                                             <a href="{{ url_for('filter_breed_group', breed_group_id=breed._id) }}"

@@ -20,7 +20,7 @@ The site allows registered users to provide information to create a profile for 
 # Table of contents
 
  
--  [UX](#ux)
+-  [User Experience](#user-experience-ux)
 
 	-  [Project Strategy](#project-strategy)
 
@@ -91,7 +91,7 @@ The site users can be identified as falling within one of the following three ca
 	* As a user, I want to be able to view the site clearly and intuitively on different device sizes.
 	* As a user, I expect the site to be fully accessible.
 
--  #### Site Owner/Business Goals
+-  #### Site Owner Goals
 
 	* As the site owner, I want features and content that will engage new users quickly, encourage them to explore the site and draw them back in the future.
 	* As the site owner, I want users to feel comfortable that their data is secure.	
