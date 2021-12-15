@@ -9,6 +9,63 @@ Interest in dog ownership has increased since the start of the COVID pandemic, w
 
 The site allows registered users to provide information to create a profile for their dog, which is stored on a MongoDB database. Users can then search for other user profiles to find a good match for their own dogs, plus modify and delete their own information. The ultimate aim is a happy dog, while also helping dog owners to better understand their best friends.
 
+## [View the live project here.](http://pooch-pals-ms3.herokuapp.com/index)
+
+  
+
+![Mock-up](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/mockup.jpg)
+
+  
+
+# Table of contents
+
+ 
+-  [UX](#ux)
+
+	-  [Project Strategy](#project-strategy)
+
+		-  [User Goals (general)](#user-goals-general)
+		-  [Site Owner Goals](#site-owner-goals)
+		-  [User Stories](#user-stories)
+
+	-  [Project Scope](#project-scope)
+
+		-  [Strategy Trade-off](#strategy-trade-offs)
+		-  [Content Scope](#content-scope)
+
+	-  [Project Structure](#project-structure)
+
+		-  [Interactive Design](#interactive-design)
+			-  [Page Structure](#page-structure)
+			-  [Visibility](#visibility)
+			-  [Navigation](#navigation)
+			-  [Buttons and Links](#buttons-and-links)
+			-  [Iconography](#iconography)
+		-  [Information Architecture](#information-architecture-ia)
+		-  [Database Architecture](#database-architecture)
+			-  [Database Choice](#database-choice)
+			-  [Data Collections](#data-collections)
+			
+	-  [Project Design (Skeleton and Surface)](#project-design-skeleton-and-surface)
+		-  [General Layout](#general-layout)
+		-  [Colour Scheme](#colour-scheme)
+		-  [Typography](#typography)
+		-  [Imagery](#imagery)
+		-  [Wireframes](#wireframes)
+
+-  [Features](#features)
+
+	-  [Existing Features](#existing-features)
+
+	-  [Future Features](#future-features)
+
+-  [Technologies Used](#technologies-used)
+
+-  [Testing](#testing)
+
+-  [Deployment](#deployment)
+
+-  [Credits](#credits)
 
 ## User Experience (UX)
 ---
@@ -120,7 +177,7 @@ It is felt that features should be provided in the following order of importance
  - Contact page.
  - Breed information and filter page. 
   
-
+[Return to Table of contents](#table-of-contents)
 ### Project Structure
 ---
 The structural design of the site aims to make the user interaction with the site as easy and as comfortable as possible. This is achieved by creating meaningful relationships between the various site elements so that users can intuitively understand their meaning and purpose.
@@ -214,6 +271,7 @@ Screenshots of each collection can be seen below -
  - [Reviews](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-reviews.JPG)
  - [Users](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/readme/database-users.JPG)
 
+[Return to Table of contents](#table-of-contents)
 ### Project Design (Skeleton and Surface)
 ---
 The layout and content of the site has been designed with the User Experience at the forefront. The typical user will be someone who owns a dog or is interested in dogs. The site therefore needs to engage with this type of user and make them feel at ease. 
@@ -302,6 +360,7 @@ The subject matter of the site, focusing on dogs, lends itself to a fun, playful
 		 - [Admin Page](https://github.com/SteveKennyUK/pooch_pals/blob/main/static/images/wireframes/admin_pooch_pals.pdf)
 	- **EDIT** - There was a slight amendment in the final layout of the View Dog page for medium and large screen sizes. It was decided to place the image at the top of the page, as per the small screen sizes, with the information list below. This is in keeping with the rest of the pages on the site and it was felt that the consistency would provide a better UX. 
 
+[Return to Table of contents](#table-of-contents)
 ## Features
 ---
 ### Existing Features
@@ -450,6 +509,7 @@ This site is well set up to be further developed, once my knowledge, experience 
 - A dark theme using JavaScript to improve site accessibility.
 - A preloader to display as the pages load to fill in for any page loading delays. 
 
+[Return to Table of contents](#table-of-contents)
 ## Technologies Used
 
 ### Languages Used
@@ -666,7 +726,7 @@ remote: Total 97 (delta 27), reused 82 (delta 16), pack-reused 0
 Receiving objects: 100% (97/97), 1.20 MiB | 12.66 MiB/s, done.
 Resolving deltas: 100% (27/27), done.
 ```
-
+[Return to Table of contents](#table-of-contents)
 ## Credits 
 
 ### Code 
@@ -732,3 +792,5 @@ Resolving deltas: 100% (27/27), done.
 ### Notice
 
 - This site has been created for educational purposes only.  
+
+[Return to Table of contents](#table-of-contents)
