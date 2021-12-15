@@ -156,10 +156,10 @@
                                     <div class="modal-content">
                                         <h3 class="center-align m-tb">Edit Review for {{ dog.dog_name }}</h3>
                                         <div class="input-field">
-                                            <textarea id="review" name="review" minlength="5" maxlength="200"
+                                            <textarea id="edit-review-{{ review._id }}" name="edit-review" minlength="5" maxlength="200"
                                                 class="materialize-textarea validate"
                                                 required>{{ review.review }}</textarea>
-                                            <label for="review" class="blue-grey-text text-darken-2">
+                                            <label for="edit-review-{{ review._id }}" class="blue-grey-text text-darken-2">
                                                 Review</label>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
                                         Cancel
                                     </a>
                                     <a href="{{ url_for('delete_review', review_id=review._id) }}"
-                                        class="btn waves-effect waves-light red" type="submit"
+                                        class="btn waves-effect waves-light red"
                                         aria-label="delete review">
                                         Delete
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
