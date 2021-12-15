@@ -136,7 +136,8 @@
                                                     {{ dog.location|upper }}</p>
                                                 <!-- View dog's full profile -->
                                                 <a href="{{ url_for('view_dog', dog_id=dog._id) }}"
-                                                    class="btn-floating waves-effect waves-light teal lighten-1"
+                                                    class="btn-floating waves-effect waves-light teal lighten-1 tooltipped"
+                                                    data-position="top" data-tooltip="View Dog"
                                                     aria-label="view dog's full profile">
                                                     <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
                                             </div>
