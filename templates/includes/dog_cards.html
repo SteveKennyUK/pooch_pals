@@ -13,7 +13,7 @@
             <!-- Card content -->
             <div class="card-content">
                 <p class="card-title">{{ dog.dog_name|title }}</p>
-                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location|title }}</p>
+                <p><i class="fas fa-location-dot prefix" aria-hidden="true"></i> {{ dog.location|upper }}</p>
                 <!-- View dog's full profile -->
                 <a href="{{ url_for('view_dog', dog_id=dog._id) }}" class="btn-floating waves-effect waves-light teal lighten-1" aria-label="view dog's full profile">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i></a>
