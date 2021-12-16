@@ -336,14 +336,21 @@ body > footer {
     background-color: #000;
 }
 /*================================== Media queries ==================================*/
+/*-- increase height of dog_cards template cards --*/
 @media only screen and (min-width: 1441px) {
     .profile-card {
         height: 600px;
     }    
 } 
-
+/*-- breed group cards responsiveness --*/
 @media only screen and (min-width: 600px) {
     .breed-description {
         font-size: 1.1rem;
     }   
-} 
+}
+
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+    .breed-card {
+        height: 650px
+    }
+}
