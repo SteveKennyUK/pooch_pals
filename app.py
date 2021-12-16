@@ -291,15 +291,15 @@ def edit_dog(dog_id):
     User can edit their dog profiles and update the database
     """
     dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-    # keep the same reference number
+    # keep the same reference number and created_by user
     reference = dog["reference"]
+    created_by = dog["created_by"]
     if request.method == "POST":
         breed = mongo.db.breed_groups.find_one(
             {"breed_name": request.form.get("breed_group")}
         )
         neutered = bool(True) if request.form.get(
             "neutered") else bool(False)
-        user = mongo.db.users.find_one({"username": session["user"]})
         # Capitalise each sentence in the personality description
         # Credit: https://codehandbook.org/
         #     python-capitalize-first-letter-of-all-sentences/
@@ -317,7 +317,7 @@ def edit_dog(dog_id):
             "neutered": neutered,
             "location": request.form.get("location"),
             "personality": personality_cap,
-            "created_by": ObjectId(user["_id"]),
+            "created_by": created_by,
             "reference": reference,
         }
         mongo.db.dogs.update({"_id": ObjectId(dog_id)}, update_dog)
