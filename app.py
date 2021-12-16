@@ -215,6 +215,7 @@ def profile(username):
         for review in reviews:
             review_dog = mongo.db.dogs.find_one(
                 {"_id": ObjectId(review["dog_id"])})
+            # if dog profile has not been deleted
             if review_dog is not None:
                 review["dog_name"] = review_dog["dog_name"]
             else:
@@ -494,8 +495,22 @@ def profile_admin(username):
         user = mongo.db.users.find_one({"username": name})
         dogs = list(mongo.db.dogs.find(
             {"created_by": ObjectId(user["_id"])}))
+        reviews = list(mongo.db.reviews.find(
+            {"created_by": ObjectId(user["_id"])}))
+        for review in reviews:
+            review_dog = mongo.db.dogs.find_one(
+                {"_id": ObjectId(review["dog_id"])})
+            # if dog profile has not been deleted
+            if review_dog is not None:
+                review["dog_name"] = review_dog["dog_name"]
+            else:
+                review["dog_name"] = "deleted dog"
         return render_template(
-            "profile.html", username=username, dogs=dogs, user=user)
+            "profile.html",
+            username=username,
+            dogs=dogs,
+            user=user,
+            reviews=reviews)
     flash("Please log in to view profile")
     return redirect(url_for("login"))
 
