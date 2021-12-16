@@ -75,13 +75,15 @@
                                                 {{ review.review }}
                                             </blockquote>
                                             <p>Reviewed for {{ review.dog_name }} on {{ review.created_on }}</p>
-                                            <!-- View reviewed dog's profile -->
+                                            <!-- View reviewed dog's profile if dog has not been deleted -->
+                                            {% if review.dog_name != "deleted dog" %}
                                             <a href="{{ url_for('view_dog', dog_id=review.dog_id) }}"
                                                 class="btn btn-contact black-text waves-effect waves-light"
                                                 aria-label="link to {{review.dog_name}}'s profile page">
                                                 View {{ review.dog_name }}
                                                 <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                             </a>
+                                            {% endif %}
                                             <hr>
                                             {% endfor %}
                                         {% else %}

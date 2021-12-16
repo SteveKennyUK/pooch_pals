@@ -215,7 +215,10 @@ def profile(username):
         for review in reviews:
             review_dog = mongo.db.dogs.find_one(
                 {"_id": ObjectId(review["dog_id"])})
-            review["dog_name"] = review_dog["dog_name"]
+            if review_dog is not None:
+                review["dog_name"] = review_dog["dog_name"]
+            else:
+                review["dog_name"] = "deleted dog"
         return render_template(
             "profile.html",
             username=username,
@@ -390,7 +393,11 @@ def view_dog(dog_id):
     for review in reviews:
         review_user = mongo.db.users.find_one(
             {"_id": ObjectId(review["created_by"])})
-        review["created_by"] = review_user["username"]
+        # if user has not been deleted
+        if review_user is not None:
+            review["created_by"] = review_user["username"]
+        else:
+            review["created_by"] = "deleted user"
     # Credit: add reviews code modified from (
     # https://github.com/irasan/hackpride2021/blob/master/app.py)
     if request.method == "POST":
