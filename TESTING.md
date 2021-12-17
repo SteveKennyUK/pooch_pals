@@ -60,7 +60,7 @@ The checks confirmed that elements were all suitably labelled with ARIA tags.
 ---
 ## [Google Chrome Developers Tools](https://developer.chrome.com/docs/devtools/)
  - Google Dev Tools was used extensively during project development to help identify and solve any syntax and styling issues.
- - The Dev Tools [Lighthouse tool](https://developers.google.com/web/tools/lighthouse) is useful to check the performance quality of the site. The site scored well overall in all categories. The only score below 90 was the Best Practices on desktop. However, this score appeared to be down to the site not using HTTPS, which is something beyond my control.
+ - The Dev Tools [Lighthouse tool](https://developers.google.com/web/tools/lighthouse) is useful to check the performance quality of the site. The site scored well overall in all categories. The only score below 90 was the Best Practices on desktop.
    
 	 - [Mobile performance](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/testing/lighthouse-mobile-report.JPG)
 	 - [Desktop performance](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/testing/lighthouse-desktop-report.JPG)
