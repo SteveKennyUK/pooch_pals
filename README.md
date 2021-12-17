@@ -504,7 +504,8 @@ This site is well set up to be further developed, once my knowledge, experience 
 - Additional admin features such as user entries pending admin approval before being published.
 - A forgotten username/password function to assist users when logging in.
 - A dark theme using JavaScript to improve site accessibility.
-- A preloader to display as the pages load to fill in for any page loading delays. 
+- A preloader to display as the pages load to fill in for any page loading delays.
+- Add pagination to Admin page 
 
 [Return to Table of contents](#table-of-contents)
 ## Technologies Used

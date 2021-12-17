@@ -192,3 +192,163 @@ The site was tested on a ASUS Zenbook desktop, Samsung Galaxy mobile and iPhone 
 	        
         -   I want to be able to view, edit and delete all users and entries on the site.
 	        - The Admin page is only available to users with admin privileges. This page has additional security features to prevent unauthorised access. Admin users may also edit and delete other user contributions. See Site Owner Goals above.
+
+---
+
+## Further Testing
+
+-   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
+
+- Peer reviews by fellow Code Institute students, mentors and tutors helped to identify areas I may have overlooked.
+
+-   A large amount of testing was done to ensure that all buttons, links and click events have the desired function. 
+
+All links to external sites should open in a new tab.
+
+**Sitewide**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+All Users | Navbar | Logo | Navigate to index.html| Pass
+|| Navbar | Home Link | Navigate to index.html | Pass
+|| Navbar | Breeds Link | Navigate to breed_groups.html | Pass
+|| Navbar | Contact Link | Navigate to contact.html | Pass
+|| Navbar | Account Link | Open dropdown menu | Pass
+|| Navbar | Hamburger (mobile only) | Open dropdown menu | Pass
+|| Footer | Kennel Club Link | Open Kennel Club | Pass
+|| Footer | PDSA Club Link | Open PDSA | Pass
+|| Footer | Dog Accessories Link | Open Pets At Home | Pass
+|| Footer | Pet Insurance Link | Open Petplan | Pass
+|| Footer | Dog Friendly Holidays Link | Open Canine Cottages | Pass
+|| Footer | Contact Form Link | Navigate to contact.html | Pass
+|| Footer | Email Link | Open email account with contact@poochpals.com address  | Pass
+|| Footer | Telephone Link | Open phone keypad with 02085555555 | Pass
+|| Footer | Social Media Link | Open Facebook | Pass
+|| Footer | Social Media Link | Open Instagram | Pass
+|| Footer | GitHub Link | Open github.com/SteveKennyUK | Pass
+|| Floating | Navigational button | Return to top of page | Pass
+Users not logged in| Navbar | Dogs Link | Navigate to login.html| Pass
+|| Navbar | Register Link | Navigate to register.html | Pass
+|| Navbar | Log In Link | Navigate to login.html | Pass
+|| All Pages | Attempts to access pages authorised for logged in users only e.g. via manual URL input | Redirect to login page with 'Please Log In To View This Page' flash message | Pass
+|Users logged in| Navbar | Dogs Link | Navigate to all_dogs.html | Pass
+|| Navbar | Profile Link | Navigate to session user's profile page | Pass
+|| Navbar | Logout Link | Log out user and redirect to login.html | Pass
+Admin users only| Navbar | Admin Link | Navigate to admin.html| Pass
+|Users logged in without admin status| All Pages | Attempts to access pages authorised for admin users only e.g. via manual URL input | Redirect to home page with 'This Page Is Restricted To Admin Access' flash message | Pass
+
+**Home Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+Users not logged in | Main Body | Image | Display login title image | Pass
+|| Main Body | Log In Button | Navigate to login.html | Pass
+|| Main Body | Register Button | Navigate to register.html | Pass
+|| Newest Pals Cards | View Dog Link | Redirect to login page with 'Please Log In To View This Page' flash message | Pass
+Users logged in | Main Body | Image | Display profile title image | Pass
+|| Main Body | Profile Button | Navigate to session user's profile page | Pass
+|| Main Body | All Dogs Button | Navigate to all_dogs.html | Pass
+|| Newest Pals Cards | View Dog Link Button | Navigate to view_dog page of the dog on the card | Pass
+
+**Login Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Form | Register Link | Navigate to register.html | Pass
+|| Form | Log In Button | Valid input - redirect to session user's profile page with 'Arooo! Welcome back {username}' flash message   | Pass
+|| Form | Log In Button | Required field not filled in - 'Please fill in this field' tooltip | Pass
+|| Form  | Log In Button | Invalid input - Change to red and inform user of requirements for valid input for username and password if requirements not met | Pass
+
+**Register Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Form | Log In Link | Navigate to login.html | Pass
+|| Form | Register Button | Valid input - redirect to session user's profile page with 'Registration Successful' flash message   | Pass
+|| Form | Register Button | Required field not filled in - 'Please fill in this field' tooltip plus valid email format required tooltip  | Pass
+|| Form  | Register Button | Invalid input - Change input field colour to red and inform user of requirements for valid input for username and password if requirements not met | Pass
+|| Form  | Register Button | Username already exists - 'Username already exists, please select another' flash message | Pass
+|| Form  | Register Button | Password and Confirm Password fields don't match - 'Passwords Must Match' flash message | Pass
+
+**Profile Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| 'My Dogs' Card | Add Dog Button | 'Add New Dog' tooltip and navigate to add_dog.html   | Pass
+|| 'My Dogs' Card  | View Dog Button  | 'View Dog' tooltip and navigate to view_dog page of the dog on the card | Pass
+|| 'My Dogs' Card  | Edit Button  | Visible to session user and to admin user. Navigates to edit_dog page for the dog on the card | Pass
+|| 'My Dogs' Card  | Delete Button  | Visible to session user and to admin user. Triggers a card reveal asking user to confirm that they wish to delete the dog profile. Clicking 'Cancel' or 'x' closes the card reveal with no action taken. Clicking 'Delete' deletes the dog profile with user redirected to home page and 'Dog Profile Removed' flash message | Pass
+|| 'Reviews I've Left'  | Text and Button  | If a reviewed dog has been deleted, it will appear as "Reviewed for '*deleted dog*'" and the 'View {dog_name}' button will not appear  | Pass
+|| 'Reviews I've Left'  | View {dog_name} Button  | Navigate to profile page of the reviewed dog  | Pass
+|| 'Reviews I've Left'  | Link to view dog profiles   | Shows if user has not left any reviews. Navigate to all_dogs.html  | Pass
+
+**Breed Groups Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| Information Card | Kennel Club Link | Open Kennel Club | Pass
+|| Breed Group Cards  | View {Breed Group} Button  | Navigate to All Dogs page where only dogs from the selected breed group will be displayed | Pass
+
+**Add Dog Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Profile Button | Navigate to session user's profile page | Pass
+|| Form | Cancel Button | Return to session user's profile page | Pass
+|| Form | Breeds Link | Navigate to breed_groups.html | Pass
+|| Form | Add Dog Button | Required field not filled in - tooltips advising the user of required fields  | Pass
+|| Form  | Add Dog Button | Invalid input - Change input field colour to red and inform user of requirements for valid input for fields if requirements not met | Pass
+|| Form  | Add Dog Button | Successful submission - redirect to session user's profile page with 'Welcome to the pack {dog_name}' flash message | Pass
+
+**Edit Dog Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| Form | Cancel Button | Return to previous page | Pass
+|| Form | Breeds Link | Navigate to breed_groups.html | Pass
+|| Form | Form Fields | Fields populated with data currently held in database | Pass
+|| Form | Edit Dog Button | Required field not filled in - tooltips advising the user of required fields  | Pass
+|| Form  | Edit Dog Button | Invalid input - Change input field colour to red and inform user of requirements for valid input for fields if requirements not met | Pass
+|| Form  | Edit Dog Button | Successful submission - redirect to session user's profile page with '{dog_name}'s profile updated!' flash message | Pass
+
+**Dogs Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| Dog Cards  | View Dog Button  | 'View Dog' tooltip and navigate to view_dog page of the dog on the card | Pass
+|| Dog Cards  | Edit Button  | Visible to session user and to admin user. Navigates to edit_dog page for the dog on the card | Pass
+|| Dog Cards  | Delete Button  | Visible to session user and to admin user. Triggers a card reveal asking user to confirm that they wish to delete the dog profile. Clicking 'x' closes the card reveal and clicking 'Cancel' redirects the user to their profile page, with no action taken. Clicking 'Delete' deletes the dog profile with user redirected to home page and 'Dog Profile Removed' flash message | Pass
+|| Search Bar  | Search Button  | If the input field is left empty - tooltip requesting the user to fill in the field. If there are fewer than three characters - tooltip requesting more than three characters are provided.   | Pass
+|| Search Bar  | Reset Button  | Refresh the page without submitting any data | Pass
+|| Search Bar  | Search Button  | 'See results for {query} below' flash message displays | Pass
+|| Search Bar  | Search Button  | If no results returned - 'No results found! Please search again!' returned. Includes a link to refresh the page.  | Pass
+|| Search Bar  | Search Button  | If results returned - profile cards of only the profiles matching the search are displayed  | Pass
+|| Dog Cards  | Pagination  | Only a maximum of six cards will be displayed on the screen. If there are more than six dog profiles (including those returned for search results), a pagination index will display. Clicking the pagination numbers will search through the results by pages of six profiles.  | Pass
+
+**View Dog Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title | Back Button | Navigate to previous page | Pass
+|| Title  | Verification Icon  | Green tick and 'Verified User' tooltip appears next to dog name only if the user who created profile is verified | Pass
+|| Profile | Image  | If the user did not provide an image when adding the dog profile, the designated default image will display instead | Pass
+|| Reviews  | Add Review Button  | 'Add Review' tooltip. Button triggers 'Add Review' modal to appear | Pass
+|| Add Review Modal  | Modal | 'Cancel' closes modal with no action taken. 'Submit' adds review, closes modal and 'Thank You For Your Review' flash message displays at head of page. | Pass
+|| Reviews  | Review Text  | If the user who left a review has been deleted, they will display as "deleted user" | Pass
+|| Reviews  | Edit Review Button  | Visible to session user and to admin user, with an 'Edit Review' tooltip . Opens a modal where the user can edit the review. | Pass
+|| Reviews  | Edit Review Modal  | Original review populates the textarea. 'Cancel' closes the modal. 'Submit' updates the review, closes the modal and displays 'Review Updated' flash message.  | Pass
+|| Reviews | Delete Button  | Visible to session user and to admin user. Triggers a modal asking user to confirm that they wish to delete the review. Clicking 'Cancel' closes the modal with no action taken. Clicking 'Delete' deletes the review, redirects the user to All Dogs page and 'Review Removed' flash message is displayed | Pass
+
+**Contact Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| Form | Cancel Button | Return to previous page | Pass
+|| Form | Form Fields | Only display 'Dog Ref:' field to logged in users | Pass
+|| Form | Submit Button | Required field not filled in - tooltips and helper text advising the user of required fields  | Pass
+|| Form  | Submit Button | Invalid input - Change input field colour to red and inform user of requirements for valid input for fields if requirements not met, including valid email format  | Pass
+|| Form  | Submit Button | Display modal providing feedback to the user as to whether or not their message was submitted successfully. Refresh Contact page with all fields cleared. If the message was submitted successfully, a copy will be sent to the email address supplied by the user. | Pass
+
+**Admin Page**
+| | Location | Type | Expected Outcome | Pass/Fail|
+-----|-----|-----|-----|-------|
+|| Title Card | Back Button | Navigate to previous page | Pass
+|| User Cards | View User Button | Navigate to the profile page of the user on the card | Pass
+|| User Cards | Verify User Button | Update the user's record to show `is_verified: true` and display '{username} Has Been Verified!' flash message. If the user has already been verified there will be a '{username} Is Already Verified' flash message. | Pass
+|| User Cards | Delete Button | Triggers a card reveal asking admin user to confirm that they wish to delete the user profile. Clicking 'Cancel' or 'x' closes the card reveal with no action taken. Clicking 'Delete' deletes the user profile, refreshes the Admin page and a 'User Profile Removed' flash message is displayed. | Pass
+
+---
