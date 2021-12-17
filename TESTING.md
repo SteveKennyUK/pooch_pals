@@ -1,3 +1,19 @@
+# Testing
+
+## Table of contents 
+
+- [HTML W3 Code Validator](#html-w3-code-validator) 
+- [W3C CSS Validator](#w3c-css-validator)
+- [JS Hint](#js-hint)
+- [PEP8 Online](#pep8-online)
+- [WAVE](#wave)
+- [Dev Tools](#google-chrome-developers-tools)
+- [Responsiveness Testing](#responsiveness-testing)
+- [Browser Compatibility](#browser-compatibility)
+- [Testing User Stories](#testing-user-stories)
+- [Further Testing](#further-testing)
+- [Bugs](#bugs)
+
 ## [HTML W3 Code Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
 The 11 HTML pages in this project were each tested for validation to ensure there were no HTML syntax errors in the project.
 
@@ -72,7 +88,7 @@ The site was tested on a ASUS Zenbook desktop, Samsung Galaxy mobile and iPhone 
 - **Opera** [Desktop](https://github.com/SteveKennyUK/pooch_pals/blob/testing/static/images/testing/opera.JPG). Mobile view was good in portrait and landscape.
 
 ---
-
+[Return to Table of contents](#table-of-contents)
 ## Testing User Stories 
 
 -   #### User Goals (general)
@@ -194,7 +210,7 @@ The site was tested on a ASUS Zenbook desktop, Samsung Galaxy mobile and iPhone 
 	        - The Admin page is only available to users with admin privileges. This page has additional security features to prevent unauthorised access. Admin users may also edit and delete other user contributions. See Site Owner Goals above.
 
 ---
-
+[Return to Table of contents](#table-of-contents)
 ## Further Testing
 
 -   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
@@ -352,7 +368,7 @@ Users logged in | Main Body | Image | Display profile title image | Pass
 || User Cards | Delete Button | Triggers a card reveal asking admin user to confirm that they wish to delete the user profile. Clicking 'Cancel' or 'x' closes the card reveal with no action taken. Clicking 'Delete' deletes the user profile, refreshes the Admin page and a 'User Profile Removed' flash message is displayed. | Pass
 
 ---
-
+[Return to Table of contents](#table-of-contents)
 ## Bugs
 ### Resolved Bugs
 
@@ -389,3 +405,5 @@ I managed to resolve it in the end by focusing on what to do if the passwords di
 - A bug arose surrounding the session user when I added most recently added dog profiles to the home page. I tried to use the `dog_card` template to inject the dog profile card. This template also contains the `edit_delete`template, which has conditional settings to display the buttons dependent on whether or not the user is in session. This works fine if a user is in session. However, if a user is not logged in and tries to view the home page, an error is thrown regarding an undefined 'user' variable. This is the case even when the session user is defined in the home page view. As I want all users to be able to view the latest profile cards (not the full profiles) on the home page and time was at a premium, I decided to include the full `dog_card` code in `index.html` and remove the parts which contained references to 'user' - these were not required anyway. Only parts of the code were therefore necessarily repeated and this is something to come back to in the future. 
 
 - A relatively minor bug was discovered late in the testing stage. Having resolved the issues surrounding deleted dog profiles and users where they are referenced in reviews, I checked if there were any other ways that deleting one record may affect the site elsewhere. One bug that I did discover is that if a user is in session at the time that admin deletes them from the users collection, the user will still be in session. However, if they attempt to view their profile or try to make an action that would amend the database, an error is thrown. Essentially, where the code would be searching for their session user details that no longer exist. I'm not sure if it's possible to remove a user from session at the same time as removing them from the database. I don't have the time to investigate this in any depth and as the user would not be able to make any changes to the database and would not be able to login again once the session ends, I don't consider this a major concern at this stage.  
+
+[Return to Table of contents](#table-of-contents)
